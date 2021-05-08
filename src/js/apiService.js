@@ -1,11 +1,11 @@
 const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events.json';
 const API_KEY = 'k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6';
 
-class NewApiService {
+export default class NewApiService {
   constructor() {
     this.searchQuery = '';
     this.numberPage = 1;
-     }
+  }
   async fetchApi() {
     const searchParams = new URLSearchParams({
       keyWord: this.searchQuery,
@@ -55,6 +55,4 @@ class NewApiService {
 //       return galleryArrey;
 // }
 
-
 // onSearch()
-
