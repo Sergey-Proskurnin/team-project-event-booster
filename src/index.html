@@ -24,11 +24,11 @@
       @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap');
     </style>
   </head>
-   <body>
+  <body>
     <header>
-      <h2>events booster</h2>
+      <h2 class="title">events booster</h2>
     </header>
-    <main class="intro">
+    <main>
       <section class=Hero>
         <div class="hero">
           <h1 class="hero-title">FIND BEST EVENTS AROUND THE WORLD</h1>
@@ -42,7 +42,9 @@
               autocomplete="off"
               placeholder="What are you looking for?"
             /></label>
-            <button type="submit" class="btn-submit">Search</button>
+            <button type="submit" class="btn-submit"><span class="material-icons">
+              search
+              </span></button>
           </form>
                   </div>
                   <div class="form-selector">
@@ -63,17 +65,19 @@
                      </label> 
                   </div>
                   <!-- <div class="to-up material-icons md-36">arrow_upward</div> -->
-     </section>
-     <section class="section-card">
-      <ul class="event-cards"></ul>
-     </section>
-      <h1>Event Booster Office</h1>
-      <img src="./images/intro.png" alt="" width="640" />
-      <section class="footer-section">
-        <p>© 2021 | All Rights Reserved | Developed with <a href=""><span class="material-icons">
-          favorite
-          </span> by GoIT Students</a></p>
+      </section>
+  
+      <section class="section-card">
+        <ul class="event-cards"></ul>
       </section>
     </main>
+    <footer class="footer-section">
+      <p>
+        © 2021 | All Rights Reserved | Developed with
+        <a href=""
+          ><span class="material-icons"> favorite </span> by GoIT Students</a
+        >
+      </p>
+    </footer>
   </body>
 </html>
