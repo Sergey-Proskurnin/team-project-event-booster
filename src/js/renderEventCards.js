@@ -4,6 +4,7 @@ import eventsCardTmpl from '../templates/eventsCardTmpl.hbs';
 const apiService = new NewApiService();
 const inputSearch = document.querySelector('.form-submit');
 const eventCardsRef = document.querySelector('.event-cards');
+export let resultGallery = []
 
 inputSearch.addEventListener('submit', onSearch);
 
@@ -17,6 +18,8 @@ async function onSearch(e) {
   console.log(apiService.query);
 
   const galleryArray = await apiService.fetchApi();
+  resultGallery.push(...galleryArray)
+  
   const markup = await appendEventMarkup(galleryArray)
   return markup;
 }
@@ -27,6 +30,9 @@ function renderEventCards() {
 
 function appendEventMarkup(events) {
   eventCardsRef.insertAdjacentHTML('beforeend', eventsCardTmpl(events));
-}
+  }
 
 renderEventCards();
+
+// export { resultGallery }
+// console.log(resultGallery);
