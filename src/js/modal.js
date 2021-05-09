@@ -3,7 +3,19 @@ import * as basicLightbox from 'basiclightbox';
 const eventCardRef = document.querySelector('.event-cards');
 const bodyRef = document.querySelector('body');
 
-function onOpenModal() {
+// eventCardRef.addEventListener('click', event => {
+//   onOpenModal(event);
+// });
+
+eventCardRef.addEventListener('click', onOpenModal)
+ 
+
+
+function onOpenModal(e) {
+  // if (e.target.value === ) {
+    
+  // }
+  console.log(e.target.value);
   let modalCloseEsc = '';
   let modalCloseBtn = '';
   let modalCloseOverlay = '';
@@ -96,8 +108,5 @@ function onOpenModal() {
   /* window.removeEventListener('click', modalCloseOverlay); */
 }
 
-eventCardRef.addEventListener('click', event => {
-  onOpenModal(event);
-});
 
 

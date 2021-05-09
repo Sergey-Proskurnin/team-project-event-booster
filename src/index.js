@@ -5,3 +5,7 @@ import './sass/main.scss';
 import './js/apiService';
 import './js/renderEventCards';
 import './js/renderOptionSelect';
+import './js/test'
+// import { resultGallery } from './js/test'
+// console.log(resultGallery);
+

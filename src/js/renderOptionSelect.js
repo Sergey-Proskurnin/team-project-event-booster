@@ -1,4 +1,4 @@
-import data from '../data/test';
+import data from '../data/countryCodes';
 import optionMarkupTmpl from '../templates/optionCodeCountryTmpl.hbs';
 
 const selectForm = document.querySelector('.select-country')
