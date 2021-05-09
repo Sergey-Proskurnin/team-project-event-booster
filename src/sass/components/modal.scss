@@ -1,0 +1,131 @@
+/* Lightbox */
+$basicLightbox__background: rgba(223, 93, 93, 0.8); // Background color
+$basicLightbox__zIndex: 1000; // Stack order
+$basicLightbox__duration: 0.4s; // Transition duration
+$basicLightbox__timing: ease; // Transition timing
+
+/* body.is-open {
+  overflow: hidden;
+  background:#200D1D 60%;
+  } */
+
+.event-modal {
+  position: absolute;
+  top: 314px;
+  left: 24px;
+  background-color: #fff2fd;
+  border-radius: 150px 0px;
+  width: 272px;
+  height: 915px;
+  padding: 100px 10px;
+  /* z-index: 99; */
+}
+.close-modal {
+  display: block;
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  margin-left: auto;
+  max-height: 24px;
+  border: none;
+  color: #4c00fe;
+  background-color: #fff2fd;
+  /* z-index: 100; */
+}
+.title-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.info-event {
+  display: block;
+  text-align: center;
+  padding: 20px;
+}
+
+.modal-title {
+  color: #dc56c5;
+  text-transform: uppercase;
+  font-size: 20px;
+  margin: 0;
+}
+
+.poster-img {
+  display: none;
+}
+
+.ticket {
+  text-decoration: none;
+  display: block;
+  text-transform: uppercase;
+  background-color: #4c00fe;
+  width: fit-content;
+  padding: 10px;
+  font-size: 16px;
+  color: #ffffff;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.more-info {
+  text-transform: uppercase;
+  display: block;
+  font-size: 16px;
+  padding: 10px 0;
+  margin: 15px auto;
+  width: fit-content;
+  border: 1px solid;
+  border-radius: 5px;
+  color: #4c00fe;
+}
+
+@media screen and (min-width: 768px) {
+  .event-modal {
+    top: 131px;
+    left: 66px;
+    width: 595px;
+    height: 831px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 300px 0px;
+    padding: 30px 20px;
+  }
+  .poster-img {
+    display: block;
+    width: 230px;
+    height: 415px;
+    object-fit: cover;
+    padding: 0 10px;
+  }
+
+  .info-event {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 10px;
+    text-align: left;
+    padding-left: 20px;
+  }
+  .ticket {
+    margin-left: 0;
+  }
+  .event-data {
+    padding-left: 30px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .event-modal {
+    top: 141px;
+    left: 155px;
+    width: 930px;
+    height: 1023px;
+    max-width: 950px;
+    padding: 60px 20px;
+  }
+  .poster-img {
+    width: 360px;
+  }
+}
+
