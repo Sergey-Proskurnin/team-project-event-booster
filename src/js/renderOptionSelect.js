@@ -4,8 +4,8 @@ import optionMarkupTmpl from '../templates/optionCodeCountryTmpl.hbs';
 const selectForm = document.querySelector('.select-country')
 
 function onRenderOptionSelect(data) {
-    const marcup = optionMarkupTmpl(data)
-   return selectForm.insertAdjacentHTML('beforeend', marcup);
+    const markup = optionMarkupTmpl(data)
+   return selectForm.insertAdjacentHTML('beforeend', markup);
 }
 
 onRenderOptionSelect(data)

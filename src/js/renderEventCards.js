@@ -9,7 +9,6 @@ inputSearch.addEventListener('submit', onSearch);
 
 async function onSearch(e) {
   e.preventDefault();
-  console.dir(e.target);
   eventCardsRef.innerHTML = ''
   const valueInput =e.target.elements[0].value;
   const valueSelect =e.target.elements[2].value;
@@ -18,8 +17,8 @@ async function onSearch(e) {
   console.log(apiService.query);
 
   const galleryArray = await apiService.fetchApi();
-  const marcup = await appendEventMarkup(galleryArray)
-  return marcup;
+  const markup = await appendEventMarkup(galleryArray)
+  return markup;
 }
 
 function renderEventCards() {

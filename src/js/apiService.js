@@ -9,7 +9,7 @@ export default class NewApiService {
   }
   async fetchApi() {
     const searchParams = new URLSearchParams({
-      keyWord: this.searchQuery,
+      keyword: this.searchQuery,
       // source: 'universe',
       countryCode: this.searchCountry,
       page: this.numberPage,
@@ -41,7 +41,7 @@ export default class NewApiService {
   
     set query(newQueryArray) {
     this.searchQuery = newQueryArray[0];
-    this.searchCountry = newQueryArray[1];
+    this.searchCountry = newQueryArray[newQueryArray.length - 1];
 
   }
 }
