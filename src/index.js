@@ -8,3 +8,4 @@ import './js/renderOptionSelect';
 import './js/test'
 // import { resultGallery } from './js/test'
 // console.log(resultGallery);
+
