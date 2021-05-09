@@ -5,4 +5,3 @@ import './sass/main.scss';
 import './js/apiService';
 import './js/renderEventCards';
 import './js/renderOptionSelect';
-
