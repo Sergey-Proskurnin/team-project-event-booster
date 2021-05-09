@@ -3,14 +3,15 @@ const API_KEY = 'k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6';
 
 export default class NewApiService {
   constructor() {
+    this.searchCountry = ''
     this.searchQuery = '';
     this.numberPage = 1;
   }
   async fetchApi() {
     const searchParams = new URLSearchParams({
       keyWord: this.searchQuery,
-      source: 'universe',
-      countryCode: 'US',
+      // source: 'universe',
+      countryCode: this.searchCountry,
       page: this.numberPage,
       size: 20,
       apikey: API_KEY,
@@ -25,8 +26,8 @@ export default class NewApiService {
     //   return 'error';
     // }
     this.incrementPage();
-    console.log(_embedded.events);
-    return await _embedded.events;
+    const card = _embedded.events;
+    return await card;
   }
   incrementPage() {
     this.numberPage += 1;
@@ -35,10 +36,13 @@ export default class NewApiService {
     this.numberPage = 1;
   }
   get query() {
-    return this.searchQuery;
+    return [this.searchQuery, this.searchCountry]
   }
-  set query(newQuery) {
-    this.searchQuery = newQuery;
+  
+    set query(newQueryArray) {
+    this.searchQuery = newQueryArray[0];
+    this.searchCountry = newQueryArray[1];
+
   }
 }
 // const inputSearch = document.querySelector('.form-submit')
