@@ -5,17 +5,22 @@ const apiService = new NewApiService();
 const inputSearch = document.querySelector('.form-submit');
 const eventCardsRef = document.querySelector('.event-cards');
 
-console.log(inputSearch);
 inputSearch.addEventListener('submit', onSearch);
-
-apiService.query = 'eagles';
-console.log(apiService);
 
 async function onSearch(e) {
   e.preventDefault();
+  eventCardsRef.innerHTML = ''
+  const valueInput =e.target.elements[0].value;
+  const valueSelect =e.target.elements[2].value;
+
+  apiService.query = [valueInput, valueSelect];
+  console.log(apiService.query);
+
   const galleryArray = await apiService.fetchApi();
-  return galleryArray;
+  const markup = await appendEventMarkup(galleryArray)
+  return markup;
 }
+
 function renderEventCards() {
   return apiService.fetchApi().then(appendEventMarkup);
 }
