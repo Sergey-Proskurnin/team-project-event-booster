@@ -16,7 +16,7 @@ import './js/modal';
 // console.log(resultGallery);
 
 const refs = {
-  searchForm: document.querySelector('.search-form'),
+  searchForm: document.querySelector('.form-submit'),
   searchInput: document.querySelector('.input'),
   select: document.querySelector('.select'),
 };
@@ -25,14 +25,22 @@ let fetchResult = [];
 export { fetchResult };
 
 // countryCode = ${refs.select.value}
+refs.searchForm.addEventListener('submit', onSubmitForm);
+
+function onSubmitForm(e) {
+  e.preventDefault();
+  const valueInput = e.target.elements[0].value;
+  const valueSelect = e.target.nextElementSibling[0].value;
+  ApiService.getData(valueSelect, valueInput);
+}
 
 class ApiService {
-  static getData() {
+  static getData(valueSelect, valueInput) {
     $('#demo').pagination({
       dataSource: function (done) {
         $.ajax({
           type: 'GET',
-          url: `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${refs.searchInput.value}&countryCode=${refs.select.value}&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6`,
+          url: `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${valueInput}&countryCode=${valueSelect}&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6`,
           success: function (data) {
             console.log(data);
             if ('_embedded' in data) {
@@ -42,7 +50,7 @@ class ApiService {
           },
         });
       },
-      pageSize: 10,
+      pageSize: 24,
       showPrevious: false,
       showNext: false,
       callback: function (data) {
@@ -52,11 +60,3 @@ class ApiService {
     });
   }
 }
-
-function onSubmitForm(e) {
-  e.preventDefault();
-  ApiService.getData();
-}
-
-refs.searchForm.addEventListener('submit', onSubmitForm);
-
