@@ -1,5 +1,6 @@
-import NewApiService from './apiService';
-import eventsCardTmpl from '../templates/eventsCardTmpl.hbs';
+// import NewApiService from './apiService';
+// import eventsCardTmpl from '../templates/eventsCardTmpl.hbs';
+
 
 const apiService = new NewApiService();
 const inputSearch = document.querySelector('.form-submit');
@@ -16,8 +17,10 @@ async function onSearch(e) {
   const valueSelect = e.target.nextElementSibling[0].value;
   console.dir(e.target);
 
-  apiService.query = [valueInput, valueSelect];
-  console.log(apiService.query);
+//   apiService.query = [valueInput, valueSelect];
+//   console.log(apiService.query);
+
+
 
   const galleryArray = await apiService.fetchApi();
   resultGallery.push(...galleryArray);
@@ -26,15 +29,22 @@ async function onSearch(e) {
   return markup;
 }
 
-function renderEventCards() {
-  return apiService.fetchApi().then(appendEventMarkup);
-}
+
+//   const markup = await appendEventMarkup(galleryArray);
+//   return markup;
+// }
+
 
 function appendEventMarkup(events) {
   eventCardsRef.insertAdjacentHTML('beforeend', eventsCardTmpl(events));
 }
 
-renderEventCards();
+
+// function appendEventMarkup(events) {
+//   eventCardsRef.insertAdjacentHTML('beforeend', eventsCardTmpl(events));
+// }
+
 
 // export { resultGallery }
 // console.log(resultGallery);
+

@@ -1,8 +1,10 @@
+
 .section-card {
   background-color: black;
 }
 
 .event-cards {
+  width: auto;
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
@@ -38,8 +40,13 @@
   }
 
   @include for-size(desktop) {
-    margin-bottom: 63px;
-    margin-right: 70px;
+
+    width: auto;
+    padding-right: 70px;
+
+//     margin-bottom: 63px;
+//     margin-right: 70px;
+
   }
 }
 
