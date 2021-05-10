@@ -1,4 +1,9 @@
+body {
+  background-color: rgb(168, 136, 136);
+}
+
 .event-cards {
+  width: auto;
   justify-content: center;
   display: flex;
   flex-direction: row;
@@ -19,6 +24,7 @@
   }
 
   @include for-size(desktop) {
+    width: auto;
     padding-right: 70px;
   }
 }
