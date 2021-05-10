@@ -5,15 +5,16 @@ const apiService = new NewApiService();
 const inputSearch = document.querySelector('.form-submit');
 const eventCardsRef = document.querySelector('.event-cards');
 export let resultGallery = [];
-
+// console.dir(inputSearch);
 inputSearch.addEventListener('submit', onSearch);
 
 async function onSearch(e) {
   e.preventDefault();
-  console.log(e.target.elements);
+  // console.log(e.target.elements);
   eventCardsRef.innerHTML = '';
   const valueInput = e.target.elements[0].value;
-  const valueSelect = e.target.elements[1].value;
+  const valueSelect = e.target.nextElementSibling[0].value;
+  console.dir(e.target);
 
   apiService.query = [valueInput, valueSelect];
   console.log(apiService.query);
