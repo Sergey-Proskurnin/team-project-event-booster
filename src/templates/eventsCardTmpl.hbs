@@ -1,24 +1,20 @@
 {{#each this}}
 <li class="event-card">
-    <img
-      class="event-image"
-      srcset="
+    <img class="event-image" srcset="
+
         {{this.images.9.url}} 180w,
         {{this.images.3.url}} 180w,
         {{this.images.1.url}} 128w,
         {{this.images.6.url}} 128w
-      "
-      src={{this.images.9.url}}
-      alt="{{name}}"
-    />
-  <h3 class="event-title">{{name}}</h3>
-  <p class="event-date">{{dates.start.localDate}}</p>
-  <p class="event-place">
-    <a href="https://maps.google.com?saddr=Current+Location&daddr={{_embedded.venues.0.location.latitude}},{{_embedded.venues.0.location.longitude}}"
-    target="_blank">
-        <span class="material-icons md-12 cards-icons">room</span>
-        {{_embedded.venues.0.name}}
-    </a>  
-  </p>
+      " src={{this.images.9.url}} alt="{{name}}" />
+    <h3 class="event-title">{{name}}</h3>
+    <p class="event-date">{{dates.start.localDate}}</p>
+    <p class="event-place">
+        <a href="https://maps.google.com?saddr=Current+Location&daddr={{_embedded.venues.0.location.latitude}},{{_embedded.venues.0.location.longitude}}"
+            target="_blank">
+            <span class="material-icons md-12 cards-icons">room</span>
+            {{_embedded.venues.0.name}}
+        </a>
+    </p>
 </li>
 {{/each}}
