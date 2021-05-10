@@ -1,0 +1,20 @@
+.section-card {
+  padding-bottom: 120px;
+  @media screen and (min-width: 768px) {
+    padding-bottom: 98px;
+  }
+  @media screen and (min-width: 1200px) {
+    padding-bottom: 119px;
+  }
+}
+
+.bg-img {
+  background-image: url('../images/Mobile/bgBodyMobile2.jpg');
+
+  @media screen and (min-width: 768px) {
+    background-image: url('../images/Tablet/bgBodyTablet2.jpg');
+  }
+  @media screen and (min-width: 1200px) {
+    background-image: url('../images/Desctop/bgBodyDesctop2.jpg');
+  }
+}
