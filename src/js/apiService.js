@@ -3,7 +3,7 @@ const API_KEY = 'k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6';
 
 export default class NewApiService {
   constructor() {
-    this.searchCountry = ''
+    this.searchCountry = '';
     this.searchQuery = '';
     this.numberPage = 1;
   }
@@ -36,27 +36,26 @@ export default class NewApiService {
     this.numberPage = 1;
   }
   get query() {
-    return [this.searchQuery, this.searchCountry]
+    return [this.searchQuery, this.searchCountry];
   }
-  
-    set query(newQueryArray) {
+
+  set query(newQueryArray) {
     this.searchQuery = newQueryArray[0];
     this.searchCountry = newQueryArray[newQueryArray.length - 1];
-
   }
 }
-// const inputSearch = document.querySelector('.form-submit')
+// const inputSearch = document.querySelector('.form-submit');
 // console.log(inputSearch);
-// inputSearch.addEventListener('submit', onSearch)
+// inputSearch.addEventListener('submit', onSearch);
 
 // const galleryApiService = new NewApiService();
-// galleryApiService.query = 'eagles'
+// galleryApiService.query = 'eagles';
 // console.log(galleryApiService);
 
-// async function onSearch(e){
-//     e.preventDefault();
-//     const galleryArrey = await galleryApiService.fetchApi();
-//       return galleryArrey;
+// async function onSearch(e) {
+//   e.preventDefault();
+//   const galleryArrey = await galleryApiService.fetchApi();
+//   return galleryArrey;
 // }
 
-// onSearch()
+// onSearch();

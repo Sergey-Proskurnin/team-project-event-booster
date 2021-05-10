@@ -1,27 +1,13 @@
+import 'basiclightbox/dist/basiclightbox.min.css';
 import * as basicLightbox from 'basiclightbox';
 
 const eventCardRef = document.querySelector('.event-cards');
-const bodyRef = document.querySelector('body');
-
-// eventCardRef.addEventListener('click', event => {
-//   onOpenModal(event);
-// });
-
-eventCardRef.addEventListener('click', onOpenModal)
- 
-
 
 function onOpenModal(e) {
-  // if (e.target.value === ) {
-    
-  // }
-  console.log(e.target.value);
   let modalCloseEsc = '';
   let modalCloseBtn = '';
-  let modalCloseOverlay = '';
   const instance = basicLightbox.create(
-    `
-        <div class="event-modal">
+    ` <div class="event-modal">
         <button class="close-modal" type="button">
           <span class="material-icons">close</span>
         </button>
@@ -98,15 +84,9 @@ function onOpenModal(e) {
     }
   });
 
-  /* modalCloseOverlay = window.addEventListener('click', event => {
-    if (event.target !== 'div.event-modal' && bodyRef.is - open) {
-      instance.close();
-    }
-  }); */
   window.removeEventListener('click', modalCloseBtn);
   window.removeEventListener('keyup', modalCloseEsc);
-  /* window.removeEventListener('click', modalCloseOverlay); */
 }
-
-
-
+eventCardRef.addEventListener('click', event => {
+  onOpenModal(event);
+});
