@@ -1,0 +1,84 @@
+.event-cards {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  background-color: black;
+}
+
+.event-card {
+  justify-content: center;
+  width: 128px;
+  padding-right: 14px;
+  padding-bottom: 42px;
+
+  @include for-size(tablet) {
+    padding-right: 27px;
+  }
+
+  @include for-size(desktop) {
+    padding-right: 70px;
+  }
+}
+
+.event-image {
+  width: 128px;
+  height: 161px;
+  border-radius: 50px 0px;
+  padding-bottom: 5px;
+  object-fit: cover;
+
+  @include for-size(tablet) {
+    width: 180px;
+    height: 227px;
+  }
+}
+
+.event-title {
+  font-size: 14px;
+  line-height: 1.214;
+  font-weight: bold;
+  text-align: center;
+  color: $accent-color;
+  padding-bottom: 5px;
+
+  @include for-size(tablet) {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+}
+
+.event-date {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.214;
+  text-align: center;
+  color: $primary-text-color;
+  padding-bottom: 5px;
+
+  @include for-size(tablet) {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+}
+
+.event-place {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.25px;
+  text-align: center;
+  color: $primary-text-color;
+
+  @include for-size(tablet) {
+    font-size: 14px;
+    line-height: 1.214;
+  }
+}
+
+.material-icons.cards-icons {
+  width: 6px;
+  height: 9px;
+  color: $primary-text-color;
+}
