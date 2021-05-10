@@ -1,6 +1,7 @@
 // const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events.json';
 // const API_KEY = 'k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6';
 
+
 // export default class NewApiService {
 //   constructor() {
 //     this.searchCountry = '';
@@ -13,7 +14,7 @@
 //       // source: 'universe',
 //       countryCode: this.searchCountry,
 //       page: this.numberPage,
-//       size: 20,
+//       size: 24,
 //       apikey: API_KEY,
 //     });
 //     const url = `${BASE_URL}?${searchParams}`;
@@ -59,3 +60,5 @@
 // // }
 
 // // onSearch()
+
+

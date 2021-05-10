@@ -7,9 +7,11 @@ import './sass/components/pagination.scss';
 import './js/renderEventCards';
 import './js/renderOptionSelect';
 import './js/test';
+
 // import apiService from './js/apiService';
 import pagination from 'paginationjs';
 import eventsCardTmpl from './templates/eventsCardTmpl.hbs';
+import './js/modal';
 // import { resultGallery } from './js/test'
 // console.log(resultGallery);
 
@@ -57,3 +59,4 @@ function onSubmitForm(e) {
 }
 
 refs.searchForm.addEventListener('submit', onSubmitForm);
+

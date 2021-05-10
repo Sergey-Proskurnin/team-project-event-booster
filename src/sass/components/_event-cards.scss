@@ -1,31 +1,52 @@
-body {
-  background-color: rgb(168, 136, 136);
+
+.section-card {
+  background-color: black;
 }
 
 .event-cards {
   width: auto;
   justify-content: center;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
-  width: 100%;
-  background-color: black;
+  align-items: flex-start;
+  margin-right: -14px;
+
+  @include for-size(tablet) {
+    margin-right: -27px;
+  }
+
+  @include for-size(desktop) {
+    margin-right: -70px;
+  }
+  //align-items: center;
+  //width: 100%;
+  //   background-color: black;
 }
+
+//.event-cards::before {
+//  background-image: url(../src/images/rectangle.svg);
+//}
 
 .event-card {
   justify-content: center;
   width: 128px;
-  padding-right: 14px;
-  padding-bottom: 42px;
+  margin-bottom: 39px;
+  margin-right: 14px;
 
   @include for-size(tablet) {
-    padding-right: 27px;
+    margin-bottom: 58px;
+    width: 180px;
+    margin-right: 27px;
   }
 
   @include for-size(desktop) {
+
     width: auto;
     padding-right: 70px;
+
+//     margin-bottom: 63px;
+//     margin-right: 70px;
+
   }
 }
 
@@ -73,7 +94,7 @@ body {
 .event-place {
   font-weight: 600;
   font-size: 12px;
-  line-height: 1.25px;
+  line-height: 15px;
   text-align: center;
   color: $primary-text-color;
 
@@ -84,7 +105,10 @@ body {
 }
 
 .material-icons.cards-icons {
-  width: 6px;
-  height: 9px;
+  font-size: 9px;
   color: $primary-text-color;
+
+  @include for-size(tablet) {
+    font-size: 10px;
+  }
 }
