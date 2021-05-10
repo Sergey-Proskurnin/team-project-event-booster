@@ -24,50 +24,65 @@
       @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap');
     </style>
   </head>
-   <body>
-    <header>
-      <h2>events booster</h2>
-    </header>
+  <body>
+    <header class="header"></header>
     <main class="intro">
-      <section class=Hero>
-        <div class="hero">
-          <h1 class="hero-title">FIND BEST EVENTS AROUND THE WORLD</h1>
-        </div>
+      <section class="wrapper-hero img-container">
+        <div class="header-logo"></div>
+        <!-- <div class="hero"> -->
+        <h1 class="hero-title">FIND BEST EVENTS AROUND THE WORLD</h1>
+        <!-- </div> -->
         <div class="form-submit">
           <form class="search-form" id="search-form" action="" method="">
-            <label for="query"> <input
-              id="query"
-              type="search"
-              name="query"
-              autocomplete="off"
-              placeholder="What are you looking for?"
+            <label for="query">
+              <input
+                id="query"
+                type="search"
+                name="query"
+                autocomplete="off"
+                placeholder="What are you looking for?"
             /></label>
             <button type="submit" class="btn-submit">Search</button>
           </form>
-                  </div>
-                  <div class="form-selector">
-                    <form class="search-form" id="search-form" action="" method="">
-                     <label for="select">
-                       <input
-                       id="select"
-                        type="search"
-                        name="select"
-                        autocomplete="off"
-                        placeholder="What are you looking for?"
-                      />
-                      <button type="button" class="btn-selector"><span class="material-icons">
-                        arrow_drop_down
-                        </span></button>
-                    </form>
-
-                     </label> 
-                  </div>
-                  <!-- <div class="to-up material-icons md-36">arrow_upward</div> -->
-     </section>
-      <h1>Event Booster Office</h1>
-      <img src="./images/intro.png" alt="" width="640" />
+        </div>
+        <div class="form-selector">
+          <form class="search-form" id="search-form" action="" method="">
+            <label for="select">
+              <input
+                id="select"
+                type="search"
+                name="select"
+                autocomplete="off"
+                placeholder="What are you looking for?"
+              />
+              <button type="button" class="btn-selector">
+                <span class="material-icons"> arrow_drop_down </span>
+              </button>
+            </label>
+          </form>
+        </div>
+        <!-- <div class="to-up material-icons md-36">arrow_upward</div> -->
+      </section>
+      <section class="event-cards-list bg-img">
+        <ul class="event-cards">
+          <img src="./images/intro.png" alt="300" width="200" />
+        </ul>
+        <ul class="event-cards-list-pages">
+          <li class="event-cards-pages">1</li>
+          <li class="event-cards-pages">2</li>
+          <li class="event-cards-pages">3</li>
+          <li class="event-cards-pages">4</li>
+          <li class="event-cards-pages">5</li>
+          <li class="event-cards-pages">...</li>
+          <li class="event-cards-pages">29</li>
+        </ul>
+        <!-- <!-- <h1>Event Booster Office</h1> -->
+      </section>
       <section class="footer-section">
-        <p>© 2021 | All Rights Reserved | Developed with <a href="">♥ by GoIT Students</a></p>
+        <p class="footer-section-text">
+          © 2021 | All Rights Reserved | Developed with
+          <a href="">♥ by GoIT Students</a>
+        </p>
       </section>
     </main>
   </body>

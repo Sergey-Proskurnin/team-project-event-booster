@@ -1,0 +1,57 @@
+.event-cards-list {
+  padding-bottom: 120px;
+
+  @media screen and (min-width: 768px) {
+    padding-bottom: 98px;
+  }
+  @media screen and (min-width: 1200px) {
+    padding-bottom: 119px;
+  }
+}
+
+.bg-img {
+  background-image: url('../images/Mobile/bgBodyMobile2.jpg');
+
+  @media screen and (min-width: 768px) {
+    background-image: url('../images/Tablet/bgBodyTablet2.jpg');
+  }
+  @media screen and (min-width: 1200px) {
+    background-image: url('../images/Desctop/bgBodyDesctop2.jpg');
+  }
+  background-position: center;
+  background-size: cover;
+}
+
+.event-cards {
+  margin: 0;
+  padding-bottom: 60px;
+  //   height: 2635px;
+}
+
+.event-cards-list-pages {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  //   padding-bottom: 120px;
+  width: 233px;
+  height: 30px;
+}
+
+.event-cards-pages {
+  color: $primary-text-color;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+
+  margin: 0;
+  width: 30px;
+  height: 30px;
+
+  &:hover {
+    color: $accent-color;
+    border: 1px solid #dc56c5;
+    box-sizing: border-box;
+    border-radius: 10px 0px;
+  }
+}

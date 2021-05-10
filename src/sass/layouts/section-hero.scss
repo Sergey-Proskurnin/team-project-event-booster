@@ -1,0 +1,73 @@
+.wrapper-hero {
+  position: relative;
+  display: block;
+  padding: 78px 25px 112px 25px;
+  text-align: center;
+  @media screen and (min-width: 768px) {
+    padding: 40px 100px 183px 100px;
+  }
+  @media screen and (min-width: 1200px) {
+    padding-top: 40px;
+    padding-bottom: 183px;
+    // padding: 40px 345px 192px 345px;
+  }
+}
+.img-container {
+  min-width: 320px;
+  max-width: 1600px;
+  height: 364px;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+  background-image: linear-gradient(
+      rgba(11, 11, 11, 0.5),
+      rgba(11, 11, 11, 0.5)
+    ),
+    url('../images/Mobile/picMobile.jpg');
+  background-position: center;
+  background-size: cover;
+
+  @media screen and (min-width: 768px) {
+    max-width: 768px;
+    background-image: linear-gradient(
+        rgba(11, 11, 11, 0.5),
+        rgba(11, 11, 11, 0.5)
+      ),
+      url('../images/Tablet/picTablet.jpg');
+    // // background-position: inherit;
+    // background-size: contain;
+  }
+  @media screen and (min-width: 1200px) {
+    min-width: 769px;
+    background-image: linear-gradient(
+        rgba(11, 11, 11, 0.5),
+        rgba(11, 11, 11, 0.5)
+      ),
+      url('../images/Desctop/picDesctop.jpg');
+  }
+}
+
+.hero-title {
+  display: inline-block;
+  margin: 0px 0px 25px 0px;
+  width: 212px;
+  height: 44px;
+  text-align: center;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 18px;
+  color: $accent-color;
+  @media screen and (min-width: 768px) {
+    margin: 0px 0px 27px 0px;
+    width: 353px;
+    height: 74px;
+    font-size: 30px;
+  }
+  @media screen and (min-width: 1200px) {
+    margin: 0px 0px 52px 0px;
+    width: 588px;
+    height: 122px;
+    font-size: 45px;
+  }
+}
