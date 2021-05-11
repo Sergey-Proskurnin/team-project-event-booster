@@ -15,19 +15,19 @@ import './js/modal';
 // import { resultGallery } from './js/test'
 // console.log(resultGallery);
 
-function worldEvents() {
-  fetch(
-    'https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&sort=random&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6',
-  )
-    .then(resp => resp.json())
-    .then(data => {
-      const { events } = data._embedded;
-      const markup = eventsCardTmpl(events);
-      refs.dataContainer.insertAdjacentHTML('beforeend', markup);
-    });
-}
+// function worldEvents() {
+//   fetch(
+//     'https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&sort=random&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6',
+//   )
+//     .then(resp => resp.json())
+//     .then(data => {
+//       const { events } = data._embedded;
+//       const markup = eventsCardTmpl(events);
+//       refs.dataContainer.insertAdjacentHTML('beforeend', markup);
+//     });
+// }
 
-worldEvents();
+// worldEvents();
 
 const refs = {
   searchForm: document.querySelector('.form-submit'),
@@ -82,7 +82,7 @@ class ApiService {
 
 /**Rendering first events */
 function firstEventRender() {
-  ApiService.getData('US', '');
+  ApiService.getData('', '');
 }
 
 firstEventRender();
