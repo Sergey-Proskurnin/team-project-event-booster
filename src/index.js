@@ -1,7 +1,9 @@
 // import './styles.css';
 // import './sass/utils/variables.scss'
+import './js/scrollUp';
 import 'material-design-icons/iconfont/material-icons.css';
 import './sass/main.scss';
+
 import './sass/components/pagination.scss';
 // import './js/apiService';
 import './js/renderEventCards';
