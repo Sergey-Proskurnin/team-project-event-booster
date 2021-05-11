@@ -1,9 +1,9 @@
-/* Lightbox */
+/* Lightbox */ 
 /* body.is-open {
   overflow: hidden;
   background:#200D1D 60%;
   } */
-.event-modal {
+/* .event-modal {
   position: absolute;
   top: 314px;
   left: 24px;
@@ -12,8 +12,8 @@
   width: 272px;
   height: 915px;
   padding: 100px 10px;
-  /* z-index: 99; */
-}
+   z-index: 99; 
+} 
 
 .close-modal {
   display: block;
@@ -25,7 +25,7 @@
   border: none;
   color: #4c00fe;
   background-color: #fff2fd;
-  /* z-index: 100; */
+  /* z-index: 100; 
 }
 
 .title-img {
@@ -131,4 +131,4 @@
     width: 360px;
   }
 }
-/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map
