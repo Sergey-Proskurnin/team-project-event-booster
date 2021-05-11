@@ -58,8 +58,15 @@ class ApiService {
           type: 'GET',
           url: `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${valueInput}&sort=random&size=200&countryCode=${valueSelect}&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6`,
           success: function (data) {
-            console.log(data);
+            // console.log(data);
             if ('_embedded' in data) {
+              data._embedded.events.forEach(i => i.images.sort((a, b) => a.width - b.width))
+              // console.log(data._embedded.events.forEach(i => {
+              //   i.info[40] = '<span id="dots">...</span><span id="more">'
+              //     i.info[i.length-1] = 
+              //   <span id="dots">...</span><span id="more">text</span>
+              // });
+              console.log(data);
               done(data._embedded.events);
               fetchResult=[]
               fetchResult.push(...data._embedded.events);
@@ -74,7 +81,7 @@ class ApiService {
       showPrevious: false,
       showNext: false,
       callback: function (data) {
-        console.log(data);
+        // console.log(data);
         $('#dataContainer').html(eventsCardTmpl(data));
       },
     });

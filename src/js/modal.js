@@ -59,9 +59,9 @@ function openModal (e) {
 
   const closeBtn = document.querySelector('.close-modal .material-icons');
    document.addEventListener('click', event => {
-  console.log(event);
+  // console.log(event);
         if (event.target === closeBtn) {
-          console.log(event.target);
+          // console.log(event.target);
           modal.close()
         }
       });
