@@ -1,9 +1,4 @@
-
-.section-card {
-  background-color: black;
-}
-
-.event-cards {
+#dataContainer {
   width: auto;
   justify-content: center;
   display: flex;
@@ -18,20 +13,39 @@
   @include for-size(desktop) {
     margin-right: -70px;
   }
-  //align-items: center;
-  //width: 100%;
-  //   background-color: black;
 }
 
-//.event-cards::before {
-//  background-image: url(../src/images/rectangle.svg);
-//}
+.event-card::before {
+  content: '';
+
+  position: absolute;
+  right: -10px;
+  top: -10px;
+
+  width: 109px;
+  height: 101px;
+
+  border: 1px solid rgba(220, 86, 197, 0.3);
+  box-sizing: border-box;
+  border-radius: 50px 0px;
+
+  @include for-size(tablet) {
+    width: 153px;
+    height: 143px;
+
+    right: -14px;
+    top: -14px;
+  }
+}
 
 .event-card {
-  justify-content: center;
+  position: relative;
   width: 128px;
+
   margin-bottom: 39px;
   margin-right: 14px;
+
+  justify-content: center;
 
   @include for-size(tablet) {
     margin-bottom: 58px;
@@ -40,13 +54,9 @@
   }
 
   @include for-size(desktop) {
-
-    width: auto;
-    padding-right: 70px;
-
-//     margin-bottom: 63px;
-//     margin-right: 70px;
-
+    min-width: 180px;
+    margin-bottom: 63px;
+    margin-right: 70px;
   }
 }
 
@@ -54,7 +64,7 @@
   width: 128px;
   height: 161px;
   border-radius: 50px 0px;
-  padding-bottom: 5px;
+  margin-bottom: 5px;
   object-fit: cover;
 
   @include for-size(tablet) {
@@ -69,7 +79,7 @@
   font-weight: bold;
   text-align: center;
   color: $accent-color;
-  padding-bottom: 5px;
+  margin-bottom: 5px;
 
   @include for-size(tablet) {
     font-size: 16px;
@@ -83,7 +93,7 @@
   line-height: 1.214;
   text-align: center;
   color: $primary-text-color;
-  padding-bottom: 5px;
+  margin-bottom: 5px;
 
   @include for-size(tablet) {
     font-size: 16px;

@@ -34,7 +34,7 @@ function onSubmitForm(e) {
   ApiService.getData(valueSelect, valueInput);
 }
 
-class ApiService {
+export default class ApiService {
   static getData(valueSelect, valueInput) {
     $('#demo').pagination({
       dataSource: function (done) {
@@ -60,3 +60,10 @@ class ApiService {
     });
   }
 }
+
+/**Rendering first events */
+function firstEventRender() {
+  ApiService.getData('US', '');
+}
+
+firstEventRender();
