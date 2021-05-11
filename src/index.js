@@ -3,8 +3,7 @@
 import './js/scrollUp';
 import 'material-design-icons/iconfont/material-icons.css';
 import './sass/main.scss';
-
-import './sass/components/pagination.scss';
+import './sass/components/_pagination.scss';
 // import './js/apiService';
 import './js/renderEventCards';
 import './js/renderOptionSelect';
@@ -17,10 +16,25 @@ import './js/modal';
 // import { resultGallery } from './js/test'
 // console.log(resultGallery);
 
+// function worldEvents() {
+//   fetch(
+//     'https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&sort=random&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6',
+//   )
+//     .then(resp => resp.json())
+//     .then(data => {
+//       const { events } = data._embedded;
+//       const markup = eventsCardTmpl(events);
+//       refs.dataContainer.insertAdjacentHTML('beforeend', markup);
+//     });
+// }
+
+// worldEvents();
+
 const refs = {
   searchForm: document.querySelector('.form-submit'),
   searchInput: document.querySelector('.input'),
   select: document.querySelector('.select'),
+  dataContainer: document.querySelector('#dataContainer'),
 };
 
 let fetchResult = [];
@@ -42,13 +56,17 @@ class ApiService {
       dataSource: function (done) {
         $.ajax({
           type: 'GET',
-          url: `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${valueInput}&countryCode=${valueSelect}&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6`,
+          url: `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${valueInput}&sort=random&size=200&countryCode=${valueSelect}&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6`,
           success: function (data) {
             console.log(data);
             if ('_embedded' in data) {
               done(data._embedded.events);
+              fetchResult=[]
               fetchResult.push(...data._embedded.events);
+            } else {
+              alert('sorry bro, no events in this country');
             }
+            refs.searchInput.value = '';
           },
         });
       },
@@ -62,3 +80,10 @@ class ApiService {
     });
   }
 }
+
+/**Rendering first events */
+function firstEventRender() {
+  ApiService.getData('', '');
+}
+
+firstEventRender();
