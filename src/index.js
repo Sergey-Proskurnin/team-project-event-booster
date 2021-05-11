@@ -45,6 +45,7 @@ class ApiService {
             console.log(data);
             if ('_embedded' in data) {
               done(data._embedded.events);
+              fetchResult=[]
               fetchResult.push(...data._embedded.events);
             }
           },
