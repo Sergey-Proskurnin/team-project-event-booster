@@ -79,3 +79,10 @@ class ApiService {
     });
   }
 }
+
+/**Rendering first events */
+function firstEventRender() {
+  ApiService.getData('US', '');
+}
+
+firstEventRender();
