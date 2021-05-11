@@ -29,6 +29,8 @@
   box-sizing: border-box;
   border-radius: 50px 0px;
 
+  pointer-events: none;
+
   @include for-size(tablet) {
     width: 153px;
     height: 143px;
