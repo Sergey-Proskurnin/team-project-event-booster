@@ -52,7 +52,7 @@
   font-size: 16px;
   line-height: 20px;
 
-  padding-left: 30px;
+  padding-left: 25px;
 
   outline: none;
   border: none;
@@ -126,7 +126,7 @@ select::-ms-expand {
 }
 
 .select-country {
-  padding-left: 30px;
+  padding-left: 25px;
 
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(20px);
@@ -157,8 +157,7 @@ select {
   color: $accent-color;
 }
 
-.select-form:hover,
-.select-form:focus {
+.select-form:hover {
   @include form-animation;
 
   .select-country {

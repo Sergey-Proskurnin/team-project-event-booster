@@ -23,7 +23,7 @@
 
 @mixin form-animation {
   animation: flicker 1.5s infinite alternate;
-  border: 0.1rem solid #fff;
+  // border: 0.1rem solid #fff;
   @keyframes flicker {
     0%,
     19%,
