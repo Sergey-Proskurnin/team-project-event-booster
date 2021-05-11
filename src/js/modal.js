@@ -47,34 +47,28 @@ eventCardRef.addEventListener('click', openModal)
 // });
 
 function openModal (e) {
-  console.log(fetchResult);
-  const id = e.target.parentNode.id
-  console.log(id);
-  const evtInfo = fetchResult.find(evt=>evt.id===id)
-  
-  console.log(evtInfo);
  
-   const evtInfoMarkup = evtModalTmpl(evtInfo)
+ if (e.target.classList.contains("event-image")||e.target.classList.contains("event-title")) {
+  const id = e.target.parentNode.id
+  
+  const evtInfo = fetchResult.find(evt=>evt.id===id)
+  const evtInfoMarkup = evtModalTmpl(evtInfo)
 
-  const modal = basicLightbox.create(`${evtInfoMarkup}`)
+   const modal = basicLightbox.create(`${evtInfoMarkup}`)
      modal.show()
 
   const closeBtn = document.querySelector('.close-modal .material-icons');
-  console.log(closeBtn);
-  // const modalCloseBtn = 
-document.addEventListener('click', event => {
+   document.addEventListener('click', event => {
   console.log(event);
         if (event.target === closeBtn) {
           console.log(event.target);
           modal.close()
-          // instance.close();
         }
       });
-    
-    //  const modalCloseEsc = window.addEventListener('keyup', event => {
-    //     if (event.key === 'Escape') {
-    //       instance.close();
-    //     }
-    //   });
-    
+    document.addEventListener('keyup', event => {
+        if (event.key === 'Escape') {
+          modal.close()
+        }
+      });
+ }
 }
