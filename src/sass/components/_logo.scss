@@ -1,0 +1,28 @@
+.header {
+  position: relative;
+}
+
+.logo {
+  width: 108px;
+  height: 90px;
+  fill: $primary-text-color;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: 100;
+
+  @include for-size(tablet) {
+    width: 180px;
+    height: 151px;
+  }
+  @include for-size(desktop) {
+    width: 238px;
+    height: 201px;
+  }
+}
+
+.logo:hover,
+.logo:focus {
+  fill: $accent-color;
+}
