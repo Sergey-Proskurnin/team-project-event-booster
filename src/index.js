@@ -17,7 +17,7 @@ import './js/modal';
 
 function worldEvents() {
   fetch(
-    'https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6',
+    'https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&sort=random&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6',
   )
     .then(resp => resp.json())
     .then(data => {
@@ -55,7 +55,7 @@ class ApiService {
       dataSource: function (done) {
         $.ajax({
           type: 'GET',
-          url: `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${valueInput}&size=200&countryCode=${valueSelect}&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6`,
+          url: `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${valueInput}&sort=random&size=200&countryCode=${valueSelect}&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6`,
           success: function (data) {
             console.log(data);
             if ('_embedded' in data) {
