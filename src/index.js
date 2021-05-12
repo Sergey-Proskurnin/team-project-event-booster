@@ -1,7 +1,7 @@
 // import './styles.css';
 // import './sass/utils/variables.scss'
 import './js/scrollUp';
-import preloaderFactory from './js/preloader';
+// import preloaderFactory from './js/preloader';
 
 import 'material-design-icons/iconfont/material-icons.css';
 import './sass/main.scss';
@@ -9,7 +9,7 @@ import './sass/components/_pagination.scss';
 // import './js/apiService';
 import './js/renderEventCards';
 import './js/renderOptionSelect';
-import './js/test';
+// import './js/test';
 
 // import apiService from './js/apiService';
 import pagination from 'paginationjs';
@@ -40,7 +40,7 @@ const refs = {
   dataContainer: document.querySelector('#dataContainer'),
 };
 
-const preloader = preloaderFactory('#preloader');
+// const preloader = preloaderFactory('#preloader');
 
 let fetchResult = [];
 export { fetchResult };
@@ -50,7 +50,7 @@ refs.searchForm.addEventListener('submit', onSubmitForm);
 
 function onSubmitForm(e) {
   e.preventDefault();
-  preloader.show();
+  // preloader.show();
   refs.dataContainer.innerHTML = '';
   const valueInput = e.target.elements[0].value;
   const valueSelect = e.target.nextElementSibling[0].value;
@@ -71,7 +71,7 @@ class ApiService {
               done(data._embedded.events);
               fetchResult = [];
               fetchResult.push(...data._embedded.events);
-              preloader.hide();
+              // preloader.hide();
             } else {
               alert('sorry bro, no events in this country');
             }
