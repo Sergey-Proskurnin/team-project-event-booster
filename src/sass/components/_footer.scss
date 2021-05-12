@@ -1,9 +1,9 @@
 .footer-section {
-  //   position: absolute;
+  position: relative;
   // z-index: 1;
 
-  padding-top: 60px;
-  padding-bottom: 27px;
+  // padding-top: 60px;
+  // padding-bottom: 27px;
 }
 .footer-section-block {
   display: block;
@@ -13,12 +13,15 @@
   font-size: 14px;
   line-height: 17px;
   text-align: center;
+  position: absolute;
+  bottom: 27px;
+  left: 32%;
   color: #939393;
 
   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: center;
-
+    bottom: 18px;
     font-size: 16px;
     line-height: 23px;
   }
