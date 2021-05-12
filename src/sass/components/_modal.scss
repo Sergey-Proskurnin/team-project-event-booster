@@ -9,7 +9,6 @@ $basicLightbox__timing: ease; // Transition timing
   background:#200D1D 60%;
   } */
 
-
 .basicLightbox {
   overflow: auto;
 }
@@ -30,7 +29,6 @@ $basicLightbox__timing: ease; // Transition timing
     border-radius: 300px 0px;
     padding: 30px 20px;
   }
-
 }
 .close-modal {
   display: block;
@@ -51,10 +49,8 @@ $basicLightbox__timing: ease; // Transition timing
 
   object-fit: cover;
 
-
   margin-left: auto;
   margin-right: auto;
-
 }
 
 .info-event {
@@ -92,7 +88,6 @@ $basicLightbox__timing: ease; // Transition timing
     object-fit: cover;
     padding: 0 10px;
   }
-
 }
 
 .ticket {
@@ -105,8 +100,7 @@ $basicLightbox__timing: ease; // Transition timing
   font-size: 16px;
   color: #ffffff;
   border-radius: 5px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 10px 0;
 }
 
 .more-info {
@@ -121,6 +115,29 @@ $basicLightbox__timing: ease; // Transition timing
   color: #4c00fe;
 }
 
+.modal-md-12 {
+  color: $accent-color;
+}
+.ticket-icon1 {
+  transform: rotate(270deg);
+  font-size: inherit;
+}
+.ticket-icon2 {
+  transform: rotate(90deg);
+  font-size: inherit;
+}
+.price-text {
+  text-transform: capitalize;
+}
+
+.btn {
+  display: inline-block;
+  background: none;
+  outline: none;
+  color: pink;
+  font-size: 35px;
+  font-weight: 700;
+}
 // @media screen and (min-width: 768px) {
 //   .event-modal {
 //
@@ -161,4 +178,3 @@ $basicLightbox__timing: ease; // Transition timing
 //     width: 360px;
 //   }
 // }
-

@@ -3,43 +3,19 @@ import 'basiclightbox/dist/basiclightbox.min.css';
 const basicLightbox = require('basiclightbox');
 import evtModalTmpl from '../templates/evtModal.hbs';
 import { fetchResult } from '../index'
+// import * as A from '../index'
 
+// const api = new ApiService;
+// console.log(api);
+
+// import {api} from '../index'
+// console.log(api);
+
+// let a = new api
+// console.log(a);
 
 const eventCardRef = document.querySelector('.event-cards');
 
-// function onOpenModal(e) {
-//   let modalCloseEsc = '';
-//   let modalCloseBtn = '';
-
- 
-//   const instance = basicLightbox.create(
-//     `${evtInfoMarkup}`,
-//     {
-//       onClose: () => {
-//         document.body.classList.remove('is-open');
-//       },
-//     },
-//   );
-
-//   instance.show();
-//   document.body.classList.add('is-open')
-//   const closeBtn = document.querySelector('.close-modal .material-icons');
-
-//   modalCloseBtn = window.addEventListener('click', event => {
-//     if (event.target === closeBtn) {
-//       instance.close();
-//     }
-//   });
-
-//   modalCloseEsc = window.addEventListener('keyup', event => {
-//     if (event.key === 'Escape') {
-//       instance.close();
-//     }
-//   });
-
-//   window.removeEventListener('click', modalCloseBtn);
-//   window.removeEventListener('keyup', modalCloseEsc);
-// }
 eventCardRef.addEventListener('click', openModal)
 
 // event => {
@@ -54,15 +30,21 @@ function openModal (e) {
   const evtInfo = fetchResult.find(evt=>evt.id===id)
   const evtInfoMarkup = evtModalTmpl(evtInfo)
 
-   const modal = basicLightbox.create(`${evtInfoMarkup}`)
+   const modal = basicLightbox.create(`${evtInfoMarkup}`, {
+     onShow: (modal) => {
+      document.body.style.position = 'fixed';
+     }, 
+     onClose: (modal) => {
+      document.body.style.position = 'relative';
+     }
+
+   })
      modal.show()
 
   const closeBtn = document.querySelector('.close-modal .material-icons');
    document.addEventListener('click', event => {
-  // console.log(event);
-        if (event.target === closeBtn) {
-          // console.log(event.target);
-          modal.close()
+          if (event.target === closeBtn) {
+           modal.close()
         }
       });
     document.addEventListener('keyup', event => {
@@ -70,5 +52,21 @@ function openModal (e) {
           modal.close()
         }
       });
+
+      // const nextBtn = document.querySelector('.btn.next')
+      // nextBtn.addEventListener('click', slideNext)
+   
  }
 }
+
+
+// function slideNext (e) {
+  
+//   const id = e.target.parentNode.id
+//   const evt= fetchResult.find(evt=>evt.id===id)
+//   const evtIndex= fetchResult.indexOf(evt)
+//   const evtInfoMarkup = evtModalTmpl(fetchResult[evtIndex+1])
+//   document.querySelector('.basicLightbox__placeholder').innerHTML = evtInfoMarkup
+  
+//   document.querySelector('.btn.next').addEventListener('click', slideNext)
+// }

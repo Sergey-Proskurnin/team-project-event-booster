@@ -1,12 +1,17 @@
 {{#each this}}
 <li class="event-card" id={{this.id}}>
-    <img class="event-image" srcset="
+
+    <img class="event-image" 
+    loading="lazy"
+    srcset="
 
         {{this.images.9.url}} 180w,
         {{this.images.8.url}} 180w,
         {{this.images.7.url}} 128w,
         {{this.images.6.url}} 128w
+
       " src={{this.images.3.url}} alt="{{name}}" />
+
     {{!-- {{#if this.images.width:680}}
     "src={{this.url}} alt="{{name}}"/>
     {{/if}} --}}

@@ -1,6 +1,8 @@
 // import './styles.css';
 // import './sass/utils/variables.scss'
 import './js/scrollUp';
+import preloaderFactory from './js/preloader';
+
 import 'material-design-icons/iconfont/material-icons.css';
 import './sass/main.scss';
 import './sass/components/_pagination.scss';
@@ -13,6 +15,7 @@ import './js/test';
 import pagination from 'paginationjs';
 import eventsCardTmpl from './templates/eventsCardTmpl.hbs';
 import './js/modal';
+// import './js/lazy-load';
 // import { resultGallery } from './js/test'
 // console.log(resultGallery);
 
@@ -37,6 +40,8 @@ const refs = {
   dataContainer: document.querySelector('#dataContainer'),
 };
 
+const preloader = preloaderFactory('#preloader');
+
 let fetchResult = [];
 export { fetchResult };
 
@@ -45,11 +50,12 @@ refs.searchForm.addEventListener('submit', onSubmitForm);
 
 function onSubmitForm(e) {
   e.preventDefault();
+  preloader.show();
+  refs.dataContainer.innerHTML = '';
   const valueInput = e.target.elements[0].value;
   const valueSelect = e.target.nextElementSibling[0].value;
   ApiService.getData(valueSelect, valueInput);
 }
-
 class ApiService {
   static getData(valueSelect, valueInput) {
     $('#demo').pagination({
@@ -63,8 +69,9 @@ class ApiService {
               dataForEach(data)
               console.log(data);
               done(data._embedded.events);
-              fetchResult=[]
+              fetchResult = [];
               fetchResult.push(...data._embedded.events);
+              preloader.hide();
             } else {
               alert('sorry bro, no events in this country');
             }
@@ -72,6 +79,7 @@ class ApiService {
           },
         });
       },
+
       pageSize: 24,
       showPrevious: false,
       showNext: false,
@@ -82,6 +90,7 @@ class ApiService {
     });
   }
 }
+
 /**Sort imgs and add span on data */
 function dataForEach(array) {
  array._embedded.events.forEach(i => {
@@ -93,7 +102,9 @@ function dataForEach(array) {
 }       
 /**Rendering first events */
 function firstEventRender() {
-  ApiService.getData('', '');
+  ApiService.getData('','');
 }
 
 firstEventRender();
+
+export {firstEventRender}
