@@ -1,4 +1,4 @@
-    <div class="event-modal">
+    <div class="event-modal" id={{this.id}}>
       <button class="close-modal" type="button">
         <span class="material-icons">close</span>
       </button>
@@ -25,7 +25,6 @@
 
         <ul class="event-data">
          {{#if this.info}}
-        
           <li class="info">
             <h2 class="info modal-title">info</h2>
             <p class="info-text">{{this.info}}</p>
@@ -40,7 +39,7 @@
             <h2 class="place modal-title">where</h2>
             <a href="https://maps.google.com?saddr=Current+Location&daddr={{_embedded.venues.0.location.latitude}},{{_embedded.venues.0.location.longitude}}"
             target="_blank">
-            <span class="material-icons md-12 cards-icons">room</span>
+            <span class="material-icons modal-md-12">room</span>
           <p class="city-text">{{this._embedded.venues.0.city.name}}, {{this._embedded.venues.0.country.name}}</p>
             <p class="place-text">{{this._embedded.venues.0.name}}</p>
         </a>
@@ -50,27 +49,56 @@
             <h2 class="artist modal-title">who</h2>
             <p class="artist-text">{{this.name}}</p>
           </li>
+          {{#if this.priceRanges}}
           <li class="prices">
             <h2 class="prices modal-title">prices</h2>
-            <p class="stprice-text"></p>
+            <p class="price-text"><span class="material-icons ticket-icon1">
+line_weight
+</span><span class="material-icons ticket-icon2">
+line_weight
+</span>
+{{this.priceRanges.0.type}} {{this.priceRanges.0.min}}-{{this.priceRanges.0.max}} {{this.priceRanges.0.currency}}</p></li>
+          {{/if}}
+          {{#if this.products}}
+          <li class="ticket-button">
             <a
-              href=""
+              href="{{this.products.0.url}}"
               class="st ticket"
               rel="noopener noreferrer"
               target="_blank"
               >buy tickets</a
             >
-            <p class="vipprice-text"></p>
+            </li>
+            {{/if}}
+          {{#if this.priceRanges.1.type}}
+           <p class="price-text"><span class="material-icons ticket-icon1">
+line_weight
+</span><span class="material-icons ticket-icon2">
+line_weight
+</span>
+{{this.priceRanges.1.type}} {{this.priceRanges.1.min}}-{{this.priceRanges.1.max}} {{this.priceRanges.1.currency}}</p></li>
+          {{/if}}
+           {{#if this.products.1.url}}
+          <li class="ticket-button">
             <a
-              href=""
-              class="vip ticket"
+              href="{{this.products.1.url}}"
+              class="st ticket"
               rel="noopener noreferrer"
               target="_blank"
               >buy tickets</a
             >
-          </li>
+            </li>
+            {{/if}}
         </ul>
       </div>
 
       <a href="" class="more-info">more from this author</a>
+
+ <button class="btn prev"> <<<
+
+      </button>
+      <button class="btn next"> >>>
+
+      </button>
+     
     </div>

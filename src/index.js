@@ -87,10 +87,13 @@ class ApiService {
     });
   }
 }
+export {pagination as api} from 'paginationjs'
 
 /**Rendering first events */
 function firstEventRender() {
-  ApiService.getData('', '');
+  ApiService.getData('','');
 }
 
 firstEventRender();
+
+export {firstEventRender}
