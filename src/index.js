@@ -60,12 +60,7 @@ class ApiService {
           success: function (data) {
             // console.log(data);
             if ('_embedded' in data) {
-              data._embedded.events.forEach(i => i.images.sort((a, b) => a.width - b.width))
-              // console.log(data._embedded.events.forEach(i => {
-              //   i.info[40] = '<span id="dots">...</span><span id="more">'
-              //     i.info[i.length-1] = 
-              //   <span id="dots">...</span><span id="more">text</span>
-              // });
+              dataForEach(data)
               console.log(data);
               done(data._embedded.events);
               fetchResult=[]
@@ -87,7 +82,15 @@ class ApiService {
     });
   }
 }
-
+/**Sort imgs and add span on data */
+function dataForEach(array) {
+ array._embedded.events.forEach(i => {
+   i.images.sort((a, b) => a.width - b.width);
+   if (i.info) {
+     i.info = i.info.substr(0, 40) + '<span id="dots">...</span><span id="more">'+ i.info.substr(40) + '</span>' 
+   }
+})
+}       
 /**Rendering first events */
 function firstEventRender() {
   ApiService.getData('', '');
