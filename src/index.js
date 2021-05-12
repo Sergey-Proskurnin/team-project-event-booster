@@ -15,6 +15,7 @@ import './js/test';
 import pagination from 'paginationjs';
 import eventsCardTmpl from './templates/eventsCardTmpl.hbs';
 import './js/modal';
+// import './js/lazy-load';
 // import { resultGallery } from './js/test'
 // console.log(resultGallery);
 
