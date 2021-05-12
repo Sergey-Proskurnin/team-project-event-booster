@@ -82,6 +82,7 @@ class ApiService {
     });
   }
 }
+
 /**Sort imgs and add span on data */
 function dataForEach(array) {
  array._embedded.events.forEach(i => {
@@ -93,7 +94,9 @@ function dataForEach(array) {
 }       
 /**Rendering first events */
 function firstEventRender() {
-  ApiService.getData('', '');
+  ApiService.getData('','');
 }
 
 firstEventRender();
+
+export {firstEventRender}
