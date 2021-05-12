@@ -66,7 +66,7 @@ class ApiService {
           success: function (data) {
             // console.log(data);
             if ('_embedded' in data) {
-              dataForEach(data)
+              dataForEach(data);
               console.log(data);
               done(data._embedded.events);
               fetchResult = [];
@@ -86,6 +86,11 @@ class ApiService {
       callback: function (data) {
         // console.log(data);
         $('#dataContainer').html(eventsCardTmpl(data));
+        const totalScrollHeight = refs.searchInput.clientHeight;
+        window.scrollTo({
+          top: totalScrollHeight,
+          behavior: 'smooth',
+        });
       },
     });
   }
@@ -93,13 +98,17 @@ class ApiService {
 
 /**Sort imgs and add span on data */
 function dataForEach(array) {
- array._embedded.events.forEach(i => {
-   i.images.sort((a, b) => a.width - b.width);
-   if (i.info) {
-     i.info = i.info.substr(0, 40) + '<span id="dots">...</span><span id="more">'+ i.info.substr(40) + '</span>' 
-   }
-})
-}       
+  array._embedded.events.forEach(i => {
+    i.images.sort((a, b) => a.width - b.width);
+    if (i.info) {
+      i.info =
+        i.info.substr(0, 40) +
+        '<span id="dots">...</span><span id="more">' +
+        i.info.substr(40) +
+        '</span>';
+    }
+  });
+}
 /**Rendering first events */
 function firstEventRender() {
   ApiService.getData('','');
