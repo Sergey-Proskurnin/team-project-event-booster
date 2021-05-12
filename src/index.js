@@ -1,6 +1,8 @@
 // import './styles.css';
 // import './sass/utils/variables.scss'
 import './js/scrollUp';
+import preloaderFactory from './js/preloader';
+
 import 'material-design-icons/iconfont/material-icons.css';
 import './sass/main.scss';
 import './sass/components/_pagination.scss';
@@ -37,6 +39,8 @@ const refs = {
   dataContainer: document.querySelector('#dataContainer'),
 };
 
+const preloader = preloaderFactory('#preloader');
+
 let fetchResult = [];
 export { fetchResult };
 
@@ -45,11 +49,12 @@ refs.searchForm.addEventListener('submit', onSubmitForm);
 
 function onSubmitForm(e) {
   e.preventDefault();
+  preloader.show();
+  refs.dataContainer.innerHTML = '';
   const valueInput = e.target.elements[0].value;
   const valueSelect = e.target.nextElementSibling[0].value;
   ApiService.getData(valueSelect, valueInput);
 }
-
 class ApiService {
   static getData(valueSelect, valueInput) {
     $('#demo').pagination({
@@ -60,16 +65,19 @@ class ApiService {
           success: function (data) {
             // console.log(data);
             if ('_embedded' in data) {
-              data._embedded.events.forEach(i => i.images.sort((a, b) => a.width - b.width))
+              data._embedded.events.forEach(i =>
+                i.images.sort((a, b) => a.width - b.width),
+              );
               // console.log(data._embedded.events.forEach(i => {
               //   i.info[40] = '<span id="dots">...</span><span id="more">'
-              //     i.info[i.length-1] = 
+              //     i.info[i.length-1] =
               //   <span id="dots">...</span><span id="more">text</span>
               // });
               console.log(data);
               done(data._embedded.events);
-              fetchResult=[]
+              fetchResult = [];
               fetchResult.push(...data._embedded.events);
+              preloader.hide();
             } else {
               alert('sorry bro, no events in this country');
             }
@@ -77,6 +85,7 @@ class ApiService {
           },
         });
       },
+
       pageSize: 24,
       showPrevious: false,
       showNext: false,
