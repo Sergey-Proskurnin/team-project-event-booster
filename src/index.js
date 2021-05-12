@@ -13,6 +13,7 @@ import './js/test';
 import pagination from 'paginationjs';
 import eventsCardTmpl from './templates/eventsCardTmpl.hbs';
 import './js/modal';
+// import './js/lazy-load';
 // import { resultGallery } from './js/test'
 // console.log(resultGallery);
 
@@ -60,15 +61,17 @@ class ApiService {
           success: function (data) {
             // console.log(data);
             if ('_embedded' in data) {
-              data._embedded.events.forEach(i => i.images.sort((a, b) => a.width - b.width))
+              data._embedded.events.forEach(i =>
+                i.images.sort((a, b) => a.width - b.width),
+              );
               // console.log(data._embedded.events.forEach(i => {
               //   i.info[40] = '<span id="dots">...</span><span id="more">'
-              //     i.info[i.length-1] = 
+              //     i.info[i.length-1] =
               //   <span id="dots">...</span><span id="more">text</span>
               // });
-              console.log(data);
+              // console.log(data);
               done(data._embedded.events);
-              fetchResult=[]
+              fetchResult = [];
               fetchResult.push(...data._embedded.events);
             } else {
               alert('sorry bro, no events in this country');
