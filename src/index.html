@@ -26,28 +26,40 @@
   </head>
   <body>
     <header class="header">
-        <a href="/">
-          <svg class="logo">
-          <use href="./images/sprite.svg#logo-desk"></use>
-        </svg></a>
+      <a href="/">
+        <svg class="logo">
+          <use href="./images/sprite.svg#logo-desk"></use></svg
+      ></a>
     </header>
     <main class="main">
-     <div class=img-container>
+      <div class="img-container">
         <section class="wrapper-hero container">
           <h1 class="hero-title">
-            <b>F<span>IN</span>D <span>BE</span>ST <span>EV</span>EN<span>TS</span>
-              <span>AR</span>OU<span>ND </span>THE <span>WO</span>R<span>LD</span></b>
+            <b
+              >F<span>IN</span>D <span>BE</span>ST <span>EV</span>EN<span
+                >TS</span
+              >
+              <span>AR</span>OU<span>ND </span>THE <span>WO</span>R<span
+                >LD</span
+              ></b
+            >
           </h1>
           <!-- </div> -->
           <article class="form-submit">
             <form class="search-form" id="search-form" action="" method="">
               <!--             <input
                       class="search-input" -->
-              <input class="input search-input" name="query" autocomplete="off" placeholder="Start searching" />
+              <input
+                class="input search-input"
+                name="query"
+                autocomplete="off"
+                placeholder="Start searching"
+              />
               <button type="submit" class="btn-submit">
                 <svg class="btn-svg" width="12" height="12" viewbox="0 0 12 12">
                   <path
-                    d="M1.509 1.50905C2.48213 0.535922 3.77595 0 5.15213 0C6.52831 0 7.82213 0.535922 8.79523 1.50905C9.76833 2.48215 10.3043 3.77597 10.3043 5.15213C10.3043 6.41032 9.85606 7.59949 9.03556 8.53786L11.8969 11.3992C12.0343 11.5366 12.0343 11.7595 11.8969 11.8969C11.8282 11.9656 11.7381 12 11.648 12C11.558 12 11.4679 11.9656 11.3992 11.8969L8.53786 9.03558C7.59949 9.85606 6.41032 10.3043 5.15213 10.3043C3.77592 10.3043 2.48215 9.76838 1.50902 8.79525C0.535922 7.82215 9.53674e-07 6.52833 9.53674e-07 5.15215C9.53674e-07 3.77597 0.535899 2.48215 1.509 1.50905ZM2.00672 8.29755C3.74112 10.0319 6.56311 10.0319 8.29751 8.29755C10.0319 6.56318 10.0319 3.74114 8.29751 2.00677C7.43023 1.13948 6.29135 0.705984 5.1521 0.705984C4.01313 0.705984 2.87379 1.1397 2.0067 2.00677C0.272367 3.74112 0.272367 6.56316 2.00672 8.29755Z" />
+                    d="M1.509 1.50905C2.48213 0.535922 3.77595 0 5.15213 0C6.52831 0 7.82213 0.535922 8.79523 1.50905C9.76833 2.48215 10.3043 3.77597 10.3043 5.15213C10.3043 6.41032 9.85606 7.59949 9.03556 8.53786L11.8969 11.3992C12.0343 11.5366 12.0343 11.7595 11.8969 11.8969C11.8282 11.9656 11.7381 12 11.648 12C11.558 12 11.4679 11.9656 11.3992 11.8969L8.53786 9.03558C7.59949 9.85606 6.41032 10.3043 5.15213 10.3043C3.77592 10.3043 2.48215 9.76838 1.50902 8.79525C0.535922 7.82215 9.53674e-07 6.52833 9.53674e-07 5.15215C9.53674e-07 3.77597 0.535899 2.48215 1.509 1.50905ZM2.00672 8.29755C3.74112 10.0319 6.56311 10.0319 8.29751 8.29755C10.0319 6.56318 10.0319 3.74114 8.29751 2.00677C7.43023 1.13948 6.29135 0.705984 5.1521 0.705984C4.01313 0.705984 2.87379 1.1397 2.0067 2.00677C0.272367 3.74112 0.272367 6.56316 2.00672 8.29755Z"
+                  />
                 </svg>
               </button>
             </form>
@@ -59,15 +71,18 @@
           </article>
           <!-- <div class="to-up material-icons md-36">arrow_upward</div> -->
         </section>
-     </div>
-     <div class="bg-img">
+      </div>
+      <div class="bg-img">
         <section class="section-card container">
+          <div id="preloader">
+            <div id="loader"></div>
+          </div>
           <ul class="event-cards" id="dataContainer"></ul>
           <div id="demo"></div>
           <!--       <section class="section-card bg-img container">
                 <ul class="event-cards"></ul> -->
         </section>
-     </div>
+      </div>
     </main>
 
     <footer class="footer-section">
@@ -84,6 +99,7 @@
     <div class="footer-modal-team"></div>
 
     <div class="scroll-up">
+      <span class="material-icons-outlined"> </span>
       <svg class="scroll-up__svg" viewbox="-2 -2 52 52">
         <path
           class="scroll-up__svg-path"
@@ -91,6 +107,7 @@
         />
       </svg>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </body>
 </html>

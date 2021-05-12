@@ -29,7 +29,7 @@
   margin-right: 30px;
 
   width: 270px;
-  height: 42px;
+  height: 40px;
 
   border-radius: 20px;
 
@@ -48,7 +48,7 @@
 
   font-family: Montserrat;
   font-style: normal;
-  font-weight: normal;
+  // font-weight: 700;
   font-size: 16px;
   line-height: 20px;
 
@@ -57,7 +57,7 @@
   outline: none;
   border: none;
 
-  color: $accent-color;
+  color: #b9b9b9;
 
   background-color: transparent;
 }
@@ -72,7 +72,8 @@
   background-color: transparent;
 }
 
-.search-form:hover {
+.search-form:hover,
+.search-form:focus-within {
   @include form-animation;
 
   .btn-svg {
@@ -83,16 +84,26 @@
   .search-input {
     display: flex;
     width: 270px;
-    height: 39px;
+    height: 40px;
     overflow: hidden;
     border-radius: 19px;
     background: #333333;
   }
 }
 
+// .search-input::placeholder {
+//   color: #b9b9b9;
+// }
+
 .search-input::placeholder {
   color: #b9b9b9;
+  font-weight: 400;
 }
+
+// .search-select::placeholder {
+//   color: #b9b9b9;
+//   font-weight: 400;
+// }
 
 .btn-svg {
   transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -119,6 +130,7 @@ select::-ms-expand {
 .select-form {
   position: relative;
   display: flex;
+
   width: 270px;
   height: 40px;
   overflow: hidden;
@@ -157,7 +169,8 @@ select {
   color: $accent-color;
 }
 
-.select-form:hover {
+.select-form:hover,
+.select-form:focus-within {
   @include form-animation;
 
   .select-country {
