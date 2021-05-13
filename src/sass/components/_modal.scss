@@ -8,23 +8,32 @@ $basicLightbox__timing: ease; // Transition timing
   overflow: hidden;
   background:#200D1D 60%;
   } */
+#more {
+  display: none;
+}
+#dots,
+#less {
+  color: #4c00fe;
+}
 
 .basicLightbox {
   overflow: auto;
 }
+.basicLightbox__placeholder {
+  margin: auto auto 0px 0px;
+  @include for-size(tablet) {
+    margin: auto;
+  }
+}
+
 .event-modal {
-  position: absolute;
-  top: -200px;
-  right: -100px;
   background-color: #fff2fd;
   border-radius: 150px 0px;
   width: 272px;
-  // height: 915px;
+
   padding: 70px 10px;
-  /* z-index: 99; */
+
   @include for-size(tablet) {
-    top: -200px;
-    right: -300px;
     width: 595px;
     border-radius: 300px 0px;
     padding: 30px 20px;
