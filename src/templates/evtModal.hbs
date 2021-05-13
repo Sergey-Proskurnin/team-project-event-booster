@@ -1,100 +1,12 @@
-    <div class="event-modal" id={{this.id}}>
+    <div class="event-modal" >
       <button class="close-modal" type="button">
         <span class="material-icons">close</span>
       </button>
-         
-        <img srcset="
-
-        {{this.images.9.url}} 180w,
-        {{this.images.8.url}} 180w,
-        {{this.images.7.url}} 128w,
-        {{this.images.6.url}} 128w
-      " src={{this.images.3.url}} alt="small event poster" class="title-img" />
-     
-      <div class="info-event">
-        
-         
-          <img srcset="
-
-        {{this.images.9.url}} 180w,
-        {{this.images.8.url}} 180w,
-        {{this.images.7.url}} 128w,
-        {{this.images.6.url}} 128w
-      " src={{this.images.3.url}} alt="big event poster" class="poster-img" />
-       
-
-        <ul class="event-data">
-         {{#if this.info}}
-          <li class="info">
-            <h2 class="info modal-title">info</h2>
-            <p class="info-text">{{this.info}}</p>
-          </li>
-         {{/if}}
-          <li class="date">
-            <h2 class="date modal-title">when</h2>
-            <p class="date-text">{{this.dates.start.localDate}}</p>
-            <p class="time-text">{{this.dates.start.localTime}} {{this.dates.timezone}}</p>
-          </li>
-          <li class="place">
-            <h2 class="place modal-title">where</h2>
-            <a href="https://maps.google.com?saddr=Current+Location&daddr={{_embedded.venues.0.location.latitude}},{{_embedded.venues.0.location.longitude}}"
-            target="_blank">
-            <span class="material-icons modal-md-12">room</span>
-          <p class="city-text">{{this._embedded.venues.0.city.name}}, {{this._embedded.venues.0.country.name}}</p>
-            <p class="place-text">{{this._embedded.venues.0.name}}</p>
-        </a>
-            
-          </li>
-          <li class="artist">
-            <h2 class="artist modal-title">who</h2>
-            <p class="artist-text">{{this.name}}</p>
-          </li>
-          {{#if this.priceRanges}}
-          <li class="prices">
-            <h2 class="prices modal-title">prices</h2>
-            <p class="price-text"><span class="material-icons ticket-icon1">
-line_weight
-</span><span class="material-icons ticket-icon2">
-line_weight
-</span>
-{{this.priceRanges.0.type}} {{this.priceRanges.0.min}}-{{this.priceRanges.0.max}} {{this.priceRanges.0.currency}}</p></li>
-          {{/if}}
-          {{#if this.products}}
-          <li class="ticket-button">
-            <a
-              href="{{this.products.0.url}}"
-              class="st ticket"
-              rel="noopener noreferrer"
-              target="_blank"
-              >buy tickets</a
-            >
-            </li>
-            {{/if}}
-          {{#if this.priceRanges.1.type}}
-           <p class="price-text"><span class="material-icons ticket-icon1">
-line_weight
-</span><span class="material-icons ticket-icon2">
-line_weight
-</span>
-{{this.priceRanges.1.type}} {{this.priceRanges.1.min}}-{{this.priceRanges.1.max}} {{this.priceRanges.1.currency}}</p></li>
-          {{/if}}
-           {{#if this.products.1.url}}
-          <li class="ticket-button">
-            <a
-              href="{{this.products.1.url}}"
-              class="st ticket"
-              rel="noopener noreferrer"
-              target="_blank"
-              >buy tickets</a
-            >
-            </li>
-            {{/if}}
-        </ul>
-      </div>
-
-      <a href="" class="more-info">more from this author</a>
-
- <button class="btn prev"> <<<
+         <div class="wrapper">
+ {{>evtModalInfo}}
+         </div>
+          
+  <button class="btn prev"> <<<
 
       </button>
       <button class="btn next"> >>>
@@ -102,3 +14,4 @@ line_weight
       </button>
      
     </div>
+ 
