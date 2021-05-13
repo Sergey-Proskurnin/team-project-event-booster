@@ -3,6 +3,8 @@ import 'basiclightbox/dist/basiclightbox.min.css';
 const basicLightbox = require('basiclightbox');
 import evtModalTmpl from '../templates/evtModal.hbs';
 import { fetchResult } from '../index'
+import { onLoadMoreModalBtn } from '../index'
+console.log(onLoadMoreModalBtn);
 // import * as A from '../index'
 
 // const api = new ApiService;
@@ -32,10 +34,10 @@ function openModal (e) {
 
    const modal = basicLightbox.create(`${evtInfoMarkup}`, {
      onShow: (modal) => {
-      document.body.style.position = 'fixed';
+      document.body.style.overflow = 'hidden';
      }, 
      onClose: (modal) => {
-      document.body.style.position = 'relative';
+      document.body.style.overflow = 'auto';
      }
 
    })
@@ -53,11 +55,45 @@ function openModal (e) {
         }
       });
 
-      // const nextBtn = document.querySelector('.btn.next')
+     myFunction() 
+     onLoadMoreModalBtn()
+    //  const loadMoreBtn = document.querySelector('.more-info')
+    //  loadMoreBtn.addEventListener('click', e=>{ e.preventDefault()
+    //   console.log(e)})
+     
+     // const nextBtn = document.querySelector('.btn.next')
       // nextBtn.addEventListener('click', slideNext)
    
  }
 }
+
+function myFunction() {
+  const dots = document.getElementById("dots");
+  const moreText = document.getElementById("more");
+  if (document.contains(dots)) {
+    dots.addEventListener('click', display)
+  }
+ 
+
+  function display () {if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    moreText.style.display = "inline";
+  }}
+}
+
+
+
+
+
+function onSubmitMore (e) {
+  // e.preventDefault()
+  console.log(e);
+}
+
+
 
 
 // function slideNext (e) {

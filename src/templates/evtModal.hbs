@@ -27,7 +27,8 @@
          {{#if this.info}}
           <li class="info">
             <h2 class="info modal-title">info</h2>
-            <p class="info-text">{{this.info}}</p>
+            <p class="info-text">
+              {{this.info.[0]}}<span id="dots">...</span><span id="more"> {{this.info.[1]}}</span></p>
           </li>
          {{/if}}
           <li class="date">
@@ -66,7 +67,7 @@ line_weight
               class="st ticket"
               rel="noopener noreferrer"
               target="_blank"
-              >buy tickets</a
+              >buy {{this.products.0.type}} tickets</a
             >
             </li>
             {{/if}}
@@ -85,7 +86,7 @@ line_weight
               class="st ticket"
               rel="noopener noreferrer"
               target="_blank"
-              >buy tickets</a
+              >buy {{this.products.1.type}} tickets</a
             >
             </li>
             {{/if}}

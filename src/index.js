@@ -100,14 +100,19 @@ class ApiService {
 function dataForEach(array) {
   array._embedded.events.forEach(i => {
     i.images.sort((a, b) => a.width - b.width);
-    if (i.info) {
-      i.info =
-        i.info.substr(0, 40) +
-        '<span id="dots">...</span><span id="more">' +
-        i.info.substr(40) +
-        '</span>';
-    }
+if (i.info) {
+  i.info= [i.info.substr(0, 40), i.info.substr(40)]
+}
+    // if (i.info) {
+    //   i.info =
+    //     i.info.substr(0, 40) +
+    //     '<span id="dots">...</span><span id="more">' +
+    //     i.info.substr(40) +
+    //     '</span>';
+    // }
+    // console.log(i.info);
   });
+  
 }
 /**Rendering first events */
 function firstEventRender() {
@@ -116,4 +121,22 @@ function firstEventRender() {
 
 firstEventRender();
 
-export {firstEventRender}
+
+export function onLoadMoreModalBtn () {
+  const loadMoreBtn = document.querySelector('.more-info')
+  if (document.contains(loadMoreBtn)){
+    loadMoreBtn.addEventListener('click', showMore)
+  }
+}
+
+
+function showMore (e) {
+  e.preventDefault()
+  const modal = document.querySelector('.basicLightbox')
+  modal.remove()
+  document.body.style.overflow = 'auto';
+  const id = e.target.parentNode.id
+  const valueInput = fetchResult.find(e=>e.id===id).name
+  ApiService.getData(' ', valueInput);
+  console.log(valueInput);
+}
