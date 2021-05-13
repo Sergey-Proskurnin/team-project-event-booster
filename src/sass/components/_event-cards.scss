@@ -1,11 +1,15 @@
 .section-card {
+
   min-height: 47.2vh; //100
   margin-top: -70px;
+
+//   min-height: 100vh;
+//   margin-top: -60px;
+
 }
 
 #dataContainer {
   width: auto;
-  // height: 100vh;
   justify-content: center;
   display: flex;
   flex-wrap: wrap;

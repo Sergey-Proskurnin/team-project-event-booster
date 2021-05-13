@@ -2,6 +2,7 @@
 <li class="event-card" id={{this.id}}>
 
     <img class="event-image" 
+    class="lazyload
     loading="lazy"
     srcset="
 
@@ -10,11 +11,9 @@
         {{this.images.7.url}} 128w,
         {{this.images.6.url}} 128w
 
-      " src={{this.images.3.url}} alt="{{name}}" />
+      " 
+      data-src={{this.images.3.url}} alt="{{name}}" />
 
-    {{!-- {{#if this.images.width:680}}
-    "src={{this.url}} alt="{{name}}"/>
-    {{/if}} --}}
     <h3 class="event-title">{{name}}</h3>
     <p class="event-date">{{dates.start.localDate}}</p>
     <p class="event-place">
