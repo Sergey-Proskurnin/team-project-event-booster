@@ -15,7 +15,7 @@ import './js/renderOptionSelect';
 import pagination from 'paginationjs';
 import eventsCardTmpl from './templates/eventsCardTmpl.hbs';
 import './js/modal';
-// import './js/lazy-load';
+import chooseLazyLoad from './js/lazy-load';
 // import { resultGallery } from './js/test'
 // console.log(resultGallery);
 
@@ -100,20 +100,46 @@ class ApiService {
 function dataForEach(array) {
   array._embedded.events.forEach(i => {
     i.images.sort((a, b) => a.width - b.width);
-    if (i.info) {
-      i.info =
-        i.info.substr(0, 40) +
-        '<span id="dots">...</span><span id="more">' +
-        i.info.substr(40) +
-        '</span>';
-    }
+if (i.info) {
+  i.info= [i.info.substr(0, 60), i.info.substr(40)]
+}
+    // if (i.info) {
+    //   i.info =
+    //     i.info.substr(0, 40) +
+    //     '<span id="dots">...</span><span id="more">' +
+    //     i.info.substr(40) +
+    //     '</span>';
+    // }
+    // console.log(i.info);
   });
+  
 }
 /**Rendering first events */
 function firstEventRender() {
   ApiService.getData('', '');
 }
-
+/** Первый рендеринг и ленивка уйдет в модуль  как только будет фетч*/
 firstEventRender();
+chooseLazyLoad();
 
-export { firstEventRender };
+
+export function onLoadMoreModalBtn () {
+  const loadMoreBtn = document.querySelector('.more-info')
+  if (document.contains(loadMoreBtn)){
+    loadMoreBtn.addEventListener('click', showMore)
+  }
+}
+
+
+function showMore (e) {
+  e.preventDefault()
+  const modal = document.querySelector('.basicLightbox')
+  modal.remove()
+  document.body.style.overflow = 'auto';
+  const id = e.target.parentNode.id
+  // const id = document.querySelector('.evt-wrapper').id
+  const valueInput = fetchResult.find(e=>e.id===id).name
+  ApiService.getData(' ', valueInput);
+  console.log(valueInput);
+}
+
