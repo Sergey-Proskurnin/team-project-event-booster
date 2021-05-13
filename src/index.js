@@ -101,7 +101,7 @@ function dataForEach(array) {
   array._embedded.events.forEach(i => {
     i.images.sort((a, b) => a.width - b.width);
 if (i.info) {
-  i.info= [i.info.substr(0, 40), i.info.substr(40)]
+  i.info= [i.info.substr(0, 60), i.info.substr(40)]
 }
     // if (i.info) {
     //   i.info =

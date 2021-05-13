@@ -55,7 +55,7 @@ function openModal (e) {
         }
       });
 
-     myFunction() 
+    infoTextToggle() 
      onLoadMoreModalBtn()
     //  const loadMoreBtn = document.querySelector('.more-info')
     //  loadMoreBtn.addEventListener('click', e=>{ e.preventDefault()
@@ -67,31 +67,35 @@ function openModal (e) {
  }
 }
 
-function myFunction() {
+function infoTextToggle() {
   const dots = document.getElementById("dots");
   const moreText = document.getElementById("more");
   if (document.contains(dots)) {
-    dots.addEventListener('click', display)
+    dots.addEventListener('click', displayMore)
   }
  
 
-  function display () {if (dots.style.display === "none") {
+  function displayMore () {if
+     (dots.style.display === "none") {
     dots.style.display = "inline";
     moreText.style.display = "none";
+   
+
   } else {
     dots.style.display = "none";
     moreText.style.display = "inline";
+    const lessBtn = document.getElementById("less")
+    lessBtn.addEventListener('click', displayLess)
   }}
+
+ function displayLess () {
+  dots.style.display = "inline";
+  moreText.style.display = "none";
+ }
+
 }
 
 
-
-
-
-function onSubmitMore (e) {
-  // e.preventDefault()
-  console.log(e);
-}
 
 
 

@@ -11,6 +11,11 @@ $basicLightbox__timing: ease; // Transition timing
 #more {
   display: none;
 }
+#dots,
+#less {
+  color: #4c00fe;
+}
+
 .basicLightbox {
   overflow: auto;
 }
