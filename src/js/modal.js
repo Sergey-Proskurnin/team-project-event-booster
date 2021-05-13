@@ -2,6 +2,7 @@ import 'basiclightbox/dist/basiclightbox.min.css';
 // import * as basicLightbox from 'basiclightbox';
 const basicLightbox = require('basiclightbox');
 import evtModalTmpl from '../templates/evtModal.hbs';
+import evtModalInfo from '../templates/evtModalInfo.hbs'
 import { fetchResult } from '../index'
 import { onLoadMoreModalBtn } from '../index'
 console.log(onLoadMoreModalBtn);
@@ -55,14 +56,11 @@ function openModal (e) {
         }
       });
 
-    infoTextToggle() 
+     infoTextToggle() 
      onLoadMoreModalBtn()
-    //  const loadMoreBtn = document.querySelector('.more-info')
-    //  loadMoreBtn.addEventListener('click', e=>{ e.preventDefault()
-    //   console.log(e)})
+     document.querySelector('.btn.next').addEventListener('click', slideNext)  
+     document.querySelector('.btn.prev').addEventListener('click', slidePrev)
      
-     // const nextBtn = document.querySelector('.btn.next')
-      // nextBtn.addEventListener('click', slideNext)
    
  }
 }
@@ -100,13 +98,41 @@ function infoTextToggle() {
 
 
 
-// function slideNext (e) {
+function slideNext (e) {
+  // document.querySelector('.btn.next').addEventListener('click', slideNext)
+  // const nextBtn = document.querySelector('.btn.next')
+  //     nextBtn.addEventListener('click', slideNext)
+  const id = document.querySelector('.evt-wrapper').id
+  const evt= fetchResult.find(evt=>evt.id===id)
+  const evtIndex= fetchResult.indexOf(evt)
+  let evtInfoMarkup = evtModalInfo(fetchResult[evtIndex+1])
+  if (evtIndex === fetchResult.length-1) {
+   evtInfoMarkup = evtModalInfo(fetchResult[0])
+  }
+
+ 
   
-//   const id = e.target.parentNode.id
-//   const evt= fetchResult.find(evt=>evt.id===id)
-//   const evtIndex= fetchResult.indexOf(evt)
-//   const evtInfoMarkup = evtModalTmpl(fetchResult[evtIndex+1])
-//   document.querySelector('.basicLightbox__placeholder').innerHTML = evtInfoMarkup
+  document.querySelector('.wrapper').innerHTML = evtInfoMarkup 
+  document.querySelector('.btn.next').addEventListener('click', slideNext)  
+  document.querySelector('.btn.prev').addEventListener('click', slidePrev)
+}
+
+function slidePrev (e) {
+  // 
+  // const prevBtn = document.querySelector('.btn.prev')
+  //     prevBtn.addEventListener('click', slidePrev)
+  const id = document.querySelector('.evt-wrapper').id
+  const evt= fetchResult.find(evt=>evt.id===id)
+  const evtIndex= fetchResult.indexOf(evt)
   
-//   document.querySelector('.btn.next').addEventListener('click', slideNext)
-// }
+  let evtInfoMarkup = evtModalInfo(fetchResult[evtIndex-1])
+  if (evtIndex === 0) {
+   evtInfoMarkup = evtModalInfo(fetchResult[fetchResult.length-1])
+  }
+
+  
+  document.querySelector('.wrapper').innerHTML = evtInfoMarkup 
+  document.querySelector('.btn.next').addEventListener('click', slideNext)  
+     document.querySelector('.btn.prev').addEventListener('click', slidePrev)
+   
+}
