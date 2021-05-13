@@ -64,7 +64,7 @@ class ApiService {
           type: 'GET',
           url: `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${valueInput}&sort=random&size=200&countryCode=${valueSelect}&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6`,
           success: function (data) {
-            // console.log(data);
+            console.log(data);
             if ('_embedded' in data) {
               dataForEach(data);
               console.log(data);
