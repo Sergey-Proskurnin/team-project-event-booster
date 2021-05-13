@@ -136,6 +136,7 @@ function showMore (e) {
   modal.remove()
   document.body.style.overflow = 'auto';
   const id = e.target.parentNode.id
+  // const id = document.querySelector('.evt-wrapper').id
   const valueInput = fetchResult.find(e=>e.id===id).name
   ApiService.getData(' ', valueInput);
   console.log(valueInput);
