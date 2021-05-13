@@ -56,3 +56,14 @@
   transform: scale(1.2);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+
+.scroll-up__svg-arrow {
+  position: absolute;
+
+  width: 32px;
+  height: 32px;
+  top: 17%;
+  left: 17%;
+
+  fill: $accent-color;
+}
