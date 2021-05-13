@@ -1,0 +1,81 @@
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  width: 0;
+  height: 2px;
+
+  overflow: hidden;
+
+  border-radius: 0.3125rem;
+  box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.5);
+
+  background: $accent-color;
+  // animation: pulse 1.25s cubic-bezier(0.66, 0, 0, 1) infinite;
+
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease 0.5s, height 0.5s ease;
+}
+
+.modal.is-open {
+  height: 100%;
+  width: 100%;
+  transition: width 0.5s ease, height 0.5s ease 0.5s;
+}
+
+.content {
+  background-color: #212121;
+  display: flex;
+  border: transparent;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-flow: wrap;
+  margin: 1px;
+  height: 99.8%;
+  padding: 25px;
+  // width: 99%;
+}
+
+//!button close main modal
+.close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  background-color: transparent;
+  font-size: 1.5rem;
+  transition: 0.25s linear;
+
+  &:before,
+  &:after {
+    position: absolute;
+    content: '';
+    width: 1.25rem;
+    height: 0.125rem;
+    background-color: white;
+  }
+
+  &:before {
+    transform: rotate(-45deg);
+  }
+
+  &:after {
+    transform: rotate(45deg);
+  }
+
+  &:hover {
+    transform: rotate(360deg);
+
+    &:before,
+    &:after {
+      background-color: $accent-color;
+    }
+  }
+}
