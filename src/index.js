@@ -15,7 +15,7 @@ import './js/renderOptionSelect';
 import pagination from 'paginationjs';
 import eventsCardTmpl from './templates/eventsCardTmpl.hbs';
 import './js/modal';
-// import './js/lazy-load';
+import chooseLazyLoad from './js/lazy-load';
 // import { resultGallery } from './js/test'
 // console.log(resultGallery);
 
@@ -111,9 +111,10 @@ function dataForEach(array) {
 }
 /**Rendering first events */
 function firstEventRender() {
-  ApiService.getData('','');
+  ApiService.getData('', '');
 }
-
+/** Первый рендеринг и ленивка уйдет в модуль  как только будет фетч*/
 firstEventRender();
+chooseLazyLoad();
 
-export {firstEventRender}
+export { firstEventRender };
