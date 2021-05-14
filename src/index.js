@@ -21,6 +21,9 @@ import chooseLazyLoad from './js/lazy-load';
 
 import { dataForEach, onParametersDataBase } from './js/onParametersDataBase';
 // import { resultGallery } from './js/test'
+import { info } from '@pnotify/core';
+import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/core/dist/BrightTheme.css';
 // console.log(resultGallery);
 
 // function worldEvents() {
@@ -70,6 +73,7 @@ class ApiService {
           url: `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${valueInput}&sort=random&size=200&countryCode=${valueSelect}&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6`,
           success: function (data) {
             console.log(data);
+
             // if ('_embedded' in data) {
             // const dataParameters = onParametersDataBase(data);
             // console.log(dataParameters);
@@ -84,6 +88,7 @@ class ApiService {
             // } else {
             //   alert('sorry bro, no events in this country');
             // }
+
 
             refs.searchInput.value = '';
           },
