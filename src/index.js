@@ -116,7 +116,6 @@ export function onLoadMoreModalBtn() {
   }
 }
 
-
 function showMore(e) {
   e.preventDefault();
   const modal = document.querySelector('.basicLightbox');
@@ -127,6 +126,5 @@ function showMore(e) {
   // const id = document.querySelector('.evt-wrapper').id
   const valueInput = fetchResult.find(e => e.id === id).name;
   ApiService.getData(' ', valueInput);
-  console.log(valueInput);
 }
 
