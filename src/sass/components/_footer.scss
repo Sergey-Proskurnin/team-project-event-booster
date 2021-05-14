@@ -5,46 +5,66 @@ footer {
   display: flex;
   justify-content: center;
 
-  // width: 1080px;
 
   margin-left: auto;
   margin-right: auto;
-
-  // padding: 0 100px;
 }
+
 .footer-wrapper {
   position: absolute;
   bottom: 0;
-  margin-bottom: 27px;
+
+
+  flex-direction: column;
+  text-align: center;
+
 
   font-size: 14px;
   line-height: 17px;
 
   color: $additional-text-color;
 
-  @media screen and (min-width: 768px) {
+  &__content {
+    display: flex;
+    padding: 20px 10px;
+  }
+
+  @include for-size(tablet) {
+    bottom: 18px;
+
     display: flex;
     justify-content: center;
-    bottom: 18px;
+
     font-size: 16px;
-    line-height: 23px;
+    line-height: 20px;
   }
 }
-.footer-text {
-  font-size: 16px;
-  line-height: 20px;
-}
+// .footer-text {
+//   font-size: 14px;
+//   line-height: 17px;
+// }
 
 .footer-open-modal {
-  cursor: pointer;
-  text-decoration: none;
+  width: 180px;
+  height: auto;
+  margin: 0 auto;
 
+  cursor: pointer;
   text-decoration: none;
   background-image: linear-gradient(currentColor, currentColor);
   background-position: 0% 100%;
   background-repeat: no-repeat;
   background-size: 0% 2px;
   transition: background-size 0.3s;
+
+  @include for-size(mobile-only) {
+    flex-direction: column;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    padding: 35px 0;
+  }
+
 }
 
 .Blazing {

@@ -35,7 +35,12 @@
   margin: 1px;
   height: 99.8%;
   padding: 25px;
-  // width: 99%;
+
+  overflow: auto;
+
+  @include for-size(desktop) {
+    overflow: hidden;
+  }
 }
 
 //!button close main modal
