@@ -1,0 +1,33 @@
+{{#each this}}
+<li class="event-card" id={{id}}>
+
+    <img class="event-image lazyload" 
+    loading="lazy"
+    srcset="
+
+        {{images1x128}} 128w,
+        {{images2x128}} 128w,
+        {{images1x180}} 180w,
+        {{images2x180}} 180w
+
+      " 
+      data-src={{images1x180}} alt="{{name}}" />
+
+    <h3 class="event-title">{{name}}</h3>
+    <p class="event-date">{{dates}}</p>
+    <p class="event-place">
+        <a href="https://maps.google.com?saddr=Current+Location&daddr={{locationLatitude}},{{locationLongitude}}"
+            target="_blank">
+            <span class="material-icons md-12 cards-icons">room</span>
+            {{#if venuesName}}
+                {{venuesName}},
+             {{/if}}
+             {{#if city}}
+                {{city}}
+                    {{else}}
+                        Online
+            {{/if}}
+        </a>
+    </p>
+</li>
+{{/each}}
