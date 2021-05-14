@@ -1,75 +1,79 @@
 @import url(https://fonts.googleapis.com/css?family=Akronim);
 
-
 footer {
   position: relative;
   display: flex;
   justify-content: center;
 
-  width: 1080px;
-
   margin-left: auto;
   margin-right: auto;
-
-  // padding: 0 100px;
 }
+
 .footer-wrapper {
   position: absolute;
+  bottom: 0;
 
-  // display: block;
+  flex-direction: column;
+  text-align: center;
 
   font-size: 14px;
   line-height: 17px;
 
   color: $additional-text-color;
 
-  @media screen and (min-width: 768px) {
+  &__content {
+    display: flex;
+    padding: 20px 10px;
+  }
+
+  @include for-size(tablet) {
+    bottom: 18px;
+
     display: flex;
     justify-content: center;
-    bottom: 18px;
+
     font-size: 16px;
-    line-height: 23px;
+    line-height: 20px;
   }
 }
-.footer-text {
-  font-size: 16px;
-  line-height: 20px;
-}
+// .footer-text {
+//   font-size: 14px;
+//   line-height: 17px;
+// }
 
 .footer-open-modal {
-  cursor: pointer;
-  text-decoration: none;
+  width: 180px;
+  height: auto;
+  margin: 0 auto;
 
+  cursor: pointer;
   text-decoration: none;
   background-image: linear-gradient(currentColor, currentColor);
   background-position: 0% 100%;
   background-repeat: no-repeat;
   background-size: 0% 2px;
   transition: background-size 0.3s;
-}
-.footer-open-modal:hover,
-a:focus {
-  // font-weight: 600;
-  // background-size: 100% 1px;
+
+  @include for-size(mobile-only) {
+    flex-direction: column;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    padding: 35px 0;
+  }
 }
 
 .Blazing {
- font-family: 'Akronim';
- font-size: 30px;
+  font-family: 'Akronim';
+  font-size: 30px;
 
- vertical-align: middle;
- outline: none;
- color: rgb(255, 115, 0);
+  vertical-align: middle;
+  outline: none;
+  color: rgb(255, 115, 0);
 
-
-	text-shadow:
-        0 3px 20px red,
-        0 0 20px red,
-		0 0 10px orange,
-		4px -5px 6px yellow,
-		-4px -10px 10px yellow,
-		0 -10px 30px yellow;
-	animation: 2s Blazing infinite alternate linear;
+  text-shadow: 0 3px 20px red, 0 0 20px red, 0 0 10px orange,
+    4px -5px 6px yellow, -4px -10px 10px yellow, 0 -10px 30px yellow;
+  animation: 2s Blazing infinite alternate linear;
 }
- 
-@include blazing
+
+@include blazing;
