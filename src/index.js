@@ -18,8 +18,11 @@ import eventsCardTmpl from './templates/eventsCardTmpl.hbs';
 import './js/modal';
 import chooseLazyLoad from './js/lazy-load';
 
-import { dataForEach, onParametersDataBase } from './js/onParametersDataBase'
+import { dataForEach, onParametersDataBase } from './js/onParametersDataBase';
 // import { resultGallery } from './js/test'
+import { info } from '@pnotify/core';
+import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/core/dist/BrightTheme.css';
 // console.log(resultGallery);
 
 // function worldEvents() {
@@ -69,7 +72,7 @@ class ApiService {
           success: function (data) {
             console.log(data);
             if ('_embedded' in data) {
-              const dataParameters = onParametersDataBase(data)
+              const dataParameters = onParametersDataBase(data);
               console.log(dataParameters);
               dataForEach(data);
               console.log(data);
@@ -78,7 +81,10 @@ class ApiService {
               fetchResult.push(...data._embedded.events);
               preloader.hide();
             } else {
-              alert('sorry bro, no events in this country');
+              info({
+                text: 'No events in this country!',
+                delay: 2000,
+              });
             }
             refs.searchInput.value = '';
           },
@@ -116,7 +122,6 @@ export function onLoadMoreModalBtn() {
   }
 }
 
-
 function showMore(e) {
   e.preventDefault();
   const modal = document.querySelector('.basicLightbox');
@@ -129,4 +134,3 @@ function showMore(e) {
   ApiService.getData(' ', valueInput);
   console.log(valueInput);
 }
-
