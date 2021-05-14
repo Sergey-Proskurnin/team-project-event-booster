@@ -16,6 +16,11 @@ $basicLightbox__timing: ease; // Transition timing
   color: #4c00fe;
 }
 
+.basicLightbox::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
 .basicLightbox {
   overflow: auto;
 }
@@ -41,6 +46,7 @@ $basicLightbox__timing: ease; // Transition timing
     padding: 30px 20px;
   }
 }
+
 .close-modal {
   display: block;
   position: absolute;
