@@ -25,7 +25,7 @@ eventCardRef.addEventListener('click', onCardClick)
 
 function onCardClick (e) {
   let fetchResult = JSON.parse(localStorage.getItem('data'))
- 
+ // console.log( fetchResult);
  if (e.target.classList.contains("event-image")||e.target.classList.contains("event-title")) {
   const id = e.target.parentNode.id
 
