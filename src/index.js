@@ -24,6 +24,7 @@ import { dataForEach, onParametersDataBase } from './js/onParametersDataBase';
 import { info } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
+
 // console.log(resultGallery);
 
 // function worldEvents() {
@@ -49,8 +50,8 @@ const refs = {
 
 const preloader = preloaderFactory('#preloader');
 
-// let fetchResult = [];
-// export { fetchResult };
+let fetchResult = [];
+export { fetchResult };
 
 // countryCode = ${refs.select.value}
 refs.searchForm.addEventListener('submit', onSubmitForm);
@@ -80,10 +81,13 @@ class ApiService {
             // dataForEach(data);
             // console.log(data);
             const dataParameters = onParametersDataBase(data);
-            localStorage.setItem('data', JSON.stringify(dataParameters));
+            
             done(dataParameters);
-            // fetchResult = [];
-            // fetchResult.push(...data._embedded.events);
+            console.log(dataParameters);
+            // localStorage.clear()
+            // localStorage.setItem('data', JSON.stringify(dataParameters));
+            fetchResult = [];
+            fetchResult.push(...dataParameters);
             preloader.hide();
             // } else {
             //   alert('sorry bro, no events in this country');
@@ -102,6 +106,7 @@ class ApiService {
         // console.log(data);
         console.log(dataParameters);
         $('#dataContainer').html(eventsCardTmplCopy(dataParameters));
+        
         const totalScrollHeight = refs.searchInput.clientHeight;
         window.scrollTo({
           top: totalScrollHeight,
@@ -134,7 +139,6 @@ function showMore(e) {
 
   document.body.style.overflow = 'auto';
   const id = e.target.parentNode.id;
-  // const id = document.querySelector('.evt-wrapper').id
   const valueInput = fetchResult.find(e => e.id === id).name;
   ApiService.getData(' ', valueInput);
 }

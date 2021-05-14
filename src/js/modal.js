@@ -3,7 +3,7 @@ import 'basiclightbox/dist/basiclightbox.min.css';
 const basicLightbox = require('basiclightbox');
 import evtModalTmpl from '../templates/evtModal.hbs';
 import evtModalInfo from '../templates/evtModalInfo.hbs';
-// import { fetchResult } from '../index'
+import { fetchResult } from '../index'
 import { onLoadMoreModalBtn } from '../index';
 console.log(onLoadMoreModalBtn);
 // import * as A from '../index'
@@ -18,16 +18,21 @@ console.log(onLoadMoreModalBtn);
 // console.log(a);
 
 const eventCardRef = document.querySelector('.event-cards');
-
+// let fetchResult = JSON.parse(localStorage.getItem('data'))
+// console.log(fetchResult);
 
 eventCardRef.addEventListener('click', onCardClick)
 
 function onCardClick (e) {
  
+ 
  if (e.target.classList.contains("event-image")||e.target.classList.contains("event-title")) {
   const id = e.target.parentNode.id
+
+  console.log('i need this id', id);
   
-  const evtInfo = fetchResult.find(evt=>evt.id===id)
+  const evtInfo = fetchResult.find(evt=>evt.id ===id)
+   console.log(evtInfo);
   const evtInfoMarkup = evtModalTmpl(evtInfo)
 
      openModal(evtInfoMarkup)
