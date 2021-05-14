@@ -16,18 +16,33 @@
     <h3 class="event-title">{{name}}</h3>
     <p class="event-date">{{dates}}</p>
     <p class="event-place">
-        <a href="https://maps.google.com?saddr=Current+Location&daddr={{locationLatitude}},{{locationLongitude}}"
+        {{#if locationLatitude}}
+            <a href="https://maps.google.com?saddr=Current+Location&daddr={{locationLatitude}},{{locationLongitude}}"
             target="_blank">
-            <span class="material-icons md-12 cards-icons">room</span>
-            {{#if venuesName}}
-                {{venuesName}},
-             {{/if}}
-             {{#if city}}
-                {{city}}
-                    {{else}}
-                        Online
-            {{/if}}
-        </a>
+                <span class="material-icons md-12 cards-icons">room</span>
+                {{#if venuesName}}
+                    {{venuesName}},
+                {{/if}}
+                {{#if city}}
+                    {{city}}
+                        {{else}}
+                            Online
+                {{/if}}
+            </a>
+        {{else}}
+            <a href="hhttps://www.google.com/maps/dir/?api=1&{{city}}"
+            target="_blank">
+                <span class="material-icons md-12 cards-icons">room</span>
+                {{#if venuesName}}
+                    {{venuesName}},
+                {{/if}}
+                {{#if city}}
+                    {{city}}
+                        {{else}}
+                            Online
+                {{/if}}
+            </a>
+        {{/if}}
     </p>
 </li>
 {{/each}}

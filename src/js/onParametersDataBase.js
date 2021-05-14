@@ -45,13 +45,13 @@ function onParametersDataBase(data) {
         'venues' in i._embedded &&
         i._embedded.venues[0].location !== undefined
           ? i._embedded.venues[0].location.latitude
-          : 'latitude',
+          : 0,
       ['locationLongitude']:
         i._embedded !== undefined &&
         'venues' in i._embedded &&
         i._embedded.venues[0].location !== undefined
           ? i._embedded.venues[0].location.longitude
-          : 'longitude',
+          : 0,
       ['city']:
         i._embedded !== undefined && 'venues' in i._embedded
           ? i._embedded.venues[0].city.name
