@@ -17,6 +17,8 @@ import pagination from 'paginationjs';
 import eventsCardTmpl from './templates/eventsCardTmpl.hbs';
 import './js/modal';
 import chooseLazyLoad from './js/lazy-load';
+
+import { dataForEach, onParametersDataBase } from './js/onParametersDataBase'
 // import { resultGallery } from './js/test'
 // console.log(resultGallery);
 
@@ -67,6 +69,8 @@ class ApiService {
           success: function (data) {
             console.log(data);
             if ('_embedded' in data) {
+              const dataParameters = onParametersDataBase(data)
+              console.log(dataParameters);
               dataForEach(data);
               console.log(data);
               done(data._embedded.events);
@@ -97,23 +101,6 @@ class ApiService {
   }
 }
 
-/**Sort imgs and add span on data */
-function dataForEach(array) {
-  array._embedded.events.forEach(i => {
-    i.images.sort((a, b) => a.width - b.width);
-    if (i.info) {
-      i.info = [i.info.substr(0, 60), i.info.substr(40)];
-    }
-    // if (i.info) {
-    //   i.info =
-    //     i.info.substr(0, 40) +
-    //     '<span id="dots">...</span><span id="more">' +
-    //     i.info.substr(40) +
-    //     '</span>';
-    // }
-    // console.log(i.info);
-  });
-}
 /**Rendering first events */
 function firstEventRender() {
   ApiService.getData('', '');
@@ -129,10 +116,12 @@ export function onLoadMoreModalBtn() {
   }
 }
 
+
 function showMore(e) {
   e.preventDefault();
   const modal = document.querySelector('.basicLightbox');
   modal.remove();
+
   document.body.style.overflow = 'auto';
   const id = e.target.parentNode.id;
   // const id = document.querySelector('.evt-wrapper').id
@@ -140,3 +129,4 @@ function showMore(e) {
   ApiService.getData(' ', valueInput);
   console.log(valueInput);
 }
+
