@@ -30,9 +30,7 @@ $basicLightbox__timing: ease; // Transition timing
   background-color: #fff2fd;
   border-radius: 150px 0px;
   width: 272px;
-
   padding: 70px 10px;
-
   @include for-size(tablet) {
     width: 595px;
     border-radius: 300px 0px;
@@ -59,11 +57,17 @@ $basicLightbox__timing: ease; // Transition timing
   width: 100px;
   height: 100px;
   border-radius: 50%;
-
   object-fit: cover;
-
   margin-left: auto;
   margin-right: auto;
+  @include for-size(tablet) {
+    width: 70px;
+    height: 70px;
+  }
+  @include for-size(desktop) {
+    width: 132px;
+    height: 132px;
+  }
 }
 
 .info-event {
@@ -72,15 +76,24 @@ $basicLightbox__timing: ease; // Transition timing
   padding: 20px;
 
   @include for-size(tablet) {
+    width: 97%;
+    margin: auto;
     display: flex;
-    justify-content: space-around;
     padding: 40px 10px;
     text-align: left;
-    padding-left: 20px;
+  }
+  @include for-size(desktop) {
+    padding: 40px 10px;
   }
 }
 .event-data {
   display: block;
+  @include for-size(tablet) {
+    margin-left: 10px;
+  }
+  @include for-size(desktop) {
+    margin-left: 20px;
+  }
 }
 
 .modal-title {
@@ -96,7 +109,7 @@ $basicLightbox__timing: ease; // Transition timing
 
   @include for-size(tablet) {
     display: block;
-    width: 230px;
+    width: 250px;
     height: 415px;
     object-fit: cover;
     padding: 0 10px;
