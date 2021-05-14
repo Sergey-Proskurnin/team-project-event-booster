@@ -3,7 +3,7 @@ import 'basiclightbox/dist/basiclightbox.min.css';
 const basicLightbox = require('basiclightbox');
 import evtModalTmpl from '../templates/evtModal.hbs';
 import evtModalInfo from '../templates/evtModalInfo.hbs';
-import { fetchResult } from '../index'
+// import { fetchResult } from '../index'
 import { onLoadMoreModalBtn } from '../index';
 console.log(onLoadMoreModalBtn);
 // import * as A from '../index'
@@ -19,12 +19,12 @@ console.log(onLoadMoreModalBtn);
 
 const eventCardRef = document.querySelector('.event-cards');
 // let fetchResult = JSON.parse(localStorage.getItem('data'))
-// console.log(fetchResult);
+// console.log( fetchResult);
 
 eventCardRef.addEventListener('click', onCardClick)
 
 function onCardClick (e) {
- 
+  let fetchResult = JSON.parse(localStorage.getItem('data'))
  
  if (e.target.classList.contains("event-image")||e.target.classList.contains("event-title")) {
   const id = e.target.parentNode.id
@@ -95,6 +95,7 @@ function infoTextToggle() {
 }
 
 function slideNext () {
+  let fetchResult = JSON.parse(localStorage.getItem('data'))
   const id = document.querySelector('.evt-wrapper').id
   const evt= fetchResult.find(evt=>evt.id===id)
   const evtIndex= fetchResult.indexOf(evt)
@@ -109,6 +110,7 @@ function slideNext () {
 }
 
 function slidePrev () {
+  let fetchResult = JSON.parse(localStorage.getItem('data'))
   const id = document.querySelector('.evt-wrapper').id
   const evt= fetchResult.find(evt=>evt.id===id)
   const evtIndex= fetchResult.indexOf(evt)

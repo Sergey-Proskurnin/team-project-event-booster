@@ -50,8 +50,9 @@ const refs = {
 
 const preloader = preloaderFactory('#preloader');
 
-let fetchResult = [];
-export { fetchResult };
+// let fetchResult = [];
+// localStorage.setItem('data', JSON.stringify(fetchResult));
+// export { fetchResult };
 
 // countryCode = ${refs.select.value}
 refs.searchForm.addEventListener('submit', onSubmitForm);
@@ -84,10 +85,11 @@ class ApiService {
             
             done(dataParameters);
             console.log(dataParameters);
-            // localStorage.clear()
-            // localStorage.setItem('data', JSON.stringify(dataParameters));
-            fetchResult = [];
-            fetchResult.push(...dataParameters);
+            localStorage.clear()
+            localStorage.setItem('data', JSON.stringify(dataParameters));
+            // fetchResult = [];
+            // fetchResult.push(...dataParameters);
+            // localStorage.setItem('data', JSON.stringify(fetchResult));
             preloader.hide();
             // } else {
             //   alert('sorry bro, no events in this country');
@@ -134,6 +136,7 @@ export function onLoadMoreModalBtn() {
 
 function showMore(e) {
   e.preventDefault();
+  let fetchResult = JSON.parse(localStorage.getItem('data'))
   const modal = document.querySelector('.basicLightbox');
   modal.remove();
 
