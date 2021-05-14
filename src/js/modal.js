@@ -2,9 +2,9 @@ import 'basiclightbox/dist/basiclightbox.min.css';
 // import * as basicLightbox from 'basiclightbox';
 const basicLightbox = require('basiclightbox');
 import evtModalTmpl from '../templates/evtModal.hbs';
-import evtModalInfo from '../templates/evtModalInfo.hbs'
-import { fetchResult } from '../index'
-import { onLoadMoreModalBtn } from '../index'
+import evtModalInfo from '../templates/evtModalInfo.hbs';
+// import { fetchResult } from '../index'
+import { onLoadMoreModalBtn } from '../index';
 console.log(onLoadMoreModalBtn);
 // import * as A from '../index'
 
@@ -18,6 +18,7 @@ console.log(onLoadMoreModalBtn);
 // console.log(a);
 
 const eventCardRef = document.querySelector('.event-cards');
+
 
 eventCardRef.addEventListener('click', onCardClick)
 
@@ -36,6 +37,7 @@ function onCardClick (e) {
      document.querySelector('.btn.prev').addEventListener('click', slidePrev)
     
  }
+
 }
 
 
@@ -62,11 +64,12 @@ function openModal (markupInfo) {
 
 
 function infoTextToggle() {
-  const dots = document.getElementById("dots");
-  const moreText = document.getElementById("more");
+  const dots = document.getElementById('dots');
+  const moreText = document.getElementById('more');
   if (document.contains(dots)) {
-    dots.addEventListener('click', displayMore)
+    dots.addEventListener('click', displayMore);
   }
+
  function displayMore () {if
      (dots.style.display === "none") {
     dots.style.display = "inline";
@@ -116,3 +119,4 @@ function slidePrev () {
   onLoadMoreModalBtn()
 
 }
+
