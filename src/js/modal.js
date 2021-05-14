@@ -18,16 +18,21 @@ console.log(onLoadMoreModalBtn);
 // console.log(a);
 
 const eventCardRef = document.querySelector('.event-cards');
-
+// let fetchResult = JSON.parse(localStorage.getItem('data'))
+// console.log( fetchResult);
 
 eventCardRef.addEventListener('click', onCardClick)
 
 function onCardClick (e) {
+  let fetchResult = JSON.parse(localStorage.getItem('data'))
  
  if (e.target.classList.contains("event-image")||e.target.classList.contains("event-title")) {
   const id = e.target.parentNode.id
+
+  console.log('i need this id', id);
   
-  const evtInfo = fetchResult.find(evt=>evt.id===id)
+  const evtInfo = fetchResult.find(evt=>evt.id ===id)
+   console.log(evtInfo);
   const evtInfoMarkup = evtModalTmpl(evtInfo)
 
      openModal(evtInfoMarkup)
@@ -90,6 +95,7 @@ function infoTextToggle() {
 }
 
 function slideNext () {
+  let fetchResult = JSON.parse(localStorage.getItem('data'))
   const id = document.querySelector('.evt-wrapper').id
   const evt= fetchResult.find(evt=>evt.id===id)
   const evtIndex= fetchResult.indexOf(evt)
@@ -104,6 +110,7 @@ function slideNext () {
 }
 
 function slidePrev () {
+  let fetchResult = JSON.parse(localStorage.getItem('data'))
   const id = document.querySelector('.evt-wrapper').id
   const evt= fetchResult.find(evt=>evt.id===id)
   const evtIndex= fetchResult.indexOf(evt)

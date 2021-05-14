@@ -24,6 +24,7 @@ import { dataForEach, onParametersDataBase } from './js/onParametersDataBase';
 import { info } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
+
 // console.log(resultGallery);
 
 // function worldEvents() {
@@ -50,6 +51,7 @@ const refs = {
 const preloader = preloaderFactory('#preloader');
 
 // let fetchResult = [];
+// localStorage.setItem('data', JSON.stringify(fetchResult));
 // export { fetchResult };
 
 // countryCode = ${refs.select.value}
@@ -80,10 +82,14 @@ class ApiService {
             // dataForEach(data);
             // console.log(data);
             const dataParameters = onParametersDataBase(data);
-            localStorage.setItem('data', JSON.stringify(dataParameters));
+            
             done(dataParameters);
+            console.log(dataParameters);
+            localStorage.clear()
+            localStorage.setItem('data', JSON.stringify(dataParameters));
             // fetchResult = [];
-            // fetchResult.push(...data._embedded.events);
+            // fetchResult.push(...dataParameters);
+            // localStorage.setItem('data', JSON.stringify(fetchResult));
             preloader.hide();
             // } else {
             //   alert('sorry bro, no events in this country');
@@ -102,6 +108,7 @@ class ApiService {
         // console.log(data);
         console.log(dataParameters);
         $('#dataContainer').html(eventsCardTmplCopy(dataParameters));
+        
         const totalScrollHeight = refs.searchInput.clientHeight;
         window.scrollTo({
           top: totalScrollHeight,
@@ -129,12 +136,12 @@ export function onLoadMoreModalBtn() {
 
 function showMore(e) {
   e.preventDefault();
+  let fetchResult = JSON.parse(localStorage.getItem('data'))
   const modal = document.querySelector('.basicLightbox');
   modal.remove();
 
   document.body.style.overflow = 'auto';
   const id = e.target.parentNode.id;
-  // const id = document.querySelector('.evt-wrapper').id
   const valueInput = fetchResult.find(e => e.id === id).name;
   ApiService.getData(' ', valueInput);
 }
