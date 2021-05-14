@@ -76,7 +76,7 @@ class ApiService {
           success: function (data) {
             console.log(data);
 
-            // if ('_embedded' in data) {
+            if ('_embedded' in data) {
             // const dataParameters = onParametersDataBase(data);
             // console.log(dataParameters);
             // dataForEach(data);
@@ -91,9 +91,12 @@ class ApiService {
             // fetchResult.push(...dataParameters);
             // localStorage.setItem('data', JSON.stringify(fetchResult));
             preloader.hide();
-            // } else {
-            //   alert('sorry bro, no events in this country');
-            // }
+            } else {
+             info({
+            text: 'No events in this country!',
+              delay: 2000,
+          })
+              }
 
 
             refs.searchInput.value = '';
@@ -111,7 +114,7 @@ class ApiService {
         
         const totalScrollHeight = refs.searchInput.clientHeight;
         window.scrollTo({
-          top: totalScrollHeight,
+          top: -100,
           behavior: 'smooth',
         });
       },
