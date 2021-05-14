@@ -15,6 +15,7 @@ import './js/renderOptionSelect';
 // import apiService from './js/apiService';
 import pagination from 'paginationjs';
 import eventsCardTmpl from './templates/eventsCardTmpl.hbs';
+import eventsCardTmplCopy from './templates/eventsCardTmpl_copy.hbs';
 import './js/modal';
 import chooseLazyLoad from './js/lazy-load';
 
@@ -48,8 +49,8 @@ const refs = {
 
 const preloader = preloaderFactory('#preloader');
 
-let fetchResult = [];
-export { fetchResult };
+// let fetchResult = [];
+// export { fetchResult };
 
 // countryCode = ${refs.select.value}
 refs.searchForm.addEventListener('submit', onSubmitForm);
@@ -62,6 +63,7 @@ function onSubmitForm(e) {
   const valueSelect = e.target.nextElementSibling[0].value;
   ApiService.getData(valueSelect, valueInput);
 }
+
 class ApiService {
   static getData(valueSelect, valueInput) {
     $('#demo').pagination({
@@ -71,21 +73,23 @@ class ApiService {
           url: `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${valueInput}&sort=random&size=200&countryCode=${valueSelect}&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6`,
           success: function (data) {
             console.log(data);
-            if ('_embedded' in data) {
-              const dataParameters = onParametersDataBase(data);
-              console.log(dataParameters);
-              dataForEach(data);
-              console.log(data);
-              done(data._embedded.events);
-              fetchResult = [];
-              fetchResult.push(...data._embedded.events);
-              preloader.hide();
-            } else {
-              info({
-                text: 'No events in this country!',
-                delay: 2000,
-              });
-            }
+
+            // if ('_embedded' in data) {
+            // const dataParameters = onParametersDataBase(data);
+            // console.log(dataParameters);
+            // dataForEach(data);
+            // console.log(data);
+            const dataParameters = onParametersDataBase(data);
+            localStorage.setItem('data', JSON.stringify(dataParameters));
+            done(dataParameters);
+            // fetchResult = [];
+            // fetchResult.push(...data._embedded.events);
+            preloader.hide();
+            // } else {
+            //   alert('sorry bro, no events in this country');
+            // }
+
+
             refs.searchInput.value = '';
           },
         });
@@ -94,9 +98,10 @@ class ApiService {
       pageSize: 24,
       showPrevious: false,
       showNext: false,
-      callback: function (data) {
+      callback: function (dataParameters) {
         // console.log(data);
-        $('#dataContainer').html(eventsCardTmpl(data));
+        console.log(dataParameters);
+        $('#dataContainer').html(eventsCardTmplCopy(dataParameters));
         const totalScrollHeight = refs.searchInput.clientHeight;
         window.scrollTo({
           top: totalScrollHeight,
