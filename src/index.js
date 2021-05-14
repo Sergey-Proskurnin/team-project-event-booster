@@ -109,24 +109,24 @@ function firstEventRender() {
 firstEventRender();
 chooseLazyLoad();
 
-
-export function onLoadMoreModalBtn () {
-  const loadMoreBtn = document.querySelector('.more-info')
-  if (document.contains(loadMoreBtn)){
-    loadMoreBtn.addEventListener('click', showMore)
+export function onLoadMoreModalBtn() {
+  const loadMoreBtn = document.querySelector('.more-info');
+  if (document.contains(loadMoreBtn)) {
+    loadMoreBtn.addEventListener('click', showMore);
   }
 }
 
-function showMore (e) {
-  e.preventDefault()
-  const modal = document.querySelector('.basicLightbox')
-  modal.remove()
+
+function showMore(e) {
+  e.preventDefault();
+  const modal = document.querySelector('.basicLightbox');
+  modal.remove();
+
   document.body.style.overflow = 'auto';
-  const id = e.target.parentNode.id
+  const id = e.target.parentNode.id;
   // const id = document.querySelector('.evt-wrapper').id
-  const valueInput = fetchResult.find(e=>e.id===id).name
+  const valueInput = fetchResult.find(e => e.id === id).name;
   ApiService.getData(' ', valueInput);
   console.log(valueInput);
 }
-
 
