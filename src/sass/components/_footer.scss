@@ -23,8 +23,11 @@ footer {
 
   &__content {
     display: flex;
-    flex-direction: column;
     padding: 20px 10px;
+
+    @include for-size(mobile-only) {
+      flex-direction: column;
+    }
   }
 
   @include for-size(tablet) {
