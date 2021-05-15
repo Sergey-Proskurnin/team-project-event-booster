@@ -107,6 +107,7 @@ function slideNext () {
   document.querySelector('.btn.next').addEventListener('click', slideNext)  
   document.querySelector('.btn.prev').addEventListener('click', slidePrev)
   onLoadMoreModalBtn()
+  infoTextToggle()
 }
 
 function slidePrev () {
@@ -124,6 +125,6 @@ function slidePrev () {
   document.querySelector('.btn.next').addEventListener('click', slideNext)  
   document.querySelector('.btn.prev').addEventListener('click', slidePrev)
   onLoadMoreModalBtn()
-
+  infoTextToggle()
 }
 

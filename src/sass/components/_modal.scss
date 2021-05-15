@@ -16,6 +16,7 @@ $basicLightbox__timing: ease; // Transition timing
 
 .basicLightbox {
   overflow: auto;
+  cursor: pointer;
 }
 .basicLightbox__placeholder {
   margin: auto auto 0px 0px;
@@ -136,7 +137,8 @@ $basicLightbox__timing: ease; // Transition timing
 }
 #dots,
 #less {
-  color: #4c00fe;
+  color: #ff0dbf;
+  font-size: 33px;
 }
 
 .event-data {
