@@ -8,13 +8,6 @@ $basicLightbox__timing: ease; // Transition timing
   overflow: hidden;
   background:#200D1D 60%;
   } */
-#more {
-  display: none;
-}
-#dots,
-#less {
-  color: #4c00fe;
-}
 
 .basicLightbox::-webkit-scrollbar {
   width: 0px;
@@ -48,16 +41,61 @@ $basicLightbox__timing: ease; // Transition timing
 }
 
 .close-modal {
-  display: block;
+  // display: block;
+  // position: absolute;
+  // right: 25px;
+  // top: 25px;
+  // margin-left: auto;
+  // max-height: 24px;
+  // border: none;
+  // color: #4c00fe;
+  // background-color: #fff2fd;
   position: absolute;
-  right: 25px;
-  top: 25px;
-  margin-left: auto;
-  max-height: 24px;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
   border: none;
+  background-color: transparent;
   color: #4c00fe;
-  background-color: #fff2fd;
-  /* z-index: 100; */
+  font-size: 1.5rem;
+  transition: 0.25s linear;
+
+  &:before,
+  &:after {
+    position: absolute;
+    content: '';
+    width: 1.25rem;
+    height: 0.125rem;
+    background-color: #4c00fe;
+  }
+
+  &:before {
+    transform: rotate(-45deg);
+  }
+
+  &:after {
+    transform: rotate(45deg);
+  }
+
+  &:hover {
+    transform: rotate(360deg);
+
+    &:before,
+    &:after {
+      background-color: $accent-color;
+    }
+  }
+}
+
+.close-cross-evtmodal {
+  font-size: 17px;
+  @include for-size(desktop) {
+    font-size: 24px;
+  }
 }
 .title-img {
   width: 100px;
@@ -92,6 +130,15 @@ $basicLightbox__timing: ease; // Transition timing
     padding: 40px 10px;
   }
 }
+
+#more {
+  display: none;
+}
+#dots,
+#less {
+  color: #4c00fe;
+}
+
 .event-data {
   display: block;
   @include for-size(tablet) {
@@ -121,7 +168,7 @@ $basicLightbox__timing: ease; // Transition timing
     padding: 0 10px;
   }
   @include for-size(desktop) {
-    width: 460px;
+    width: 440px;
     height: 541px;
   }
 }
@@ -149,6 +196,10 @@ $basicLightbox__timing: ease; // Transition timing
   border: 1px solid;
   border-radius: 5px;
   color: #4c00fe;
+  &:hover,
+  &:focus {
+    color: $accent-color;
+  }
 }
 
 .modal-md-12 {
@@ -170,9 +221,40 @@ $basicLightbox__timing: ease; // Transition timing
   display: inline-block;
   background: none;
   outline: none;
-  color: pink;
+  color: $accent-color;
   font-size: 35px;
   font-weight: 700;
+  &:hover,
+  &:focus {
+    transform: scale(1.5);
+    color: pink;
+  }
+}
+
+.btn.next {
+  margin: 0 0 0 8%;
+  @include for-size(tablet) {
+    position: fixed;
+    top: 40%;
+    left: 100%;
+  }
+}
+.btn.prev {
+  margin: 0 0 0 30%;
+  @include for-size(tablet) {
+    position: absolute;
+    top: 40%;
+    left: -45%;
+  }
+}
+
+.icon-next {
+  transform: rotateY(180deg);
+}
+
+.icon-next,
+.icon-prev {
+  font-size: 35px;
 }
 // @media screen and (min-width: 768px) {
 //   .event-modal {
