@@ -6,20 +6,20 @@
   display: flex;
   flex-direction: column;
 
-  margin-bottom: 52px;
+  // margin-bottom: 52px;
 
   @include for-size(tablet) {
     flex-direction: row;
     justify-content: space-between;
 
-    margin-bottom: 123px;
+    // margin-bottom: 123px;
   }
 
   @include for-size(desktop) {
     flex-direction: row;
     justify-content: center;
 
-    margin-bottom: 133px;
+    // margin-bottom: 133px;
   }
 }
 
