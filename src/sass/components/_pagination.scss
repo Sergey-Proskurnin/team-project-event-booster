@@ -5,12 +5,13 @@ ul {
 .paginationjs-page {
   padding: 6px 10px;
   color: #fff;
-  margin-bottom: 60px;
   margin-right: 2.5px;
   margin-left: 2.5px;
   box-sizing: border-box;
   cursor: pointer;
   border-radius: 10px 0px;
+  text-shadow: 0 4px 10px, 0 0 2px, 0 0 1em rgb(255, 13, 191),
+    0 0 0.5em rgb(255, 13, 191), 0 0 0.1em rgb(255, 13, 191), 0 1px 3px #000;
 }
 .paginationjs-page:hover {
   cursor: pointer;
@@ -26,6 +27,10 @@ ul {
   border: 1px solid #dc56c5;
   border-radius: 10px 0px;
   cursor: pointer;
+  animation: blink linear infinite 1.5s;
+  font-weight: 700;
+  text-shadow: 0 4px 10px, 0 0 2px, 0 0 1em rgb(255, 13, 191),
+    0 0 0.5em rgb(255, 13, 191), 0 0 0.1em rgb(255, 13, 191), 0 1px 3px #000;
 }
 
 .paginationjs-ellipsis {
@@ -35,7 +40,7 @@ ul {
 
 #demo {
   text-align: center;
-  margin-top: 25px;
+  margin-bottom: 40px;
 }
 
 #dataContainer {

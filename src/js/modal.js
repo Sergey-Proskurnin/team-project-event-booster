@@ -71,19 +71,23 @@ function infoTextToggle() {
   }
 }
 
-function slideNext() {
-  let fetchResult = JSON.parse(localStorage.getItem('data'));
-  const id = document.querySelector('.evt-wrapper').id;
-  const evt = fetchResult.find(evt => evt.id === id);
-  const evtIndex = fetchResult.indexOf(evt);
-  let evtInfoMarkup = evtModalInfo(fetchResult[evtIndex + 1]);
-  if (evtIndex === fetchResult.length - 1) {
-    evtInfoMarkup = evtModalInfo(fetchResult[0]);
-  }
-  document.querySelector('.wrapper').innerHTML = evtInfoMarkup;
-  document.querySelector('.btn.next').addEventListener('click', slideNext);
-  document.querySelector('.btn.prev').addEventListener('click', slidePrev);
-  onLoadMoreModalBtn();
+
+
+function slideNext () {
+  let fetchResult = JSON.parse(localStorage.getItem('data'))
+  const id = document.querySelector('.evt-wrapper').id
+  const evt= fetchResult.find(evt=>evt.id===id)
+  const evtIndex= fetchResult.indexOf(evt)
+  let evtInfoMarkup = evtModalInfo(fetchResult[evtIndex+1])
+   if (evtIndex === fetchResult.length-1) {
+    evtInfoMarkup = evtModalInfo(fetchResult[0])
+   }
+  document.querySelector('.wrapper').innerHTML = evtInfoMarkup 
+  document.querySelector('.btn.next').addEventListener('click', slideNext)  
+  document.querySelector('.btn.prev').addEventListener('click', slidePrev)
+  onLoadMoreModalBtn()
+  infoTextToggle()
+
 }
 
 function slidePrev() {
@@ -97,6 +101,7 @@ function slidePrev() {
     evtInfoMarkup = evtModalInfo(fetchResult[fetchResult.length - 1]);
   }
 
+
   document.querySelector('.wrapper').innerHTML = evtInfoMarkup;
   document.querySelector('.btn.next').addEventListener('click', slideNext);
   document.querySelector('.btn.prev').addEventListener('click', slidePrev);
@@ -108,6 +113,13 @@ function onLoadMoreModalBtn() {
   if (document.contains(loadMoreBtn)) {
     loadMoreBtn.addEventListener('click', showMore);
   }
+
+  document.querySelector('.wrapper').innerHTML = evtInfoMarkup; 
+  document.querySelector('.btn.next').addEventListener('click', slideNext)  
+  document.querySelector('.btn.prev').addEventListener('click', slidePrev)
+  onLoadMoreModalBtn()
+  infoTextToggle()
+
 }
 
 function showMore(e) {
