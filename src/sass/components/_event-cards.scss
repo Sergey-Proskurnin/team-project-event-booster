@@ -1,11 +1,13 @@
 .section-card {
-
   min-height: 47.2vh; //100
-  margin-top: -70px;
+  margin-top: -45px;
 
-//   min-height: 100vh;
-//   margin-top: -60px;
+  //   min-height: 100vh;
+  //   margin-top: -60px;
 
+  @include for-size(desktop) {
+    margin-top: -51px;
+  }
 }
 
 #dataContainer {

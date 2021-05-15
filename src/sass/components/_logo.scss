@@ -19,7 +19,7 @@
   backdrop-filter: blur(30px);
   border-bottom-right-radius: 180%;
 
-  // z-index: 100;
+  z-index: 100;
 
   @include for-size(tablet) {
     width: 180px;
