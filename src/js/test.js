@@ -1,3 +1,9 @@
+//====================================================================Import-trush===================================
+// import './js/apiService';
+// import NewApiService from './js/apiService';
+// import apiService from './js/apiService';
+// import eventsCardTmpl from './templates/eventsCardTmpl.hbs';
+//=========================================================================================================================
 // // import './styles.css';
 // // import './sass/utils/variables.scss'
 // import './js/scrollUp';
@@ -377,3 +383,31 @@
       //     });
       //   },
       // });
+// ------------------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------
+// console.log(resultGallery);
+
+// function worldEvents() {
+//   fetch(
+//     'https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&sort=random&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6',
+//   )
+//     .then(resp => resp.json())
+//     .then(data => {
+//       const { events } = data._embedded;
+//       const markup = eventsCardTmpl(events);
+//       refs.dataContainer.insertAdjacentHTML('beforeend', markup);
+//     });
+// }
+
+// worldEvents();
+
+//======================================================================================================================
+//======================================================================================================================
+//======================================================================================================================
+// let fetchResult = [];
+// localStorage.setItem('data', JSON.stringify(fetchResult));
+// export { fetchResult };
+
+// countryCode = ${refs.select.value}
+
