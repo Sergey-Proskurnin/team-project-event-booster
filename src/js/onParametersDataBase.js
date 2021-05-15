@@ -1,5 +1,5 @@
 function onParametersDataBase(data) {
-  return data._embedded.events.map(i => {
+  return data.map(i => {
     return {
       ['id']: i.id ? i.id : 'id',
       ['info']: i.info ? [i.info.substr(0, 60), i.info.substr(60)] : 0,

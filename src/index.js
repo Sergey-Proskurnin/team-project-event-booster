@@ -63,68 +63,48 @@ function onSubmitForm(e) {
   refs.dataContainer.innerHTML = '';
   const valueInput = e.target.elements[0].value;
   const valueSelect = e.target.nextElementSibling[0].value;
-  ApiService.getData(valueSelect, valueInput);
+  getData(valueSelect, valueInput);
 }
 
-class ApiService {
-  static getData(valueSelect, valueInput) {
-    $('#demo').pagination({
-      dataSource: function (done) {
-        $.ajax({
-          type: 'GET',
-          url: `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${valueInput}&sort=random&size=200&countryCode=${valueSelect}&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6`,
-          success: function (data) {
-            console.log(data);
+function getData(valueSelect, valueInput) {
+  $('#demo').pagination({
+    dataSource: `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${valueInput}&size=24&sort=random&countryCode=${valueSelect}&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6`,
+    locator: '_embedded.events',
+    totalNumberLocator: function (response) {
+      return response.page.totalPages;
+    },
+    pageSize: 24,
+    
+    callback: function (data, pagination) {
+      console.log(data.length === undefined);
+      const dataParameters = onParametersDataBase(data);
+      localStorage.clear();
+      localStorage.setItem('data', JSON.stringify(dataParameters));
+      $('#dataContainer').html(eventsCardTmplCopy(dataParameters));
+      preloader.hide();
+      window.scrollTo({
+        top: -100,
+        behavior: 'smooth',
+      });
+    },
+    showPrevious: false,
+    showNext: false,
+  });
 
-            if ('_embedded' in data) {
-            // const dataParameters = onParametersDataBase(data);
-            // console.log(dataParameters);
-            // dataForEach(data);
-            // console.log(data);
-            const dataParameters = onParametersDataBase(data);
-            
-            done(dataParameters);
-            console.log(dataParameters);
-            localStorage.clear()
-            localStorage.setItem('data', JSON.stringify(dataParameters));
-            // fetchResult = [];
-            // fetchResult.push(...dataParameters);
-            // localStorage.setItem('data', JSON.stringify(fetchResult));
-            preloader.hide();
-            } else {
-             info({
-            text: 'No events in this country!',
-              delay: 2000,
-          })
-              }
-
-
-            refs.searchInput.value = '';
-          },
-        });
-      },
-
-      pageSize: 24,
-      showPrevious: false,
-      showNext: false,
-      callback: function (dataParameters) {
-        // console.log(data);
-        console.log(dataParameters);
-        $('#dataContainer').html(eventsCardTmplCopy(dataParameters));
-        
-        const totalScrollHeight = refs.searchInput.clientHeight;
-        window.scrollTo({
-          top: -100,
-          behavior: 'smooth',
-        });
-      },
-    });
-  }
+  refs.searchInput.value = '';
 }
+
+// else {
+//   info({
+//     text: 'No events in this country!',
+//     delay: 2000,
+//   })
+// }
+
 
 /**Rendering first events */
 function firstEventRender() {
-  ApiService.getData('', '');
+  getData('', '');
 }
 /** Первый рендеринг и ленивка уйдет в модуль  как только будет фетч*/
 firstEventRender();
@@ -139,12 +119,12 @@ export function onLoadMoreModalBtn() {
 
 function showMore(e) {
   e.preventDefault();
-  let fetchResult = JSON.parse(localStorage.getItem('data'))
+  let fetchResult = JSON.parse(localStorage.getItem('data'));
   const modal = document.querySelector('.basicLightbox');
   modal.remove();
 
   document.body.style.overflow = 'auto';
   const id = e.target.parentNode.id;
   const valueInput = fetchResult.find(e => e.id === id).name;
-  ApiService.getData(' ', valueInput);
+  getData(' ', valueInput);
 }
