@@ -39,10 +39,8 @@ function onError() {
   });
 }
 function onInfoBadSearch() {
-  info({
-    text: 'No events in this country!',
-    delay: 3000,
-  });
+  dataContainer.innerHTML =
+    '<img class="imageNotfication" src = "https://cdn.pixabay.com/photo/2015/03/08/17/25/musician-664432_150.jpg"  ><h2 class="notification">"Sorry, no events in this country!"</h2> ';
   preloader.hide();
 }
 
