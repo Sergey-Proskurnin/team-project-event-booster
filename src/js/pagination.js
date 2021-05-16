@@ -1,14 +1,10 @@
 import { error, info } from '@pnotify/core';
-import { searchInput, preloader } from './refs';
+import { searchInput, preloader, BASE_URL, API_KEY } from './refs';
 import { onRenderingSearchEvents } from './renderingSaerchEvents';
 
-// import $ from 'jquery';
-// import $ from '../../node_modules/jquery/dist/jquery';
-// const $ = require("jquery");
-
-function getData(valueSelect, valueInput) {
+function getData(url) {
   $('#demo').pagination({
-    dataSource: `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${valueInput}&size=24&sort=random&countryCode=${valueSelect}&apikey=k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6`,
+    dataSource: `${BASE_URL}?${url}&apikey=${API_KEY}`,
     formatAjaxError: function (jqXHR, textStatus, errorThrown) {
       onError();
     },
