@@ -9,9 +9,7 @@
 }
 
 .bg-img {
-  // width: 100%;
   margin-top: 1px;
-  // height: 100%;
   margin-left: auto;
   margin-right: auto;
   background-color: $secondary-text-color;
@@ -34,50 +32,37 @@ main {
 }
 
 .img-container::after {
-  content: '';
-  width: 1px;
-  top: 0;
-  bottom: 0;
-  position: absolute;
-  background: #212121;
-  left: 10%;
-  z-index: 20;
-  // box-shadow: 0px 0px 15px 10px $accent-color;
+  @include for-size(tablet) {
+    content: '';
+    width: 1px;
+    top: 319px;
+    bottom: 0;
+    position: absolute;
+    background: #212121;
+    left: 10%;
+    z-index: 20;
+    // box-shadow: 0px 0px 15px 10px $accent-color;
+  }
+
+  @include for-size(desktop) {
+    top: 395px;
+  }
 }
 
 .img-container::before {
-  content: '';
-  width: 1px;
-  top: 0;
-  bottom: 0;
-  position: absolute;
-  background: #212121;
-  right: 10%;
-  z-index: 20;
-  // box-shadow: 0px 0px 15px 10px $accent-color;
+  @include for-size(tablet) {
+    content: '';
+    width: 1px;
+    top: 319px;
+    bottom: 0;
+    position: absolute;
+    background: #212121;
+    right: 10%;
+    z-index: 20;
+    // box-shadow: 0px 0px 15px 10px $accent-color;
+  }
+
+  @include for-size(desktop) {
+    top: 395px;
+  }
 }
-
-// .img-container::after {
-//   content: '';
-//   position: absolute;
-//   top: 0;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-
-//   width: 80%;
-
-//   background-size: cover;
-//   // background-position: center;
-//   background-repeat: no-repeat;
-//   @include for-size(tablet) {
-//     background-image: url('../images/tablet/decor-tablet.svg');
-//     left: 10%;
-//   }
-//   @include for-size(desktop) {
-//     background-image: url('../images/desktop/decor-desktop.svg');
-//     left: 10%;
-
-//     // max-width: 1280px;
-//   }
-// }
