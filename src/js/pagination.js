@@ -29,15 +29,13 @@ function getData(url) {
 
 // /**Function - callback pnotify */
 function onError() {
-  error({
-    text: 'Error 404! Bad URL.',
-    delay: 3000,
-  });
+  dataContainer.innerHTML =
+    '<img class="imageNotfication" src = "https://cdn.pixabay.com/photo/2017/09/01/00/16/png-2702697_150.png"  ><h2 class="notification">"Oh no, this is bad URL. Please, try again"</h2> ';
+  preloader.hide();
 }
 function onInfoBadSearch() {
   dataContainer.innerHTML =
-    '<img class="imageNotfication" src = "https://cdn.pixabay.com/photo/2015/03/08/17/25/musician-664432_150.jpg"  ><h2 class="notification">"Sorry, no events in this country!"</h2> ';
+    '<img class="imageNotfication" src = "https://cdn.pixabay.com/photo/2017/08/02/00/46/owl-2569202_150.png" ><h2 class="notification">"Oops, no events in this country!"</h2> ';
   preloader.hide();
 }
-
 export { getData };
