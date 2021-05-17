@@ -4,7 +4,9 @@ import evtModalTmpl from '../templates/evtModal.hbs';
 import evtModalInfo from '../templates/evtModalInfo.hbs';
 import { getData } from './pagination';
 import { eventCardRef } from './refs';
+import NewApiUrlService from './apiUrlService';
 
+const apiUrlService = new NewApiUrlService();
 let modal = basicLightbox;
 
 eventCardRef.addEventListener('click', onCardClick);
@@ -125,5 +127,7 @@ function showMore(e) {
   document.body.style.overflow = 'auto';
   const id = e.target.parentNode.id;
   const valueInput = fetchResult.find(e => e.id === id).name;
-  getData(' ', valueInput);
+  const arrayValue = [valueInput, ''];
+  apiUrlService.query = arrayValue;
+  getData(apiUrlService.fetchApi());
 }
