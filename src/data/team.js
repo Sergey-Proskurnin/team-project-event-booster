@@ -52,11 +52,11 @@ export default [
     instagram: 'https://www.instagram.com/s.v.maksymenko/',
   },
   {
-    fullName: '',
-    photo: '',
-    linkedIn: '',
-    gitHub: '',
-    instagram: '',
+    fullName: 'Mykhaylo Strilchuk',
+    photo: 'src/images/team/Strilchuk_Mykhaylo.png',
+    linkedIn: 'linkedin.com/in/misha-strilchuk-ba2a6494 ',
+    gitHub: 'https://github.com/mishastr77 ',
+    instagram: '#',
   },
   {
     fullName: '',
