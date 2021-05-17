@@ -53,15 +53,20 @@ ul {
 }
 
 .notification {
-  margin-top: 90px;
+  margin-top: 50px;
   text-align: center;
-  font-size: xx-large;
+  font-size: larger;
   color: #fee;
+  animation: blink linear infinite 2s;
   text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff0dbf, 0 0 0.5em #ff0dbf,
     0 0 0.1em #ff0dbf, 0 10px 3px #000;
-  // @media screen for-size(tablet) {
-  //   font-size: xx-large;
-  // }
+  @media only screen and (min-width: 768px) {
+    font-size: x-large;
+  }
+  @media only screen and (min-width: 1280px) {
+     margin-top: 90px;
+    font-size: xx-large;
+  }
 }
 
 .imageNotfication {
