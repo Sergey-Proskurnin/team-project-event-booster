@@ -1,6 +1,6 @@
-// import "firebase/auth";
-import './js/firebaseConfig'
-import './js/apiUrlService'
+import 'firebase/auth';
+import './js/firebaseConfig';
+import './js/apiUrlService';
 import 'paginationjs';
 import './js/scrollUp';
 import './js/team-modal';
@@ -14,15 +14,16 @@ import '@pnotify/core/dist/BrightTheme.css';
 import './js/renderingCards';
 import './js/pagination';
 import './js/submitForm';
+import * as firebase from 'firebase';
+import 'firebase/app';
+import './js/firebase-auth';
 
-// import "firebase/app";
+// const firebase = require('firebase');
+// const firebaseui = require('firebaseui');
 
-// var ui = new firebaseui.auth.AuthUI(firebase.auth());
+// const ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 // ui.start('#firebaseui-auth-container', {
-//   signInOptions: [
-//     firebase.auth.EmailAuthProvider.PROVIDER_ID
-//   ],
+//   signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
 //   // Other config options...
 // });
-
