@@ -1,4 +1,5 @@
 import teamModalTpl from '../templates/teamModal.hbs';
+import teamData from '../data/team';
 
 $('.hover').mouseleave(function () {
   $(this).removeClass('hover');
@@ -11,7 +12,7 @@ const scrollUp = document.querySelector('.scroll-up');
 openTeamModal.addEventListener('click', e => {
   e.preventDefault();
 
-  const teamModalMarkup = teamModalTpl();
+  const teamModalMarkup = teamModalTpl(teamData);
   document.querySelector('.modal').innerHTML = teamModalMarkup;
 
   const btnCloseModal = document.querySelector('.close');
