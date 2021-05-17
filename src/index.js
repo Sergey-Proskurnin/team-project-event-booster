@@ -17,6 +17,7 @@ import './js/submitForm';
 import * as firebase from 'firebase';
 import 'firebase/app';
 import './js/firebase-auth';
+import './js/addAnimationOnCards';
 
 // const firebase = require('firebase');
 // const firebaseui = require('firebaseui');
