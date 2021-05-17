@@ -13,5 +13,6 @@ import './js/renderingCards';
 import './js/pagination';
 import './js/submitForm';
 import './js/firebaseApi'
+import './js/addAnimationOnCards';
 
 

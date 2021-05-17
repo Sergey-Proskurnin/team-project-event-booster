@@ -9,10 +9,9 @@
 //    }
 //  });
 
-
+ const el = document.querySelector('.event-cards');
 if (window.IntersectionObserver) {
-  const el = document.querySelector('.event-card');
-  const observer = new IntersectionObserver(intersectionObserverCallback);
+   const observer = new IntersectionObserver(intersectionObserverCallback);
   observer.observe(el);
 }
 
