@@ -5,14 +5,24 @@ ul {
 .paginationjs-page {
   padding: 6px 10px;
   color: #fff;
-  margin-right: 2.5px;
-  margin-left: 2.5px;
+  margin-right: 4px;
+  // margin-left: 4px;
   box-sizing: border-box;
   cursor: pointer;
   border-radius: 10px 0px;
   text-shadow: 0 4px 10px, 0 0 2px, 0 0 2em rgb(255, 13, 191),
     0 0 0.5em rgb(255, 13, 191), 0 0 0.1em rgb(255, 13, 191), 0 1px 3px #000;
+    @media only screen and (min-width: 768px) {
+    margin-right: 6px;
+  }
+  @media only screen and (min-width: 1280px) {
+    margin-right: 8px;
+  }
 }
+.paginationjs-page:last-child {
+ margin-right: 0;
+
+    }
 .paginationjs-page:hover {
   cursor: pointer;
   border-radius: 10px 0px;
@@ -38,11 +48,24 @@ ul {
 .paginationjs-ellipsis {
   color: #fff;
   margin-top: 9px;
+  margin-right: 3px;
+  text-shadow: 0 4px 10px, 0 0 2px, 0 0 1em rgb(255, 13, 191),
+    0 0 0.5em rgb(255, 13, 191), 0 0 0.1em rgb(255, 13, 191), 0 1px 3px #000;
+   @media only screen and (min-width: 768px) {
+    margin-right: 12px;
+  }
+  @media only screen and (min-width: 1280px) {
+    margin-right: 25px;
+  }
 }
 
 #demo {
   text-align: center;
   margin-bottom: 40px;
+  @media only screen and (min-width: 1280px) {
+    margin-top: 17px;
+    margin-bottom: 60px;
+  }
 }
 
 #dataContainer {

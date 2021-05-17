@@ -411,3 +411,61 @@
 
 // countryCode = ${refs.select.value}
 
+//====================================================firebase======================================================================
+//// import firebase from 'firebase/app';
+// import 'firebase/auth';
+// import * as firebaseui from 'firebaseui';
+// import { firebaseConfig } from './firebaseConfig';
+// // import { getFromDB } from './firebaseUtils';
+
+// // Initialize Firebase
+// const ui = new firebaseui.auth.AuthUI(firebase.auth())
+// ui.start('#firebaseui-auth-container', uiConfig);
+
+// firebase.initializeApp(firebaseConfig);
+
+// var provider = new firebase.auth.GoogleAuthProvider();
+// /*
+// firebase
+//   .auth()
+//   .signInWithPopup(provider)
+//   .then(result => {
+//     console.log(result, 'result');
+//   });
+//   */
+
+// /*
+//   firebase.auth().signOut().then(() => {
+//   // Sign-out successful.
+// }).catch((error) => {
+//   // An error happened.
+// });
+// */
+
+// firebase.auth().onAuthStateChanged(user => {
+//   console.log(user, 'useruseruser');
+
+//   if (user) {
+//     // User is signed in, see docs for a list of available properties
+//     // https://firebase.google.com/docs/reference/js/firebase.User
+//     var uid = user.uid;
+//     // ...
+//   } else {
+//     // User is signed out
+//     // ...
+//   }
+// });
+// =================================================================================================================================================
+// import 'firebaseui/dist/firebaseui.css';
+// import 'firebase/app';
+// import 'firebase/auth';
+
+// // Your web app's Firebase configuration
+// export const firebaseConfig = {
+//   apiKey: 'AIzaSyAIzQMh6iy7jPmUgXvx4TAHGDOKeQiRzjI',
+//   authDomain: 'team-project-event-booster.firebaseapp.com',
+//   projectId: 'team-project-event-booster',
+//   storageBucket: 'team-project-event-booster.appspot.com',
+//   messagingSenderId: '1082073461587',
+//   appId: '1:1082073461587:web:927b7c4ad3a521284367a6',
+// };
