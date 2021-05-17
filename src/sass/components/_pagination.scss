@@ -48,14 +48,12 @@ ul {
 .paginationjs-ellipsis {
   color: #fff;
   margin-top: 9px;
-  margin-right: 3px;
+  margin-right: 8px;
+  margin-left: 4px;
   text-shadow: 0 4px 10px, 0 0 2px, 0 0 1em rgb(255, 13, 191),
     0 0 0.5em rgb(255, 13, 191), 0 0 0.1em rgb(255, 13, 191), 0 1px 3px #000;
    @media only screen and (min-width: 768px) {
-    margin-right: 12px;
-  }
-  @media only screen and (min-width: 1280px) {
-    margin-right: 25px;
+    margin-right: 6px;
   }
 }
 
