@@ -5,6 +5,8 @@ import evtModalInfo from '../templates/evtModalInfo.hbs';
 import { getData } from './pagination';
 import { eventCardRef } from './refs';
 
+let modal = basicLightbox;
+
 eventCardRef.addEventListener('click', onCardClick);
 
 function onCardClick(e) {
@@ -29,21 +31,25 @@ function onCardClick(e) {
 }
 
 function openModal(markupInfo) {
-  const modal = basicLightbox.create(`${markupInfo}`, {
-    onShow: modal => {
+  modal= basicLightbox.create(`${markupInfo}`, {
+    onShow: (modal) => {
       document.body.style.overflow = 'hidden';
       modal.element().querySelector('.close-modal').onclick = modal.close;
+      document.addEventListener('keyup', closeOnEsc);
     },
-    onClose: modal => {
+    onClose: (modal) => {
       document.body.style.overflow = 'auto';
+      document.removeEventListener('keyup', closeOnEsc);
     },
   });
   modal.show();
-  document.addEventListener('keyup', event => {
-    if (event.key === 'Escape') {
+  
+  function closeOnEsc (e) {
+    if (e.key === 'Escape') {
       modal.close();
     }
-  });
+  }
+ 
 }
 
 function infoTextToggle() {
@@ -115,8 +121,7 @@ function onLoadMoreModalBtn() {
 function showMore(e) {
   e.preventDefault();
   let fetchResult = JSON.parse(localStorage.getItem('data'));
-  const modal = document.querySelector('.basicLightbox');
-  modal.remove();
+  modal.close();
   document.body.style.overflow = 'auto';
   const id = e.target.parentNode.id;
   const valueInput = fetchResult.find(e => e.id === id).name;
