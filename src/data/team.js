@@ -1,11 +1,10 @@
 export default [
-  {
+    {
     fullName: 'Sergey Proskurnin',
     position: 'Dream-Team Lead',
-    photo:
-      'https://cdn22.img.ria.ru/images/153307/00/1533070025_320:0:1599:1279_1920x0_80_0_0_3290f87650d42f21292cefd0a509b811.jpg',
+    photo:'src/images/team/Sergey_Proskurnin.jpg',
     linkedIn: '#',
-    gitHub: '#',
+    gitHub: 'https://github.com/Sergey-Proskurnin',
     instagram: '#',
   },
   {

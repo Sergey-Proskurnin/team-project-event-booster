@@ -1,26 +1,68 @@
 .section-card {
   padding-bottom: 120px;
-  @media screen and (min-width: 768px) {
+  @include for-size(tablet) {
     padding-bottom: 98px;
   }
-  @media screen and (min-width: 1280px) {
+  @include for-size(desktop) {
     padding-bottom: 119px;
   }
 }
 
 .bg-img {
-  width: 100%;
+  margin-top: 1px;
   margin-left: auto;
   margin-right: auto;
+  background-color: $secondary-text-color;
+  z-index: 1;
 
-  background-image: url('../images/Mobile/bgBodyMobile2.jpg');
+  background-image: url('../images/mobile/bg-body-mobile.svg');
   background-repeat: no-repeat;
   background-size: cover;
 
-  @media screen and (min-width: 768px) {
-    background-image: url('../images/Tablet/bgBodyTablet2.jpg');
+  @include for-size(tablet) {
+    background-image: url('../images/tablet/bg-body-tablet.svg');
   }
-  @media screen and (min-width: 1280px) {
-    background-image: url('../images/Desctop/bgBodyDesctop2.jpg');
+  @include for-size(desktop) {
+    background-image: url('../images/desktop/bg-body-desktop.svg');
+  }
+}
+
+main {
+  position: relative;
+}
+
+.img-container::after {
+  @include for-size(tablet) {
+    content: '';
+    width: 1px;
+    top: 319px;
+    bottom: 0;
+    position: absolute;
+    background: #212121;
+    left: 10%;
+    z-index: 20;
+    // box-shadow: 0px 0px 15px 10px $accent-color;
+  }
+
+  @include for-size(desktop) {
+    top: 395px;
+  }
+}
+
+.img-container::before {
+  @include for-size(tablet) {
+    content: '';
+    width: 1px;
+    top: 319px;
+    bottom: 0;
+    position: absolute;
+    background: #212121;
+    right: 10%;
+    z-index: 20;
+    // box-shadow: 0px 0px 15px 10px $accent-color;
+  }
+
+  @include for-size(desktop) {
+    top: 395px;
   }
 }

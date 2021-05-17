@@ -1,40 +1,66 @@
-<article class="evt-wrapper" id={{this.id}}>
-  <img srcset="
-        {{this.images.9.url}} 180w,
-        {{this.images.8.url}} 180w,
-        {{this.images.7.url}} 128w,
-        {{this.images.6.url}} 128w
-      " src={{this.images.3.url}} alt="small event poster" class="title-img" />
+<article class="evt-wrapper" id={{id}}>
+  <img   srcset="
+
+        {{images1x128}} 128w,
+        {{images2x128}} 128w,
+        {{images1x180}} 180w,
+        {{images2x180}} 180w
+
+      " 
+      src={{images1x180}} alt="small event poster" class="title-img" />
      
   <div class="info-event">
     <img srcset="
-        {{this.images.9.url}} 180w,
-        {{this.images.8.url}} 180w,
-        {{this.images.7.url}} 128w,
-        {{this.images.6.url}} 128w
-      " src={{this.images.3.url}} alt="big event poster" class="poster-img" />
+        {{images1x128}} 128w,
+        {{images2x128}} 128w,
+        {{images1x180}} 180w,
+        {{images2x180}} 180w
+      " src={{images1x180}} alt="big event poster" class="poster-img" />
        
     <ul class="event-data">
      {{#if this.info}}
           <li class="info">
             <h2 class="info modal-title">info</h2>
             <p class="info-text">
-              {{this.info.[0]}}<span id="dots">...</span><span id="more"> {{this.info.[1]}} <span id="less"><<<</span></span></p>
+              {{this.info.[0]}}<span id="dots" class="material-icons">...
+</span><span id="more"> {{this.info.[1]}} <span id="less" class="material-icons">fast_rewind</span></span></p>
           </li>
       {{/if}}
           <li class="date">
             <h2 class="date modal-title">when</h2>
-            <p class="date-text">{{this.dates.start.localDate}}</p>
-            <p class="time-text">{{this.dates.start.localTime}} {{this.dates.timezone}}</p>
+            <p class="date-text">{{date}}</p>
+            <p class="time-text">{{time}} {{timezone}}</p>
           </li>
           <li class="place">
             <h2 class="place modal-title">where</h2>
-            <a href="https://maps.google.com?saddr=Current+Location&daddr={{_embedded.venues.0.location.latitude}},{{_embedded.venues.0.location.longitude}}"
+
+{{#if locationLatitude}}
+            <a href="https://maps.google.com?saddr=Current+Location&daddr={{locationLatitude}},{{locationLongitude}}"
             target="_blank">
-            <span class="material-icons modal-md-12">room</span>
-           <p class="city-text">{{this._embedded.venues.0.city.name}}, {{this._embedded.venues.0.country.name}}</p>
-            <p class="place-text">{{this._embedded.venues.0.name}}</p>
-           </a>
+                <span class="material-icons modal-md-12">room</span>
+                {{#if venuesName}}
+                    {{venuesName}},
+                {{/if}}
+                {{#if city}}
+                    {{city}}
+                        {{else}}
+                            Online
+                {{/if}}
+            </a>
+        {{else}}
+            <a href="hhttps://www.google.com/maps/dir/?api=1&{{city}}"
+            target="_blank">
+                <span class="material-icons modal-md-12 ">room</span>
+                {{#if venuesName}}
+                    {{venuesName}},
+                {{/if}}
+                {{#if city}}
+                    {{city}}
+                        {{else}}
+                            Online
+                {{/if}}
+            </a>
+        {{/if}}
           </li>
           <li class="artist">
             <h2 class="artist modal-title">who</h2>
@@ -57,7 +83,7 @@
               class="st ticket"
               rel="noopener noreferrer"
               target="_blank"
-              >buy {{this.products.0.type}} tickets</a
+              >buy tickets</a
             >
             </li>
       {{/if}}

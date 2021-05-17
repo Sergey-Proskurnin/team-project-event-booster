@@ -11,39 +11,57 @@
     />
     <title>Event Booster</title>
 
-   <!-- <link
+    <!-- <link
       rel="icon"
       type="image/png"
       href="https://img-premium.flaticon.com/png/512/1545/1545906.png?token=exp=1620997586~hmac=88ed6a01f490c7e129a563b3ecab07ee"
     /> -->
-    <link
+    <!-- <link
       rel="icon"
       type="image/png"
       href="https://img-premium.flaticon.com/png/512/1545/1545927.png?token=exp=1620997627~hmac=0243765cc8dc877dad95d08a76350010"
-    />
+    /> -->
 
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css"
     />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap"
-      rel="stylesheet"
-    />
+      href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Montserrat:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet">
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Montserrat:wght@400;500;600;700;900&display=swap');
     </style>
   </head>
   <body>
     <header class="header">
-      <a href="/">
-        <svg class="logo">
-          <use href="./images/sprite.svg#logo-desk"></use></svg
-      ></a>
-    </header>
+      <h1 class="visually-hidden">Event Booster</h1>
+
+     <a href="/" class="logo-link">
+    <svg class="logo-svg" viewBox="0 0 800 600">
+      <symbol id="s-text">
+        <text text-anchor="middle" x="50%" y="35%" class="text--line">
+          EVENT
+        </text>
+        <text text-anchor="middle" x="50%" y="68%" class="text--line2">
+          BOOSTER
+        </text>
+    
+      </symbol>
+          <g class="g-ants">
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+      </g>    
+    </svg>
+  </a>
+  </header>
     <main class="main">
+
       <div class="img-container">
         <section class="wrapper-hero container">
           <h1 class="hero-title">
@@ -85,7 +103,7 @@
         </section>
       </div>
 
-      <div class="bg-img">
+      <div class="bg-img left-line right-line">
         <section class="section-card container">
           <div id="preloader">
             <div id="loader"></div>
@@ -98,13 +116,11 @@
 
     <footer>
       <div class="footer-wrapper">
-
         <div class="footer-wrapper__content">
           <p>© 2021 | All Rights Reserved |</p>
           <p>Developed with 💖 by GoIT Students</p>
         </div>
         <a class="footer-open-modal Blazing"> TEAM FSD #28 </a>
-
       </div>
     </footer>
 
@@ -123,8 +139,10 @@
         ></path>
       </svg>
     </div>
-    <div class="modal is-hidden"></div>
+    <div class="modal is-hidden" id="#modal"></div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
   </body>
 </html>

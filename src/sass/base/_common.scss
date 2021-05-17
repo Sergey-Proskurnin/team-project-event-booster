@@ -8,6 +8,26 @@ html {
   box-sizing: inherit;
 }
 
+body::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: #0c0c0c;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(255, 13, 191);
+  outline: 1px solid black;
+  border-radius: 20px;
+}
+
+body::-webkit-scrollbar-corner {
+  background-color: rgb(255, 13, 191);
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
