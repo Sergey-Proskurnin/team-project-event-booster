@@ -6,6 +6,7 @@ import { eventCardRef } from './refs';
 import { db } from './firebaseApi'
 import getUrlValue from './urlValue'
 
+
 let modal = basicLightbox;
 
 eventCardRef.addEventListener('click', onCardClick);
@@ -143,7 +144,7 @@ function addToFav (e) {
   let fetchResult = JSON.parse(localStorage.getItem('data'));
   const evtInfo = fetchResult.find(e => e.id === id);
  
-  db.collection("users").add({
+  db.collection("users").doc("BhuqyaszFAsfqQgXM17b").set({
     fav: evtInfo
   })
   .then((docRef) => {
@@ -153,14 +154,32 @@ function addToFav (e) {
     console.error("Error adding document: ", error);
   });
 
-  db.collection("users").get().then(
-    (querySnapshot) => {
+
+  const docRef = db.collection("users").doc("BhuqyaszFAsfqQgXM17b");
+
+  docRef.get().then((doc) => {
+      if (doc.exists) {
+          console.log("Document data:", doc.data());
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+      }
+  }).catch((error) => {
+      console.log("Error getting document:", error);
+  });
+  
+  // db.collection("users").get().then(
+  //   (querySnapshot) => {
+  //     console.log('show me db',querySnapshot)
    
-    // console.log(querySnapshot(doc=>doc.data()));
-    querySnapshot.forEach((doc) => {
-        console.log(doc.data());
-    });
-  }
-);
+  //   // console.log(querySnapshot(doc=>doc.data()));
+  //   // querySnapshot.forEach((doc) => {
+  //   //     console.log(doc.data());
+  //   // });
+  // }
+  
+  
+  // );
+
   
 }
