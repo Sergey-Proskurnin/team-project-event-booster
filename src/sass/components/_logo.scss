@@ -1,61 +1,61 @@
-/*
-//  BLINK
-*/
+// /*
+// //  BLINK
+// */
 
-.header {
-  position: relative;
-  @include for-size(desktop) {
-    width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-.logo {
-  display: inline-block;
-  width: 108px;
-  position: absolute;
-  z-index: 50;
-  left: 20px;
-  top: 10px;
-  font-size: 15px;
+// .header {
+//   position: relative;
+//   @include for-size(desktop) {
+//     width: 1280px;
+//     margin-left: auto;
+//     margin-right: auto;
+//   }
+// }
+// .logo {
+//   display: inline-block;
+//   width: 108px;
+//   position: absolute;
+//   z-index: 50;
+//   left: 20px;
+//   top: 10px;
+//   font-size: 15px;
 
-  @include for-size(tablet) {
-    width: 150px;
-    top: 25px;
-    font-size: 25px;
-  }
+//   @include for-size(tablet) {
+//     width: 150px;
+//     top: 25px;
+//     font-size: 25px;
+//   }
 
-  @include for-size(desktop) {
-    max-width: 238px;
-    top: 15px;
-    left: auto;
-    font-size: 35px;
-  }
+//   @include for-size(desktop) {
+//     max-width: 238px;
+//     top: 15px;
+//     left: auto;
+//     font-size: 35px;
+//   }
 
-  .span-logo {
-    letter-spacing: 0.35em;
-    display: block;
-  }
+//   .span-logo {
+//     letter-spacing: 0.35em;
+//     display: block;
+//   }
 
-  text-align: center;
-  font-family: Major Mono Display;
-  color: #312f2f;
-  font-weight: 700;
-  text-transform: uppercase;
-  animation: blur 1.5s ease-out infinite;
-  text-shadow: 0px 0px 3px #fee, 0px 0px 5px #fee;
-}
+//   text-align: center;
+//   font-family: Major Mono Display;
+//   color: #312f2f;
+//   font-weight: 700;
+//   text-transform: uppercase;
+//   animation: blur 1.5s ease-out infinite;
+//   text-shadow: 0px 0px 3px #fee, 0px 0px 5px #fee;
+// }
 
-@keyframes blur {
-  from {
-    text-shadow: 0px 0px 10px #ff0dbf, 0px 0px 10px #ff0dbf,
-      0px 0px 12px #ff0dbf, 0px 0px 12px #fff, 0px 0px 12px #fff,
-      0px 0px 12px #fff, 0px 0px 12px #fff, 0px 0px 12px #fff, 0px 0px 25px #fff,
-      0px 0px 12px #fff, 0px 0px 12px #fee, 0px 0px 25px #fee,
-      0px 10px 25px #fee, 0px 10px 25px #fee, 0px 10px 25px #fee,
-      0px 10px 25px #fee, 0px -10px 25px #fee, 0px -10px 25px #fee;
-  }
-}
+// @keyframes blur {
+//   from {
+//     text-shadow: 0px 0px 10px #ff0dbf, 0px 0px 10px #ff0dbf,
+//       0px 0px 12px #ff0dbf, 0px 0px 12px #fff, 0px 0px 12px #fff,
+//       0px 0px 12px #fff, 0px 0px 12px #fff, 0px 0px 12px #fff, 0px 0px 25px #fff,
+//       0px 0px 12px #fff, 0px 0px 12px #fee, 0px 0px 25px #fee,
+//       0px 10px 25px #fee, 0px 10px 25px #fee, 0px 10px 25px #fee,
+//       0px 10px 25px #fee, 0px -10px 25px #fee, 0px -10px 25px #fee;
+//   }
+// }
 
 /* 
 //  Elastic
@@ -139,47 +139,47 @@
 /*
 // GSAP
 */
-// .header {
-//   position: relative;
-//   @include for-size(desktop) {
-//     width: 1280px;
-//     margin-left: auto;
-//     margin-right: auto;
-//   }
-// }
+.header {
+  position: relative;
+  @include for-size(desktop) {
+    width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 
-// #logo-link {
-//   display: block;
-//   max-width: 200px;
-//   position: absolute;
-//   z-index: 50;
-//   left: 20px;
-//   top: 20px;
+#logo-link {
+  display: block;
+  max-width: 200px;
+  position: absolute;
+  z-index: 50;
+  left: 20px;
+  top: 20px;
 
-//   @include for-size(tablet) {
-//     max-width: 300px;
-//     top: 25px;
-//   }
+  @include for-size(tablet) {
+    max-width: 300px;
+    top: 25px;
+  }
 
-//   @include for-size(desktop) {
-//     max-width: 400px;
-//     // height: 400px;
-//     top: 45px;
-//     left: auto;
-//   }
-// }
+  @include for-size(desktop) {
+    max-width: 400px;
+    // height: 400px;
+    top: 45px;
+    left: auto;
+  }
+}
 
-// .txt {
-//   position: absolute;
-//   font-family: Major Mono Display;
-//   // font-weight: 900;
-//   font-size: 15px;
-//   color: #fee;
-//   @include for-size(desktop) {
-//     font-size: 25px;
-//     // font-weight: 400;
-//   }
-//   @include for-size(desktop) {
-//     font-size: 30px;
-//   }
-// }
+.txt {
+  position: absolute;
+  font-family: Major Mono Display;
+  // font-weight: 900;
+  font-size: 15px;
+  color: #fee;
+  @include for-size(desktop) {
+    font-size: 25px;
+    // font-weight: 400;
+  }
+  @include for-size(desktop) {
+    font-size: 30px;
+  }
+}
