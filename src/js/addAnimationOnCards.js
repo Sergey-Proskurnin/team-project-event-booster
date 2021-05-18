@@ -9,15 +9,15 @@
 //    }
 //  });
 
- const el = document.querySelector('.event-cards');
-if (window.IntersectionObserver) {
-   const observer = new IntersectionObserver(intersectionObserverCallback);
-  observer.observe(el);
-}
+//  const el = document.querySelector('.event-cards');
+// if (window.IntersectionObserver) {
+//    const observer = new IntersectionObserver(intersectionObserverCallback);
+//   observer.observe(el);
+// }
 
-function intersectionObserverCallback(entries){
-    if (entries[0].intersectionRatio === undefined) {
-        return;
-    }
-    el.classList.add('.is-paused', entries[0].intersectionRatio <= 0);
-};
+// function intersectionObserverCallback(entries){
+//     if (entries[0].intersectionRatio === undefined) {
+//         return;
+//     }
+//     el.classList.add('.is-paused', entries[0].intersectionRatio <= 0);
+// };

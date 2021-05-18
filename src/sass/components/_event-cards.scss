@@ -37,10 +37,10 @@
   width: 109px;
   height: 101px;
 
-   border: 1px solid rgba(220, 86, 197, 0.3);
-   box-sizing: border-box;
-   border-radius: 50px 0px;
-  
+  border: 1px solid rgba(220, 86, 197, 0.3);
+  box-sizing: border-box;
+  border-radius: 50px 0px;
+
   @include for-size(tablet) {
     width: 153px;
     height: 143px;
@@ -58,15 +58,15 @@
   margin-right: 14px;
 
   justify-content: center;
-    
+
   visibility: visible;
-  
+
   -webkit-animation-fill-mode: both;
   -moz-animation-fill-mode: both;
   -ms-animation-fill-mode: both;
   -o-animation-fill-mode: both;
   animation-fill-mode: both;
-  
+
   -webkit-animation-duration: 1s;
   -moz-animation-duration: 1s;
   -ms-animation-duration: 1s;
@@ -80,12 +80,13 @@
   animation-play-state: running;
 
   -webkit-animation-name: bounceIn;
-	-moz-animation-name: bounceIn;
-	-o-animation-name: bounceIn;
-	animation-name: bounceIn;
-  
+  -moz-animation-name: bounceIn;
+  -o-animation-name: bounceIn;
+  animation-name: bounceIn;
+
   &:hover {
     &::before {
+      pointer-events: none;
       width: calc(100% + 20px);
       height: calc(100% + 20px);
       box-shadow: 0 0 10px 1px $accent-color;
@@ -146,7 +147,7 @@
   text-align: center;
   color: $primary-text-color;
   margin-bottom: 5px;
-  
+
   @include for-size(tablet) {
     font-size: 16px;
     line-height: 1.25;
@@ -159,7 +160,7 @@
   line-height: 15px;
   text-align: center;
   color: $primary-text-color;
-  
+
   @include for-size(tablet) {
     font-size: 14px;
     line-height: 1.214;
@@ -175,50 +176,50 @@
   }
 }
 
-.event-card.is-paused {  
-  visibility: hidden;  
-  -webkit-animation-play-state: paused;   
-  -moz-animation-play-state: paused;     
+.event-card.is-paused {
+  visibility: hidden;
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
   -ms-animation-play-state: paused;
-  -o-animation-play-state: paused;   
+  -o-animation-play-state: paused;
   animation-play-state: paused;
 }
 
 @-webkit-keyframes bounceIn {
-	0% {
-		opacity: 0;
-		-webkit-transform: scale(.3);
-	}
-	50% {
-		-webkit-transform: scale(1.05);
-	}
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.3);
+  }
+  50% {
+    -webkit-transform: scale(1.05);
+  }
 
-	70% {
-		-webkit-transform: scale(.9);
-	}
+  70% {
+    -webkit-transform: scale(0.9);
+  }
 
-	100% {
-		opacity: 1;
-		-webkit-transform: scale(1);
-	}
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
 }
 
 @keyframes bounceIn {
-	0% {
-		opacity: 0;
-		transform: scale(.3);
-	}
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
 
-	50% {
-		transform: scale(1.05);
-	}
+  50% {
+    transform: scale(1.05);
+  }
 
-	70% {
-		transform: scale(.9);
-	}
+  70% {
+    transform: scale(0.9);
+  }
 
-	100% {
-		opacity: 1;
-		transform: scale(1);
-	}
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
