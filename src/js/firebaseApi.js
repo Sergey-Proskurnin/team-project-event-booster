@@ -91,13 +91,18 @@ docRef.get().then((doc) => {
 // });
 
 
-var user = firebase.auth().currentUser;
+   const user = firebase.auth().currentUser;
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
+    console.log('firebase :', user.uid);
+    return user.uid
     // User is signed in.
   } else {
     // No user is signed in.
   }
 });
 
+
 console.log(user);
+
+export { user }

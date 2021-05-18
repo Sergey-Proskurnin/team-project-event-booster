@@ -3,9 +3,14 @@ const basicLightbox = require('basiclightbox');
 import evtModalTmpl from '../templates/evtModal.hbs';
 import evtModalInfo from '../templates/evtModalInfo.hbs';
 import { eventCardRef } from './refs';
-import { db } from './firebaseApi'
-import getUrlValue from './urlValue'
+import { db } from './firebaseApi';
+import getUrlValue from './urlValue';
 
+import 'firebaseui/dist/firebaseui.css';
+import * as firebaseui from 'firebaseui';
+import firebase from 'firebase';
+import 'firebase/auth';
+import 'firebase/database';
 
 let modal = basicLightbox;
 
@@ -33,27 +38,27 @@ function onCardClick(e) {
 }
 
 function openModal(markupInfo) {
-  modal= basicLightbox.create(`${markupInfo}`, {
-    onShow: (modal) => {
+  modal = basicLightbox.create(`${markupInfo}`, {
+    onShow: modal => {
       document.body.style.overflow = 'hidden';
       modal.element().querySelector('.close-modal').onclick = modal.close;
       document.addEventListener('keyup', closeOnEsc);
     },
-    onClose: (modal) => {
+    onClose: modal => {
       document.body.style.overflow = 'auto';
       document.removeEventListener('keyup', closeOnEsc);
     },
   });
   modal.show();
-  
-  function closeOnEsc (e) {
+
+  function closeOnEsc(e) {
     if (e.key === 'Escape') {
       modal.close();
     }
   }
- 
-  const addBtn = document.querySelector('#favourite')  
-  addBtn.addEventListener('change', onAddToFavCheck)
+
+  const addBtn = document.querySelector('#favourite');
+  addBtn.addEventListener('change', onAddToFavCheck);
 }
 
 function infoTextToggle() {
@@ -129,57 +134,64 @@ function showMore(e) {
   // document.body.style.overflow = 'auto';
   const id = e.target.parentNode.id;
   const valueInput = fetchResult.find(e => e.id === id).name;
-  getUrlValue(valueInput, '') 
+  getUrlValue(valueInput, '');
 }
 
-function onAddToFavCheck (e) {
+function onAddToFavCheck(e) {
   console.log('btn');
-  if(e.target.checked){
-   addToFav(e)
+  if (e.target.checked) {
+    addToFav(e);
   }
 }
-
-function addToFav (e) {
+function addToFav(e) {
   const id = document.querySelector('.evt-wrapper').id;
   let fetchResult = JSON.parse(localStorage.getItem('data'));
   const evtInfo = fetchResult.find(e => e.id === id);
- 
-  db.collection("users").doc("BhuqyaszFAsfqQgXM17b").set({
-    fav: evtInfo
-  })
-  .then((docRef) => {
-    console.log("Document written with ID: ", docRef.id);
-  })
-  .catch((error) => {
-    console.error("Error adding document: ", error);
+  const user = firebase.auth().currentUser;
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      console.log('modal', user.uid);
+      db.collection(`${user.uid}`).doc('fav').set({
+        [id]: evtInfo,
+      },{merge: true});
+      // User is signed in.
+    } else {
+      // No user is signed in.
+    }
   });
 
+  // db.collection("users").doc(`${us}`).set({
+  //   // user: 'user.uid',
 
-  const docRef = db.collection("users").doc("BhuqyaszFAsfqQgXM17b");
+  // })
+  // .then((docRef) => {
+  //   // console.log("Document written with ID: ", docRef.id);
+  // })
+  // .catch((error) => {
+  //   // console.error("Error adding document: ", error);
+  // });
 
-  docRef.get().then((doc) => {
-      if (doc.exists) {
-          console.log("Document data:", doc.data());
-      } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-      }
-  }).catch((error) => {
-      console.log("Error getting document:", error);
-  });
-  
+  // const docRef = db.collection("users");
+
+  // docRef.get().then((doc) => {
+  //     if (doc.exists) {
+  //         console.log("Document data:", doc.data());
+  //     } else {
+  //         // doc.data() will be undefined in this case
+  //         console.log("No such document!");
+  //     }
+  // }).catch((error) => {
+  //     console.log("Error getting document:", error);
+  // });
+
   // db.collection("users").get().then(
   //   (querySnapshot) => {
   //     console.log('show me db',querySnapshot)
-   
+
   //   // console.log(querySnapshot(doc=>doc.data()));
   //   // querySnapshot.forEach((doc) => {
   //   //     console.log(doc.data());
   //   // });
   // }
-  
-  
   // );
-
-  
 }
