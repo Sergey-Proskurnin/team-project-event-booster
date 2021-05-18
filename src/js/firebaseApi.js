@@ -1,7 +1,8 @@
 import 'firebaseui/dist/firebaseui.css';
 import * as firebaseui from 'firebaseui';
-import firebase from 'firebase/app';
+import firebase from 'firebase';
 import 'firebase/auth';
+import 'firebase/database';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAIzQMh6iy7jPmUgXvx4TAHGDOKeQiRzjI',
@@ -37,3 +38,52 @@ const uiConfig = {
 ui.start('#firebaseui-auth-container', uiConfig);
 
 // https://team-project-event-booster.firebaseapp.com/__/auth/handler
+
+export const db = firebase.firestore()
+// console.log(db);
+
+// db.collection("users").add({
+//   first: "Ada",
+//   last: "Lovelace",
+//   born: 1815
+// })
+// .then((docRef) => {
+//   console.log("Document written with ID: ", docRef.id);
+// })
+// .catch((error) => {
+//   console.error("Error adding document: ", error);
+// });
+
+// console.log(db.collection('users'));
+
+// db.collection("users").add({
+//   first: "Alan",
+//   middle: "Mathison",
+//   last: "Turing",
+//   born: 1912
+// })
+// .then((docRef) => {
+//   console.log("Document written with ID: ", docRef.id);
+// })
+// .catch((error) => {
+//   console.error("Error adding document: ", error);
+// });
+
+
+// db.collection("users").get().then((querySnapshot) => {
+//   querySnapshot.forEach((doc) => {
+//       console.log(doc.data());
+//   });
+// });
+
+
+var user = firebase.auth().currentUser;
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+  } else {
+    // No user is signed in.
+  }
+});
+
+console.log(user);
