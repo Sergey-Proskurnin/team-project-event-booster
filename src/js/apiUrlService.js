@@ -10,6 +10,7 @@ export default class NewApiService {
       sort: 'random',
       countryCode: this.searchCountry,
       size: 24,
+      pageSize: 24,
     });
     const url = `${searchParams}`;
     return url;
