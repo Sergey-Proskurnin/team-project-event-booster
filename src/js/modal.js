@@ -5,6 +5,7 @@ import evtModalInfo from '../templates/evtModalInfo.hbs';
 import { getData } from './pagination';
 import { eventCardRef } from './refs';
 import NewApiUrlService from './apiUrlService';
+import {db} from './firebaseApi'
 
 const apiUrlService = new NewApiUrlService();
 let modal = basicLightbox;
@@ -52,6 +53,9 @@ function openModal(markupInfo) {
     }
   }
  
+
+  const addBtn = document.querySelector('#favourite')  
+  addBtn.addEventListener('change', onAddToFavCheck)
 }
 
 function infoTextToggle() {
@@ -124,10 +128,48 @@ function showMore(e) {
   e.preventDefault();
   let fetchResult = JSON.parse(localStorage.getItem('data'));
   modal.close();
-  document.body.style.overflow = 'auto';
+  // document.body.style.overflow = 'auto';
   const id = e.target.parentNode.id;
   const valueInput = fetchResult.find(e => e.id === id).name;
   const arrayValue = [valueInput, ''];
   apiUrlService.query = arrayValue;
   getData(apiUrlService.fetchApi());
+}
+
+function onAddToFavCheck (e) {
+  console.log('btn');
+  if(e.target.checked){
+   addToFav(e)
+  }
+
+}
+
+function addToFav (e) {
+  const id = document.querySelector('.evt-wrapper').id;
+  let fetchResult = JSON.parse(localStorage.getItem('data'));
+  const evtInfo = fetchResult.find(e => e.id === id);
+ 
+  db.collection("users").add({
+    fav: evtInfo
+  })
+  .then((docRef) => {
+    console.log("Document written with ID: ", docRef.id);
+  })
+  .catch((error) => {
+    console.error("Error adding document: ", error);
+  });
+
+
+  db.collection("users").get().then(
+    (querySnapshot) => {
+   
+    // console.log(querySnapshot(doc=>doc.data()));
+    querySnapshot.forEach((doc) => {
+        console.log(doc.data());
+    });
+  }
+  
+  
+  );
+  
 }
