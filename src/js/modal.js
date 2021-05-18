@@ -2,12 +2,10 @@ import 'basiclightbox/dist/basiclightbox.min.css';
 const basicLightbox = require('basiclightbox');
 import evtModalTmpl from '../templates/evtModal.hbs';
 import evtModalInfo from '../templates/evtModalInfo.hbs';
-import { getData } from './pagination';
 import { eventCardRef } from './refs';
-import NewApiUrlService from './apiUrlService';
-import {db} from './firebaseApi'
+import { db } from './firebaseApi'
+import getUrlValue from './urlValue'
 
-const apiUrlService = new NewApiUrlService();
 let modal = basicLightbox;
 
 eventCardRef.addEventListener('click', onCardClick);
@@ -53,7 +51,6 @@ function openModal(markupInfo) {
     }
   }
  
-
   const addBtn = document.querySelector('#favourite')  
   addBtn.addEventListener('change', onAddToFavCheck)
 }
@@ -131,9 +128,7 @@ function showMore(e) {
   // document.body.style.overflow = 'auto';
   const id = e.target.parentNode.id;
   const valueInput = fetchResult.find(e => e.id === id).name;
-  const arrayValue = [valueInput, ''];
-  apiUrlService.query = arrayValue;
-  getData(apiUrlService.fetchApi());
+  getUrlValue(valueInput, '') 
 }
 
 function onAddToFavCheck (e) {
@@ -141,7 +136,6 @@ function onAddToFavCheck (e) {
   if(e.target.checked){
    addToFav(e)
   }
-
 }
 
 function addToFav (e) {
@@ -159,7 +153,6 @@ function addToFav (e) {
     console.error("Error adding document: ", error);
   });
 
-
   db.collection("users").get().then(
     (querySnapshot) => {
    
@@ -168,8 +161,6 @@ function addToFav (e) {
         console.log(doc.data());
     });
   }
-  
-  
-  );
+);
   
 }
