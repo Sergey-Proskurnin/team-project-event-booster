@@ -1,8 +1,8 @@
 export default [
-    {
+  {
     fullName: 'Sergey Proskurnin',
     position: 'Dream-Team Lead',
-    photo:'src/images/team/Sergey_Proskurnin.jpg',
+    photo: 'https://fs39.fex.net/preview/3335748754/400x0',
     linkedIn: '#',
     gitHub: 'https://github.com/Sergey-Proskurnin',
     instagram: '#',
