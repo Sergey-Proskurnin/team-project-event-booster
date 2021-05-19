@@ -10,13 +10,34 @@ const dataContainer = document.querySelector('#dataContainer');
 const preloader = preloaderFactory('#preloader');
 const eventCardRef = document.querySelector('.event-cards');
 
-export {
+
+const gallery = document.querySelector('.eventsCardTmpl_copy');
+const geoModal = document.querySelector('.js-geolocation-modal');
+const geoModalBackdrop = document.querySelector('.js-geolocation-backdrop');
+
+// export {
+//   eventCardRef,
+//   searchForm,
+//   searchInput,
+//   select,
+//   dataContainer,
+//   preloader,
+//   BASE_URL,
+//   API_KEY,
+//   gallery,
+//   geoModal,
+//   geoModalBackdrop,
+// };
+export default {
   eventCardRef,
-  searchForm,
-  searchInput,
-  select,
-  dataContainer,
-  preloader,
-  BASE_URL,
-  API_KEY,
-};
+    searchForm,
+    searchInput,
+    select,
+    dataContainer,
+    preloader,
+    BASE_URL,
+    API_KEY,
+    gallery,
+    geoModal,
+    geoModalBackdrop,
+  };
