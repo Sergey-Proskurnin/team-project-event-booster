@@ -5,8 +5,9 @@ import evtModalInfo from '../templates/evtModalInfo.hbs';
 import { eventCardRef, dataContainer } from './refs';
 import { db } from './firebaseApi';
 import getUrlValue from './urlValue';
-import et from '../templates/favTmpl.hbs';
-console.log(et());
+// import et from '../templates/favTmpl.hbs';
+// console.log(et());
+import eventsCardTmplCopy from '../templates/eventsCardTmpl_copy.hbs';
 import 'firebaseui/dist/firebaseui.css';
 import * as firebaseui from 'firebaseui';
 import firebase from 'firebase';
@@ -201,6 +202,7 @@ function removeFromFav() {
        userCollection.get().then((doc)=>{
         if (doc.exists) {
           favList.push(...Object.values(doc.data()));
+          dataContainer.innerHTML = eventsCardTmplCopy(favList)
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
@@ -211,8 +213,8 @@ function removeFromFav() {
 
     modal.close()
     console.log(favList);
-    console.log(eventsTmpl(favList));
-    dataContainer.innerHTML = eventsTmpl(favList)
+    // console.log(eventsTmpl(favList));
+    // dataContainer.innerHTML = eventsTmpl(favList)
 }
     
   // db.collection("users").doc(`${us}`).set({
