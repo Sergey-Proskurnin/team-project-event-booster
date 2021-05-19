@@ -1,4 +1,4 @@
-import refs from './js/refs';
+// import refs from './refs';
 import { Loader } from "@googlemaps/js-api-loader"
 
 // const geoModal = document.querySelector('.js-geolocation-modal');
@@ -28,7 +28,7 @@ loader.load().then(() => {
   });
   marker.setMap(map);
 });
-  refs.geoModalBackdrop.classList.remove('is-hidden')
+  geoModalBackdrop.classList.remove('is-hidden')
 }
 
 
@@ -36,18 +36,18 @@ const onGeoModalClick = e => {
  
   if (e.target.classList.contains('js-geolocation-backdrop')) {
    
-    refs.geoModalBackdrop.classList.add('is-hidden')
+    geoModalBackdrop.classList.add('is-hidden')
   } else {
     return
   }
 }
 const onCloseGeoModalByEscKeydown = e => {
 if (e.code === 'Escape') {
-    refs.geoModalBackdrop.classList.add('is-hidden')
+     geoModalBackdrop.classList.add('is-hidden')
   }
 }
 
 
 window.addEventListener('keydown', onCloseGeoModalByEscKeydown);
-refs.geoModalBackdrop.addEventListener('click', onGeoModalClick);
-refs.gallery.addEventListener('click', onLocationOnCardClick  )
+geoModalBackdrop.addEventListener('click', onGeoModalClick);
+gallery.addEventListener('click', onLocationOnCardClick  )

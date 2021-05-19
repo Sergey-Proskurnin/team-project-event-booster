@@ -13,7 +13,6 @@ const signInBtnRef = document.querySelector('.sign-in-button');
 const authContaineRef = document.querySelector('.auth-container');
 const authWrapperRef = document.querySelector('.auth-wrapper');
 
-
 const gallery = document.querySelector('.eventsCardTmpl_copy');
 const geoModal = document.querySelector('.js-geolocation-modal');
 const geoModalBackdrop = document.querySelector('.js-geolocation-backdrop');
@@ -31,13 +30,12 @@ const geoModalBackdrop = document.querySelector('.js-geolocation-backdrop');
 //   geoModal,
 //   geoModalBackdrop,
 // };
-export default {
+export {
   eventCardRef,
- geolocation,
-    gallery,
-    geoModal,
-    geoModalBackdrop,
-   searchForm,
+  gallery,
+  geoModal,
+  geoModalBackdrop,
+  searchForm,
   searchInput,
   select,
   dataContainer,
@@ -48,4 +46,3 @@ export default {
   authContaineRef,
   authWrapperRef,
 };
-
