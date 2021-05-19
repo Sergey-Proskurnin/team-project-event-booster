@@ -2,15 +2,18 @@ import 'basiclightbox/dist/basiclightbox.min.css';
 const basicLightbox = require('basiclightbox');
 import evtModalTmpl from '../templates/evtModal.hbs';
 import evtModalInfo from '../templates/evtModalInfo.hbs';
-import { eventCardRef } from './refs';
+import { eventCardRef, dataContainer, preloader } from './refs';
 import { db } from './firebaseApi';
 import getUrlValue from './urlValue';
-
+// import et from '../templates/favTmpl.hbs';
+// console.log(et());
+import eventsCardTmplCopy from '../templates/eventsCardTmpl_copy.hbs';
 import 'firebaseui/dist/firebaseui.css';
 import * as firebaseui from 'firebaseui';
 import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/database';
+import { data } from 'jquery';
 
 let modal = basicLightbox;
 
@@ -58,7 +61,9 @@ function openModal(markupInfo) {
   }
 
   const addBtn = document.querySelector('#favourite');
+  const myFav = document.querySelector('.my-fav')
   addBtn.addEventListener('change', onAddToFavCheck);
+  myFav.addEventListener('click', onMyFavClick)
 }
 
 function infoTextToggle() {
@@ -91,6 +96,7 @@ function slideNext() {
   const id = document.querySelector('.evt-wrapper').id;
   const evt = fetchResult.find(evt => evt.id === id);
   const evtIndex = fetchResult.indexOf(evt);
+  const addBtn = document.querySelector('#favourite');
   let evtInfoMarkup = evtModalInfo(fetchResult[evtIndex + 1]);
   if (evtIndex === fetchResult.length - 1) {
     evtInfoMarkup = evtModalInfo(fetchResult[0]);
@@ -98,6 +104,7 @@ function slideNext() {
   document.querySelector('.wrapper').innerHTML = evtInfoMarkup;
   document.querySelector('.btn.next').addEventListener('click', slideNext);
   document.querySelector('.btn.prev').addEventListener('click', slidePrev);
+  addBtn.addEventListener('change', onAddToFavCheck);
   onLoadMoreModalBtn();
   infoTextToggle();
 }
@@ -107,6 +114,7 @@ function slidePrev() {
   const id = document.querySelector('.evt-wrapper').id;
   const evt = fetchResult.find(evt => evt.id === id);
   const evtIndex = fetchResult.indexOf(evt);
+  const addBtn = document.querySelector('#favourite');
   let evtInfoMarkup = evtModalInfo(fetchResult[evtIndex - 1]);
 
   if (evtIndex === 0) {
@@ -116,6 +124,7 @@ function slidePrev() {
   document.querySelector('.wrapper').innerHTML = evtInfoMarkup;
   document.querySelector('.btn.next').addEventListener('click', slideNext);
   document.querySelector('.btn.prev').addEventListener('click', slidePrev);
+  addBtn.addEventListener('change', onAddToFavCheck);
   onLoadMoreModalBtn();
   infoTextToggle();
 }
@@ -140,8 +149,13 @@ function showMore(e) {
 function onAddToFavCheck(e) {
   console.log('btn');
   if (e.target.checked) {
+    console.log('attr checked');
     addToFav(e);
+  }else {
+    console.log('attr not checked');
+    removeFromFav()
   }
+
 }
 function addToFav(e) {
   const id = document.querySelector('.evt-wrapper').id;
@@ -159,7 +173,53 @@ function addToFav(e) {
       // No user is signed in.
     }
   });
+}
 
+function removeFromFav() {
+    const id = document.querySelector('.evt-wrapper').id;
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        console.log('modal', user.uid);
+        const userCollection = db.collection(`${user.uid}`).doc('fav')
+        const removeEvt = userCollection.update({
+          [id]: firebase.firestore.FieldValue.delete()
+      });
+       
+        // User is signed in.
+      } else {
+        // No user is signed in.
+      }
+
+    })
+  }
+
+  function onMyFavClick(){
+
+    let favList =[]
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+       const userCollection = db.collection(`${user.uid}`).doc('fav')
+       userCollection.get().then((doc)=>{
+         if (doc.exists) {
+           console.log(doc.data());
+           preloader.hide();
+          favList.push(...Object.values(doc.data()));
+          document.querySelector('#dataContainer').innerHTML = eventsCardTmplCopy(Object.values(doc.data()))
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      })
+     }
+    })
+
+    modal.close()
+    // preloader.hide();
+    // console.log(favList);
+    // console.log(eventsTmpl(favList));
+    // dataContainer.innerHTML = eventsTmpl(favList)
+}
+    
   // db.collection("users").doc(`${us}`).set({
   //   // user: 'user.uid',
 
@@ -194,4 +254,4 @@ function addToFav(e) {
   //   // });
   // }
   // );
-}
+

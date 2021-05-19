@@ -150,36 +150,79 @@
 
 #logo-link {
   display: block;
-  max-width: 200px;
+  width: 110px;
+  height: 90px;
   position: absolute;
   z-index: 50;
-  left: 20px;
-  top: 20px;
+
+  backdrop-filter: blur(30px);
+  border-bottom-right-radius: 210%;
+
+  border: 1px solid rgba(255, 13, 190, 0.44);
+  border-left: none;
+  border-top: none;
+  z-index: 1065;
 
   @include for-size(tablet) {
-    max-width: 300px;
-    top: 25px;
+    width: 160px;
+    height: 110px;
   }
 
   @include for-size(desktop) {
-    max-width: 400px;
-    // height: 400px;
-    top: 45px;
+    width: 180px;
+    height: 130px;
     left: auto;
+  }
+}
+
+#txtContainer {
+  padding-top: 10px;
+  padding-left: 10px;
+  width: 110px;
+  height: 90px;
+  @include for-size(tablet) {
+    width: 160px;
+    height: 110px;
+    padding-top: 15px;
+    padding-left: 15px;
+  }
+
+  @include for-size(desktop) {
+    width: 180px;
+    height: 130px;
+    padding-left: 3px;
   }
 }
 
 .txt {
   position: absolute;
   font-family: Major Mono Display;
-  // font-weight: 900;
-  font-size: 15px;
-  color: #fee;
-  @include for-size(desktop) {
-    font-size: 25px;
-    // font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.25em;
+  color: #ff0dbf;
+
+  @include for-size(tablet) {
+    font-size: 22px;
   }
+
   @include for-size(desktop) {
-    font-size: 30px;
+    font-size: 28px;
+  }
+}
+
+.txt2 {
+  margin-top: 15px;
+  position: absolute;
+  font-family: Major Mono Display;
+  font-size: 16px;
+  color: #ff0dbf;
+
+  @include for-size(tablet) {
+    margin-top: 25px;
+    font-size: 22px;
+  }
+
+  @include for-size(desktop) {
+    font-size: 28px;
   }
 }
