@@ -1,51 +1,75 @@
+// /*
+// //  BLINK
+// */
+
 // .header {
 //   position: relative;
-//   margin-left: auto;
-//   margin-right: auto;
+//   @include for-size(desktop) {
+//     width: 1280px;
+//     margin-left: auto;
+//     margin-right: auto;
+//   }
 // }
-
 // .logo {
+//   display: inline-block;
 //   width: 108px;
-//   height: 90px;
-//   fill: $primary-text-color;
 //   position: absolute;
-//   top: 0;
-//   left: 0;
-//   background-color: linear-gradient(
-//     136.07deg,
-//     rgba(196, 196, 196, 0.03) 10.75%,
-//     rgba(196, 196, 196, 0) 92.33%
-//   );
-//   backdrop-filter: blur(30px);
-//   border-bottom-right-radius: 180%;
-
-//   z-index: 100;
+//   z-index: 50;
+//   left: 20px;
+//   top: 10px;
+//   font-size: 15px;
 
 //   @include for-size(tablet) {
-//     width: 180px;
-//     height: 151px;
+//     width: 150px;
+//     top: 25px;
+//     font-size: 25px;
 //   }
+
 //   @include for-size(desktop) {
-//     width: 238px;
-//     height: 201px;
+//     max-width: 238px;
+//     top: 15px;
+//     left: auto;
+//     font-size: 35px;
+//   }
+
+//   .span-logo {
+//     letter-spacing: 0.35em;
+//     display: block;
+//   }
+
+//   text-align: center;
+//   font-family: Major Mono Display;
+//   color: #312f2f;
+//   font-weight: 700;
+//   text-transform: uppercase;
+//   animation: blur 1.5s ease-out infinite;
+//   text-shadow: 0px 0px 3px #fee, 0px 0px 5px #fee;
+// }
+
+// @keyframes blur {
+//   from {
+//     text-shadow: 0px 0px 10px #ff0dbf, 0px 0px 10px #ff0dbf,
+//       0px 0px 12px #ff0dbf, 0px 0px 12px #fff, 0px 0px 12px #fff,
+//       0px 0px 12px #fff, 0px 0px 12px #fff, 0px 0px 12px #fff, 0px 0px 25px #fff,
+//       0px 0px 12px #fff, 0px 0px 12px #fee, 0px 0px 25px #fee,
+//       0px 10px 25px #fee, 0px 10px 25px #fee, 0px 10px 25px #fee,
+//       0px 10px 25px #fee, 0px -10px 25px #fee, 0px -10px 25px #fee;
 //   }
 // }
 
-// .logo:hover,
-// .logo:focus {
-//   fill: $accent-color;
+/* 
+//  Elastic
+*/
+
+// .header {
+//   position: relative;
+//   @include for-size(desktop) {
+//     width: 1280px;
+//     margin-left: auto;
+//     margin-right: auto;
+//   }
 // }
-
-.header {
-  position: relative;
-  @include for-size(desktop) {
-    width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-// $colors: #08f, #ff0dbf, #9210c2, #efeac5, #4c00fe;
+// $colors: #ff9abf, #ff0dbf, #ff0dbf, #aa509b, #dd2974;
 
 // .logo-link {
 //   display: inline-block;
@@ -66,13 +90,19 @@
 //   }
 // }
 // .text--line {
-//   font-size: 146px;
+//   font-size: 170px;
 //   font-weight: 900;
 //   letter-spacing: 0.35em;
+//   @include for-size(tablet) {
+//     font-size: 146px;
+//   }
 // }
 // .text--line2 {
-//   font-size: 146px;
+//   font-size: 170px;
 //   font-weight: 900;
+//   @include for-size(tablet) {
+//     font-size: 146px;
+//   }
 // }
 // .logo-svg {
 //   font-family: Major Mono Display;
@@ -83,9 +113,9 @@
 // $stroke-step: 7%;
 // .text-copy {
 //   fill: none;
-//   stroke: white;
+//   stroke: rgb(255, 255, 255);
 //   stroke-dasharray: $stroke-step $stroke-step * ($max - 1);
-//   stroke-width: 3px;
+//   stroke-width: 4px;
 
 //   animation: stroke-offset 4s infinite ease-in-out;
 
@@ -106,48 +136,93 @@
 //   }
 // }
 
-.logo {
-  display: inline-block;
-  width: 108px;
+/*
+// GSAP
+*/
+.header {
+  position: relative;
+  @include for-size(desktop) {
+    width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+#logo-link {
+  display: block;
+  width: 110px;
+  height: 90px;
   position: absolute;
   z-index: 50;
-  left: 20px;
-  font-size: 15px;
+
+  backdrop-filter: blur(30px);
+  border-bottom-right-radius: 210%;
+
+  border: 1px solid rgba(255, 13, 190, 0.44);
+  border-left: none;
+  border-top: none;
+  z-index: 1065;
 
   @include for-size(tablet) {
-    width: 150px;
-    top: 25px;
-    font-size: 25px;
+    width: 160px;
+    height: 110px;
   }
 
   @include for-size(desktop) {
-    max-width: 238px;
-    top: 15px;
+    width: 180px;
+    height: 130px;
     left: auto;
-    font-size: 35px;
   }
-
-  .span-logo {
-    letter-spacing: 0.35em;
-    display: block;
-  }
-
-  text-align: center;
-  font-family: Major Mono Display;
-  color: #fff;
-  font-weight: 700;
-  text-transform: uppercase;
-  animation: blur 1.25s ease-out infinite;
-  text-shadow: 0px 0px 3px #fff, 0px 0px 5px #fff;
 }
 
-@keyframes blur {
-  from {
-    text-shadow: 0px 0px 10px #fff, 0px 0px 10px #fff, 0px 0px 25px #fff,
-      0px 0px 25px #fff, 0px 0px 25px #fff, 0px 0px 25px #fff, 0px 0px 25px #fff,
-      0px 0px 25px #fff, 0px 0px 50px #fff, 0px 0px 50px #fff,
-      0px 0px 50px #7b96b8, 0px 0px 150px #7b96b8, 0px 10px 100px #7b96b8,
-      0px 10px 100px #7b96b8, 0px 10px 100px #7b96b8, 0px 10px 100px #7b96b8,
-      0px -10px 100px #7b96b8, 0px -10px 100px #7b96b8;
+#txtContainer {
+  padding-top: 10px;
+  padding-left: 10px;
+  width: 110px;
+  height: 90px;
+  @include for-size(tablet) {
+    width: 160px;
+    height: 110px;
+    padding-top: 15px;
+    padding-left: 15px;
+  }
+
+  @include for-size(desktop) {
+    width: 180px;
+    height: 130px;
+    padding-left: 3px;
+  }
+}
+
+.txt {
+  position: absolute;
+  font-family: Major Mono Display;
+  font-size: 16px;
+  letter-spacing: 0.25em;
+  color: #ff0dbf;
+
+  @include for-size(tablet) {
+    font-size: 22px;
+  }
+
+  @include for-size(desktop) {
+    font-size: 28px;
+  }
+}
+
+.txt2 {
+  margin-top: 15px;
+  position: absolute;
+  font-family: Major Mono Display;
+  font-size: 16px;
+  color: #ff0dbf;
+
+  @include for-size(tablet) {
+    margin-top: 25px;
+    font-size: 22px;
+  }
+
+  @include for-size(desktop) {
+    font-size: 28px;
   }
 }

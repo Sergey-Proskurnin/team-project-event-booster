@@ -1,23 +1,21 @@
-// const animationUp = document.querySelector('.event-card');
-// window.addEventListener('scroll', scrollAnimtion);
+export default function addAnimationOnCards(element) {
+const animationUp = document.querySelector('.event-card');
 
-//  observer = new IntersectionObserver ((entries) => {
-//    if (entries[0].intersectionRatio > 0) {
-//      animationUp.classList.add('.is-paused');
-//    } else {
-//      animationUp.classList.remove('.is-paused');
-//    }
-//  });
+const options = {
+	root: null,
+	rootMargin: '0px',
+	threshold: 0.1,
+};
 
-//  const el = document.querySelector('.event-cards');
-// if (window.IntersectionObserver) {
-//    const observer = new IntersectionObserver(intersectionObserverCallback);
-//   observer.observe(el);
-// }
+const callback = function( entries, observer ) {
+  const observedImg = entries[0];
+  const methodName = observedImg.isIntersecting ? 'add' : 'remove';
+  // console.log(methodName);
+  element.classList[methodName]('is-play');
+};
 
-// function intersectionObserverCallback(entries){
-//     if (entries[0].intersectionRatio === undefined) {
-//         return;
-//     }
-//     el.classList.add('.is-paused', entries[0].intersectionRatio <= 0);
-// };
+const observer = new IntersectionObserver( callback, options );
+if ( element ) {
+	observer.observe( element );
+};
+};

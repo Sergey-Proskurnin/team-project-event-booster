@@ -9,6 +9,9 @@ const select = document.querySelector('.select');
 const dataContainer = document.querySelector('#dataContainer');
 const preloader = preloaderFactory('#preloader');
 const eventCardRef = document.querySelector('.event-cards');
+const signInBtnRef = document.querySelector('.sign-in-button');
+const authContaineRef = document.querySelector('.auth-container');
+const authWrapperRef = document.querySelector('.auth-wrapper');
 
 
 const gallery = document.querySelector('.eventsCardTmpl_copy');
@@ -30,14 +33,19 @@ const geoModalBackdrop = document.querySelector('.js-geolocation-backdrop');
 // };
 export default {
   eventCardRef,
-    searchForm,
-    searchInput,
-    select,
-    dataContainer,
-    preloader,
-    BASE_URL,
-    API_KEY,
+ geolocation,
     gallery,
     geoModal,
     geoModalBackdrop,
-  };
+   searchForm,
+  searchInput,
+  select,
+  dataContainer,
+  preloader,
+  BASE_URL,
+  API_KEY,
+  signInBtnRef,
+  authContaineRef,
+  authWrapperRef,
+};
+
