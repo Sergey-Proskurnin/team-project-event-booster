@@ -38,7 +38,7 @@ $(window).load(function() {
 		
 		TweenLite.set(txtContainer);
 		
-		tl = new TimelineMax({repeat:2, repeatDelay:1, yoyo:true});
+		tl = new TimelineMax({repeat:Infinity, repeatDelay:2, yoyo:true});
 
 		tl.staggerFrom(txt, 0.4, {alpha:0}, 0.06, "textEffect");
         tl.staggerFrom(txt2, 0.4, {alpha:0}, 0.06, "textEffect");

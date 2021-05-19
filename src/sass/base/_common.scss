@@ -6,7 +6,6 @@ html {
 ::after,
 ::before {
   box-sizing: inherit;
-  cursor: none !important;
 }
 
 body::-webkit-scrollbar {
@@ -70,7 +69,7 @@ button {
   margin: 0;
   padding: 0;
   box-shadow: none;
-  // cursor: pointer;
+  cursor: pointer;
   border: none;
 }
 
