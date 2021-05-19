@@ -1,5 +1,6 @@
-import { error, info } from '@pnotify/core';
-import { searchInput, preloader, BASE_URL, API_KEY } from './refs';
+// import { error, info } from '@pnotify/core';
+import { BASE_URL, API_KEY } from './urlBaseConst'
+import { searchInput, preloader, } from './refs';
 import { onRenderingSearchEvents } from './renderingSaerchEvents';
 
 function getData(url) {

@@ -1,3 +1,4 @@
+// import { error, info } from '@pnotify/core';
 import 'basiclightbox/dist/basiclightbox.min.css';
 const basicLightbox = require('basiclightbox');
 import evtModalTmpl from '../templates/evtModal.hbs';

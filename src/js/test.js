@@ -469,3 +469,201 @@
 //   messagingSenderId: '1082073461587',
 //   appId: '1:1082073461587:web:927b7c4ad3a521284367a6',
 // };
+//=========================================================================================================================
+/**Sort imgs and break into pieces info on data */
+// function dataForEach(array) {
+//   array._embedded.events.forEach(i => {
+//     i.images.sort((a, b) => a.width - b.width);
+//     if (i.info) {
+//       i.info = [i.info.substr(0, 60), i.info.substr(60)];
+//     }
+//   });
+// }
+//==========================================renderEventCards================================================================
+// import NewApiService from './apiService';
+// import eventsCardTmpl from '../templates/eventsCardTmpl.hbs';
+// import ApiService from '../index';
+// import pagination from 'paginationjs';
+
+// const startPageApi = new ApiService();
+// const eventCardsRef = document.querySelector('#dataContainer');
+// console.log(startPageApi);
+
+// const apiService = new NewApiService();
+// const inputSearch = document.querySelector('.form-submit');
+
+// export let resultGallery = [];
+// // console.dir(inputSearch);
+// inputSearch.addEventListener('submit', onSearch);
+
+// async function onSearch(e) {
+//   e.preventDefault();
+//   // console.log(e.target.elements);
+//   eventCardsRef.innerHTML = '';
+//   const valueInput = e.target.elements[0].value;
+//   const valueSelect = e.target.nextElementSibling[0].value;
+//   console.dir(e.target);
+
+//   //   apiService.query = [valueInput, valueSelect];
+//   //   console.log(apiService.query);
+
+//   const galleryArray = await apiService.fetchApi();
+//   resultGallery.push(...galleryArray);
+
+//   const markup = await appendEventMarkup(galleryArray);
+//   return markup;
+// }
+
+// //   const markup = await appendEventMarkup(galleryArray);
+// //   return markup;
+// // }
+
+// function appendEventMarkup(events) {
+//   eventCardsRef.insertAdjacentHTML('beforeend', eventsCardTmpl(events));
+// }
+
+// // export { resultGallery }
+// // console.log(resultGallery);
+// ================================================gsup for Yevgeniy=========================================================
+// const mouse = document.querySelector('.mouse');
+// const links = document.querySelectorAll('a');
+// const main = document.querySelector('.main');
+
+// function moveMouse(e) {
+//   if (e.clientX < 5 || e.clientY < 5 || e.clientY > (window.innerHeight - 5) || e.clientX > (window.innerWidth - 5)) {
+//     mouse.style.opacity = 0;
+//   } else {
+//     mouse.style.opacity = 1;
+//     mouse.style.transform = `translate(${e.clientX - 15}px, ${e.clientY - 15}px)`;
+//   }
+// };
+
+// if (window.innerWidth >= 728) {
+//   document.addEventListener('mousemove', moveMouse);
+
+//   links.forEach(link => link.addEventListener('mouseover', () => { mouse.classList.add('links-visible') }));
+//   links.forEach(link => link.addEventListener('mouseleave', () => { mouse.classList.remove('links-visible') }));
+
+//   main.addEventListener('mouseover', () => { mouse.classList.add('view-visible') });
+//   main.addEventListener('mouseleave', () => { mouse.classList.remove('view-visible') });
+
+  
+// }
+//===========================================Geolocation=====================================================================
+// // import refs from './refs';
+// import { Loader } from "@googlemaps/js-api-loader"
+
+// // const geoModal = document.querySelector('.js-geolocation-modal');
+// // const geoModalBackdrop = document.querySelector('.js-geolocation-backdrop');
+
+// let map;
+// let marker;
+// const onLocationOnCardClick = e => {
+//   if (!e.target.classList.contains('js-geolocation-btn')) {
+//     return
+//   }
+// const loader = new Loader({
+//   apiKey: "AIzaSyC2LapXJkglr9CJpAo3W8DHmsnivv69nDQ",
+// });
+// loader.load().then(() => {
+//   const latLng = {
+//     lat: +e.target.dataset.latitude,
+//     lng: +e.target.dataset.longitude
+//   }
+//   map = new google.maps.Map(document.getElementById("map"), {
+//     center: latLng,
+//     zoom: 15,
+//   });
+//   marker = new google.maps.Marker({
+//     position: latLng,
+//     title:"Start!!!"
+//   });
+//   marker.setMap(map);
+// });
+//   geoModalBackdrop.classList.remove('is-hidden')
+// }
+
+
+// const onGeoModalClick = e => {
+ 
+//   if (e.target.classList.contains('js-geolocation-backdrop')) {
+   
+//     geoModalBackdrop.classList.add('is-hidden')
+//   } else {
+//     return
+//   }
+// }
+// const onCloseGeoModalByEscKeydown = e => {
+// if (e.code === 'Escape') {
+//      geoModalBackdrop.classList.add('is-hidden')
+//   }
+// }
+
+
+// window.addEventListener('keydown', onCloseGeoModalByEscKeydown);
+// geoModalBackdrop.addEventListener('click', onGeoModalClick);
+// gallery.addEventListener('click', onLocationOnCardClick  )
+// /==========================================apiService=====================================================================
+// const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events.json';
+// const API_KEY = 'k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6';
+
+// export default class NewApiService {
+//   constructor() {
+//     this.searchCountry = '';
+//     this.searchQuery = '';
+//     this.numberPage = 1;
+//   }
+//   async fetchApi() {
+//     const searchParams = new URLSearchParams({
+//       keyword: this.searchQuery,
+//       // source: 'universe',
+//       countryCode: this.searchCountry,
+//       page: this.numberPage,
+//       size: 24,
+//       apikey: API_KEY,
+//     });
+//     const url = `${BASE_URL}?${searchParams}`;
+//     const response = await fetch(url);
+//     if (!response.ok) {
+//       throw new Error(console.log('Error'));
+//       }
+//       return await response;
+//     // const { _embedded } = await response.json();
+//     // // if (hits.length === 0 && this.numberPage === 1) {
+//     // //   return 'error';
+//     // // }
+//     // this.incrementPage();
+//     // const card = _embedded.events;
+//     // return await card;
+//   }
+//   incrementPage() {
+//     this.numberPage += 1;
+//   }
+//   resetPage() {
+//     this.numberPage = 1;
+//   }
+//   get query() {
+//     return [this.searchQuery, this.searchCountry];
+//   }
+
+//   set query(newQueryArray) {
+//     this.searchQuery = newQueryArray[0];
+//     this.searchCountry = newQueryArray[newQueryArray.length - 1];
+//   }
+// }
+// const inputSearch = document.querySelector('.form-submit')
+// console.log(inputSearch);
+// inputSearch.addEventListener('submit', onSearch)
+
+// const galleryApiService = new NewApiService();
+// galleryApiService.query = 'eagles'
+// console.log(galleryApiService);
+
+// async function onSearch(e){
+//     e.preventDefault();
+//     const galleryArrey = await galleryApiService.fetchApi();
+//       return galleryArrey;
+// }
+
+// onSearch()
+//========================================================================================================================

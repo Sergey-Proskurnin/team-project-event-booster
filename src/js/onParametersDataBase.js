@@ -25,21 +25,11 @@ function onParametersDataBase(data) {
       ['time']: i.dates.start.localTime ? i.dates.start.localTime : 'time',
       ['timezone']: i.dates.timezone ? i.dates.timezone : 'timezone',
       ['priceRanges']: i.priceRanges ? i.priceRanges : 0,
-      // ['priceRangesType0']: i.priceRanges
-      //   ? i.priceRanges[0].type
-      //   : 'priceRangesType0',
-      // ['priceRangesMin']: i.priceRanges
-      //   ? i.priceRanges[0].min
-      //   : 'priceRangesMin',
-      // ['priceRangesMax']: i.priceRanges
-      //   ? i.priceRanges[0].max
-      //   : 'priceRangesMax',
       ['products']: i.products ? i.products : 0,
       ['venuesName']:
         i._embedded !== undefined && 'venues' in i._embedded
           ? i._embedded.venues[0].name
           : 0,
-      // ['venuesName']: i._embedded?.venues[0]?.name,
       ['locationLatitude']:
         i._embedded !== undefined &&
         'venues' in i._embedded &&
@@ -56,13 +46,21 @@ function onParametersDataBase(data) {
         i._embedded !== undefined && 'venues' in i._embedded
           ? i._embedded.venues[0].city.name
           : 0,
-      // ['city']: i._embedded?.venues[0]?.city.name,
       ['country']:
         i._embedded !== undefined && 'venues' in i._embedded
           ? i._embedded.venues[0].country.name
           : 'country',
       ['priceRangesCurrency']:
         i.priceRanges !== undefined ? i.priceRanges[0].currency : 0,
+      // ['priceRangesType0']: i.priceRanges
+      //   ? i.priceRanges[0].type
+      //   : 'priceRangesType0',
+      // ['priceRangesMin']: i.priceRanges
+      //   ? i.priceRanges[0].min
+      //   : 'priceRangesMin',
+      // ['priceRangesMax']: i.priceRanges
+      //   ? i.priceRanges[0].max
+      //   : 'priceRangesMax',
       // ['productsUrl0']:
       //   i.products !== undefined ? i.products[0].url : 'productsUrl0',
       // ['productsUrl1']:
@@ -85,17 +83,17 @@ function onParametersDataBase(data) {
       //   i.priceRanges !== undefined && i.priceRanges.length > 1
       //     ? i.priceRanges[1].currency
       //     : 'priceRangesType1Currency',
+      // ['priceRangesType0']: i.priceRanges
+      //   ? i.priceRanges[0].type
+      //   : 'priceRangesType0',
+      // ['priceRangesMin']: i.priceRanges
+      //   ? i.priceRanges[0].min
+      //   : 'priceRangesMin',
+      // ['priceRangesMax']: i.priceRanges
+      //   ? i.priceRanges[0].max
+      //   : 'priceRangesMax',
+      // ['venuesName']: i._embedded?.venues[0]?.name,
     };
   });
 }
-
-/**Sort imgs and break into pieces info on data */
-function dataForEach(array) {
-  array._embedded.events.forEach(i => {
-    i.images.sort((a, b) => a.width - b.width);
-    if (i.info) {
-      i.info = [i.info.substr(0, 60), i.info.substr(60)];
-    }
-  });
-}
-export { dataForEach, onParametersDataBase };
+export { onParametersDataBase };
