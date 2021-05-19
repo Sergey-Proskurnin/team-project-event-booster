@@ -12,6 +12,7 @@ const eventCardRef = document.querySelector('.event-cards');
 const signInBtnRef = document.querySelector('.sign-in-button');
 const authContaineRef = document.querySelector('.auth-container');
 const authWrapperRef = document.querySelector('.auth-wrapper');
+const paginationRef = document.querySelector('#demo')
 
 export {
   eventCardRef,
@@ -25,4 +26,5 @@ export {
   signInBtnRef,
   authContaineRef,
   authWrapperRef,
+  paginationRef
 };

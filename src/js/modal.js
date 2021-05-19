@@ -2,7 +2,8 @@ import 'basiclightbox/dist/basiclightbox.min.css';
 const basicLightbox = require('basiclightbox');
 import evtModalTmpl from '../templates/evtModal.hbs';
 import evtModalInfo from '../templates/evtModalInfo.hbs';
-import { eventCardRef, dataContainer, preloader } from './refs';
+import favouritesTmpl from '../templates/favouritesTmpl.hbs'
+import { eventCardRef, dataContainer, paginationRef,  authWrapperRef } from './refs';
 import { db } from './firebaseApi';
 import getUrlValue from './urlValue';
 // import et from '../templates/favTmpl.hbs';
@@ -14,6 +15,8 @@ import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/database';
 import { data } from 'jquery';
+// import {runAnimationCards} from './renderingSaerchEvents'
+import addAnimationOnCards from './addAnimationOnCards';
 
 let modal = basicLightbox;
 
@@ -46,10 +49,12 @@ function openModal(markupInfo) {
       document.body.style.overflow = 'hidden';
       modal.element().querySelector('.close-modal').onclick = modal.close;
       document.addEventListener('keyup', closeOnEsc);
+      authWrapperRef.style.display = 'none'
     },
     onClose: modal => {
       document.body.style.overflow = 'auto';
       document.removeEventListener('keyup', closeOnEsc);
+      authWrapperRef.style.display = 'block'
     },
   });
   modal.show();
@@ -194,19 +199,14 @@ function removeFromFav() {
   }
 
   function onMyFavClick(){
-
-    let favList =[]
-    firebase.auth().onAuthStateChanged(function (user) {
+   firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
        const userCollection = db.collection(`${user.uid}`).doc('fav')
        userCollection.get().then((doc)=>{
          if (doc.exists) {
-           console.log(doc.data());
-           preloader.hide();
-          favList.push(...Object.values(doc.data()));
-          document.querySelector('#dataContainer').innerHTML = eventsCardTmplCopy(Object.values(doc.data()))
+          dataContainer.innerHTML = favouritesTmpl(Object.values(doc.data()))
+          runAnimationCards()
         } else {
-          // doc.data() will be undefined in this case
           console.log("No such document!");
         }
       })
@@ -214,44 +214,14 @@ function removeFromFav() {
     })
 
     modal.close()
-    // preloader.hide();
-    // console.log(favList);
-    // console.log(eventsTmpl(favList));
-    // dataContainer.innerHTML = eventsTmpl(favList)
+    paginationRef.style.visibility ='hidden'
 }
     
-  // db.collection("users").doc(`${us}`).set({
-  //   // user: 'user.uid',
-
-  // })
-  // .then((docRef) => {
-  //   // console.log("Document written with ID: ", docRef.id);
-  // })
-  // .catch((error) => {
-  //   // console.error("Error adding document: ", error);
-  // });
-
-  // const docRef = db.collection("users");
-
-  // docRef.get().then((doc) => {
-  //     if (doc.exists) {
-  //         console.log("Document data:", doc.data());
-  //     } else {
-  //         // doc.data() will be undefined in this case
-  //         console.log("No such document!");
-  //     }
-  // }).catch((error) => {
-  //     console.log("Error getting document:", error);
-  // });
-
-  // db.collection("users").get().then(
-  //   (querySnapshot) => {
-  //     console.log('show me db',querySnapshot)
-
-  //   // console.log(querySnapshot(doc=>doc.data()));
-  //   // querySnapshot.forEach((doc) => {
-  //   //     console.log(doc.data());
-  //   // });
-  // }
-  // );
-
+function runAnimationCards() {
+  const elemCollection = document.querySelectorAll('.event-card');
+  Array.from(elemCollection).map(elem => {
+    setTimeout(() => {
+      addAnimationOnCards(elem);
+    }, 0);
+  })
+};

@@ -1,6 +1,6 @@
 // import preloaderFactory from './preloader';
 import chooseLazyLoad from './lazy-load';
-import { preloader } from './refs';
+import { preloader, paginationRef } from './refs';
 import { onParametersDataBase } from './onParametersDataBase';
 import eventsCardTmplCopy from '../templates/eventsCardTmpl_copy.hbs';
 import addAnimationOnCards from './addAnimationOnCards';
@@ -10,6 +10,9 @@ function onRenderingSearchEvents(dataBase, selectorJQDataContainer) {
   const dataParameters = onParametersDataBase(dataBase);
   localStorage.clear();
   localStorage.setItem('data', JSON.stringify(dataParameters));
+  if (paginationRef.style.visibility ='hidden'){
+    paginationRef.style.visibility ='visible'
+  }
   $(selectorJQDataContainer).html(eventsCardTmplCopy(dataParameters));
   preloader.hide();
   runAnimationCards();
@@ -20,7 +23,7 @@ function onRenderingSearchEvents(dataBase, selectorJQDataContainer) {
   });
 }
 
-function runAnimationCards() {
+export function runAnimationCards() {
   const elemCollection = document.querySelectorAll('.event-card');
   Array.from(elemCollection).map(elem => {
     setTimeout(() => {
