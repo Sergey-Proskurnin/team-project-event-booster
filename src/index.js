@@ -15,3 +15,4 @@ import './js/submitForm';
 import './js/firebaseApi';
 // import './js/addAnimationOnCards';
 import './js/signInAnimation';
+import './js/gsap.js';
