@@ -79,7 +79,7 @@
 
 .sign-in-button {
   width: 100px;
-  height: 30px;
+  height: 25px;
   font-size: 16px;
   font-weight: 400;
   z-index: 1000;
@@ -103,12 +103,12 @@
     0 0 0.5em rgb(255, 13, 191), 0 0 0.1em rgb(255, 13, 191), 0 5px 3px #000;
   @include for-size(tablet) {
     width: 120px;
-    height: 40px;
+    height: 30px;
     font-size: 18px;
   }
   @include for-size(desktop) {
     width: 150px;
-    height: 40px;
+    height: 30px;
     font-size: 20px;
   }
 

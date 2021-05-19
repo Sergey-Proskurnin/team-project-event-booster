@@ -50,7 +50,7 @@ function signOutUser() {
       signInBtnRef.style.display = 'flex';
       authContaineRef.style.display = 'block';
       signInBtnRef.addEventListener('click', openAuthContainer);
-      // ui.start('#firebaseui-auth-container', uiConfig);
+      location.reload();
     })
     .catch(error => {
       // An error happened.
