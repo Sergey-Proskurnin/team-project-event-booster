@@ -16,8 +16,6 @@ function getData(url) {
       return response.page.totalPages;
     },
     locator: '_embedded.events',
-    pageSize: 24,
-
     callback: function (data) {
       onRenderingSearchEvents(data, '#dataContainer');
     },

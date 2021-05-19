@@ -2,12 +2,19 @@ import 'basiclightbox/dist/basiclightbox.min.css';
 const basicLightbox = require('basiclightbox');
 import evtModalTmpl from '../templates/evtModal.hbs';
 import evtModalInfo from '../templates/evtModalInfo.hbs';
-import { getData } from './pagination';
-import { eventCardRef } from './refs';
-import NewApiUrlService from './apiUrlService';
-import {db} from './firebaseApi'
+import { eventCardRef, dataContainer } from './refs';
+import { db } from './firebaseApi';
+import getUrlValue from './urlValue';
+// import et from '../templates/favTmpl.hbs';
+// console.log(et());
+import eventsCardTmplCopy from '../templates/eventsCardTmpl_copy.hbs';
+import 'firebaseui/dist/firebaseui.css';
+import * as firebaseui from 'firebaseui';
+import firebase from 'firebase';
+import 'firebase/auth';
+import 'firebase/database';
+import { data } from 'jquery';
 
-const apiUrlService = new NewApiUrlService();
 let modal = basicLightbox;
 
 eventCardRef.addEventListener('click', onCardClick);
@@ -34,28 +41,29 @@ function onCardClick(e) {
 }
 
 function openModal(markupInfo) {
-  modal= basicLightbox.create(`${markupInfo}`, {
-    onShow: (modal) => {
+  modal = basicLightbox.create(`${markupInfo}`, {
+    onShow: modal => {
       document.body.style.overflow = 'hidden';
       modal.element().querySelector('.close-modal').onclick = modal.close;
       document.addEventListener('keyup', closeOnEsc);
     },
-    onClose: (modal) => {
+    onClose: modal => {
       document.body.style.overflow = 'auto';
       document.removeEventListener('keyup', closeOnEsc);
     },
   });
   modal.show();
-  
-  function closeOnEsc (e) {
+
+  function closeOnEsc(e) {
     if (e.key === 'Escape') {
       modal.close();
     }
   }
- 
 
-  const addBtn = document.querySelector('#favourite')  
-  addBtn.addEventListener('change', onAddToFavCheck)
+  const addBtn = document.querySelector('#favourite');
+  const myFav = document.querySelector('.my-fav')
+  addBtn.addEventListener('change', onAddToFavCheck);
+  myFav.addEventListener('click', onMyFavClick)
 }
 
 function infoTextToggle() {
@@ -88,6 +96,7 @@ function slideNext() {
   const id = document.querySelector('.evt-wrapper').id;
   const evt = fetchResult.find(evt => evt.id === id);
   const evtIndex = fetchResult.indexOf(evt);
+  const addBtn = document.querySelector('#favourite');
   let evtInfoMarkup = evtModalInfo(fetchResult[evtIndex + 1]);
   if (evtIndex === fetchResult.length - 1) {
     evtInfoMarkup = evtModalInfo(fetchResult[0]);
@@ -95,6 +104,7 @@ function slideNext() {
   document.querySelector('.wrapper').innerHTML = evtInfoMarkup;
   document.querySelector('.btn.next').addEventListener('click', slideNext);
   document.querySelector('.btn.prev').addEventListener('click', slidePrev);
+  addBtn.addEventListener('change', onAddToFavCheck);
   onLoadMoreModalBtn();
   infoTextToggle();
 }
@@ -104,6 +114,7 @@ function slidePrev() {
   const id = document.querySelector('.evt-wrapper').id;
   const evt = fetchResult.find(evt => evt.id === id);
   const evtIndex = fetchResult.indexOf(evt);
+  const addBtn = document.querySelector('#favourite');
   let evtInfoMarkup = evtModalInfo(fetchResult[evtIndex - 1]);
 
   if (evtIndex === 0) {
@@ -113,6 +124,7 @@ function slidePrev() {
   document.querySelector('.wrapper').innerHTML = evtInfoMarkup;
   document.querySelector('.btn.next').addEventListener('click', slideNext);
   document.querySelector('.btn.prev').addEventListener('click', slidePrev);
+  addBtn.addEventListener('change', onAddToFavCheck);
   onLoadMoreModalBtn();
   infoTextToggle();
 }
@@ -131,45 +143,112 @@ function showMore(e) {
   // document.body.style.overflow = 'auto';
   const id = e.target.parentNode.id;
   const valueInput = fetchResult.find(e => e.id === id).name;
-  const arrayValue = [valueInput, ''];
-  apiUrlService.query = arrayValue;
-  getData(apiUrlService.fetchApi());
+  getUrlValue(valueInput, '');
 }
 
-function onAddToFavCheck (e) {
+function onAddToFavCheck(e) {
   console.log('btn');
-  if(e.target.checked){
-   addToFav(e)
+  if (e.target.checked) {
+    console.log('attr checked');
+    addToFav(e);
+  }else {
+    console.log('attr not checked');
+    removeFromFav()
   }
 
 }
-
-function addToFav (e) {
+function addToFav(e) {
   const id = document.querySelector('.evt-wrapper').id;
   let fetchResult = JSON.parse(localStorage.getItem('data'));
   const evtInfo = fetchResult.find(e => e.id === id);
- 
-  db.collection("users").add({
-    fav: evtInfo
-  })
-  .then((docRef) => {
-    console.log("Document written with ID: ", docRef.id);
-  })
-  .catch((error) => {
-    console.error("Error adding document: ", error);
+  const user = firebase.auth().currentUser;
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      console.log('modal', user.uid);
+      db.collection(`${user.uid}`).doc('fav').set({
+        [id]: evtInfo,
+      },{merge: true});
+      // User is signed in.
+    } else {
+      // No user is signed in.
+    }
   });
-
-
-  db.collection("users").get().then(
-    (querySnapshot) => {
-   
-    // console.log(querySnapshot(doc=>doc.data()));
-    querySnapshot.forEach((doc) => {
-        console.log(doc.data());
-    });
-  }
-  
-  
-  );
-  
 }
+
+function removeFromFav() {
+    const id = document.querySelector('.evt-wrapper').id;
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        console.log('modal', user.uid);
+        const userCollection = db.collection(`${user.uid}`).doc('fav')
+        const removeEvt = userCollection.update({
+          [id]: firebase.firestore.FieldValue.delete()
+      });
+       
+        // User is signed in.
+      } else {
+        // No user is signed in.
+      }
+
+    })
+  }
+
+  function onMyFavClick(){
+
+    let favList =[]
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+       const userCollection = db.collection(`${user.uid}`).doc('fav')
+       userCollection.get().then((doc)=>{
+        if (doc.exists) {
+          favList.push(...Object.values(doc.data()));
+          dataContainer.innerHTML = eventsCardTmplCopy(favList)
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      })
+     }
+    })
+
+    modal.close()
+    console.log(favList);
+    // console.log(eventsTmpl(favList));
+    // dataContainer.innerHTML = eventsTmpl(favList)
+}
+    
+  // db.collection("users").doc(`${us}`).set({
+  //   // user: 'user.uid',
+
+  // })
+  // .then((docRef) => {
+  //   // console.log("Document written with ID: ", docRef.id);
+  // })
+  // .catch((error) => {
+  //   // console.error("Error adding document: ", error);
+  // });
+
+  // const docRef = db.collection("users");
+
+  // docRef.get().then((doc) => {
+  //     if (doc.exists) {
+  //         console.log("Document data:", doc.data());
+  //     } else {
+  //         // doc.data() will be undefined in this case
+  //         console.log("No such document!");
+  //     }
+  // }).catch((error) => {
+  //     console.log("Error getting document:", error);
+  // });
+
+  // db.collection("users").get().then(
+  //   (querySnapshot) => {
+  //     console.log('show me db',querySnapshot)
+
+  //   // console.log(querySnapshot(doc=>doc.data()));
+  //   // querySnapshot.forEach((doc) => {
+  //   //     console.log(doc.data());
+  //   // });
+  // }
+  // );
+
