@@ -13,8 +13,13 @@ import './js/renderingCards';
 import './js/pagination';
 import './js/submitForm';
 import './js/firebaseApi';
+
+
+import './js/geolocationModal';
+
 import './js/addAnimationOnCards';
 import './js/authUserOnSite';
 import './js/logo';
+
 
 
