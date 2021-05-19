@@ -1,4 +1,60 @@
 {{#each this}}
+  <li class='event-card' id={{id}}>
+
+    <img
+      class='event-image lazyload'
+      loading='lazy'
+      srcset='
+
+        {{images1x128}} 128w,
+        {{images2x128}} 128w,
+        {{images1x180}} 180w,
+        {{images2x180}} 180w
+
+      '
+      data-src={{images1x180}}
+      alt='{{name}}'
+    />
+
+    <h3 class='event-title'>{{name}}</h3>
+    <p class='event-date'>{{dates}}</p>
+    <p class='event-place'>
+      {{#if locationLatitude}}
+        <a
+          href='https://maps.google.com?saddr=Current+Location&daddr={{locationLatitude}},{{locationLongitude}}'
+          target='_blank'
+        >
+          <span class='material-icons md-12 cards-icons'>room</span>
+          {{#if venuesName}}
+            {{venuesName}},
+          {{/if}}
+          {{#if city}}
+            {{city}}
+          {{else}}
+            Online
+          {{/if}}
+        </a>
+      {{else}}
+        <a
+          href='hhttps://www.google.com/maps/dir/?api=1&{{city}}'
+          target='_blank'
+        >
+          <span class='material-icons md-12 cards-icons'>room</span>
+          {{#if venuesName}}
+            {{venuesName}},
+          {{/if}}
+          {{#if city}}
+            {{city}}
+          {{else}}
+            Online
+          {{/if}}
+        </a>
+      {{/if}}
+    </p>
+  </li>
+{{/each}}
+
+{{!-- {{#each this}}
 <li class="event-card" id={{id}}>
 
     <img class="event-image lazyload" 
@@ -15,17 +71,12 @@
 
     <h3 class="event-title">{{name}}</h3>
     <p class="event-date">{{dates}}</p>
-    <p class="event-place card-place js-geolocation-btn" data-name={{_embedded.venues.0.name}}
-     data-latitude={{_embedded.venues.0.location.latitude}}
-     data-longitude={{_embedded.venues.0.location.longitude}}
-     aria-label="open-geolocation-modal-button">
-        {{!-- {{#if locationLatitude}}
+    <p class="event-place">
+        {{#if locationLatitude}}
             <a href="https://maps.google.com?saddr=Current+Location&daddr={{locationLatitude}},{{locationLongitude}}"
-            target="_blank"> --}}
-            
+            target="_blank">
                 <span class="material-icons md-12 cards-icons">room</span>
-                {{_embedded.venues.0.name}}
-                {{!-- {{#if venuesName}}
+                {{#if venuesName}}
                     {{venuesName}},
                 {{/if}}
                 {{#if city}}
@@ -47,7 +98,7 @@
                             Online
                 {{/if}}
             </a>
-        {{/if}} --}}
+        {{/if}}
     </p>
 </li>
-{{/each}}
+{{/each}} --}}
