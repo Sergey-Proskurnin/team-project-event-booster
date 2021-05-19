@@ -2,7 +2,7 @@ import 'basiclightbox/dist/basiclightbox.min.css';
 const basicLightbox = require('basiclightbox');
 import evtModalTmpl from '../templates/evtModal.hbs';
 import evtModalInfo from '../templates/evtModalInfo.hbs';
-import { eventCardRef, dataContainer } from './refs';
+import { eventCardRef, dataContainer, preloader } from './refs';
 import { db } from './firebaseApi';
 import getUrlValue from './urlValue';
 // import et from '../templates/favTmpl.hbs';
@@ -200,9 +200,11 @@ function removeFromFav() {
       if (user) {
        const userCollection = db.collection(`${user.uid}`).doc('fav')
        userCollection.get().then((doc)=>{
-        if (doc.exists) {
+         if (doc.exists) {
+           console.log(doc.data());
+           preloader.hide();
           favList.push(...Object.values(doc.data()));
-          dataContainer.innerHTML = eventsCardTmplCopy(favList)
+          document.querySelector('#dataContainer').innerHTML = eventsCardTmplCopy(Object.values(doc.data()))
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
@@ -212,7 +214,8 @@ function removeFromFav() {
     })
 
     modal.close()
-    console.log(favList);
+    // preloader.hide();
+    // console.log(favList);
     // console.log(eventsTmpl(favList));
     // dataContainer.innerHTML = eventsTmpl(favList)
 }
