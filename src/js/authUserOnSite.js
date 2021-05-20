@@ -1,3 +1,4 @@
+import { error, info } from '@pnotify/core';
 import 'firebaseui/dist/firebaseui.css';
 import * as firebaseui from 'firebaseui';
 import firebase from 'firebase';
@@ -31,7 +32,6 @@ function openAuthContainer() {
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     // User is signed in.
-    // console.log(user.uid, ' user id');
     signInBtnRef.removeEventListener('click', openAuthContainer);
     openAuthContainer();
     signInBtnRef.style.display = 'none';
@@ -63,12 +63,10 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 function renderUserIcon(user) {
-  // console.log(user);
   authWrapperRef.insertAdjacentHTML('beforeend', userProfileTmpl(user));
 }
 
 function signOutUser() {
-  // console.log('sign out');
   firebase
     .auth()
     .signOut()
@@ -81,6 +79,10 @@ function signOutUser() {
     })
     .catch(error => {
       // An error happened.
+      error({
+        text: 'Something go wrong!',
+        delay: 2000,
+      });
       console.error(error);
     });
 }
