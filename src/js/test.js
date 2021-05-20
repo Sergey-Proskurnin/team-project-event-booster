@@ -666,4 +666,55 @@
 // }
 
 // onSearch()
-//========================================================================================================================
+//===========================================================firebaseApi=============================================================
+// console.log(db.collection('users').get().then((doc)=>doc.data));
+
+// db.collection("users").add({
+//   first: "Ada",
+//   last: "Lovelace",
+//   born: 1815
+// })
+// .then((docRef) => {
+//   console.log("Document written with ID: ", docRef.id);
+// })
+// .catch((error) => {
+//   console.error("Error adding document: ", error);
+// });
+
+// console.log(db.collection('users'));
+
+// db.collection("users").add({
+//   first: "Alan",
+//   middle: "Mathison",
+//   last: "Turing",
+//   born: 1912
+// })
+// .then((docRef) => {
+//   console.log("Document written with ID: ", docRef.id);
+// })
+// .catch((error) => {
+//   console.error("Error adding document: ", error);
+// });
+
+// db.collection("users").get().then((querySnapshot) => {
+//   querySnapshot.forEach((doc) => {
+//       console.log(doc.data());
+//   });
+// });
+
+//================================================userFirebase================================================================
+// const user = firebase.auth().currentUser;
+// firebase.auth().onAuthStateChanged(function (user) {
+//   if (user) {
+//     console.log('firebase :', user.uid);
+//     return user.uid;
+//     // User is signed in.
+//   } else {
+//     // No user is signed in.
+//   }
+// });
+
+// console.log(user);
+
+// export { user };
+//==========================================================================================================================
