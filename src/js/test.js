@@ -940,6 +940,8 @@
 //       type="image/png"
 //       href="https://img-premium.flaticon.com/png/512/1545/1545927.png?token=exp=1620997627~hmac=0243765cc8dc877dad95d08a76350010"
 //     /> -->
+//==========================================================script-data-base=====================================
+// <!-- <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script> -->
 
 
 
