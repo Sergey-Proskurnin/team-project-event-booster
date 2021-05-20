@@ -11,6 +11,7 @@
 }
 
 #dataContainer {
+  position: relative;
   width: auto;
   justify-content: center;
   display: flex;
@@ -65,8 +66,6 @@
   -ms-animation-play-state: paused;
   -o-animation-play-state: paused;
   animation-play-state: paused;
-
-  
 
   &:hover {
     &::before {

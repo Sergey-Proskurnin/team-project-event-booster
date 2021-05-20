@@ -4,6 +4,7 @@
 }
 
 .auth-wrapper {
+  pointer-events: none;
   display: block;
   position: absolute;
   top: -40px;
@@ -14,28 +15,23 @@
     right: 15px;
   }
   @include for-size(desktop) {
-    width: 251px;
-    height: 337px;
     right: 5%;
   }
-  // &:hover {
-  //   .auth-container {
-  //     opacity: 1;
-  //     transition: 1.2s all ease;
-  //     transform: translateY(20px);
-  //   }
-  // }
 }
 
 .auth-container {
   display: block;
-  cursor: pointer;
   opacity: 0;
   transition: 1.2s all ease;
   transform: translateY(-400px);
 
   .firebaseui-card-content {
+    width: fit-content;
     padding: 1px 14px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
     border-radius: 20px;
     background: linear-gradient(
       45deg,
@@ -44,15 +40,16 @@
     );
     box-shadow: 0 -50px 100px, 0 0 2px, 0 0 1em rgb(22, 5, 18),
       0 0 0.5em rgb(255, 13, 191), 0 0 0.1em rgb(56, 17, 46), 0 5px 3px #000;
+    border-radius: 50px;
 
-    @media (max-width: 767px) {
-      padding: 14px 24px;
-      border-radius: 50px;
+    @include for-size(desktop) {
+      padding: 5px 25px;
     }
   }
 
   .firebaseui-idp-list {
     display: block;
+    pointer-events: auto;
 
     .firebaseui-list-item {
       margin-bottom: 15px;
@@ -60,17 +57,25 @@
       z-index: 1000;
 
       .firebaseui-idp-button {
-        @media (max-width: 767px) {
-          min-width: 50px;
-          padding: 14px 8px;
-          border-radius: 50%;
-          display: flex;
-          justify-content: center;
+        min-width: 50px;
+        width: auto;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include for-size(desktop) {
+          height: 57px;
         }
       }
       .firebaseui-idp-text {
-        @media (max-width: 767px) {
-          display: none;
+        display: none;
+      }
+
+      .firebaseui-idp-icon {
+        @include for-size(desktop) {
+          height: 25px;
+          width: 25px;
         }
       }
     }
@@ -78,6 +83,7 @@
 }
 
 .sign-in-button {
+  pointer-events: auto;
   width: 100px;
   height: 25px;
   font-size: 16px;
@@ -91,8 +97,8 @@
   align-items: center;
 
   background: linear-gradient(45deg, #272325 40%, #020104);
-  // background: linear-gradient(45deg, #b388eb, rgb(255, 13, 191));
-  border-radius: 20px;
+  // border-radius: 20px;
+  border-radius: 50px 0px;
   color: #fff;
 
   letter-spacing: 1px;
@@ -101,11 +107,13 @@
   animation: blink linear infinite 2s;
   text-shadow: 0 -50px 100px, 0 0 2px, 0 0 1em rgb(255, 13, 191),
     0 0 0.5em rgb(255, 13, 191), 0 0 0.1em rgb(255, 13, 191), 0 5px 3px #000;
+
   @include for-size(tablet) {
     width: 120px;
-    height: 30px;
+    height: 25px;
     font-size: 18px;
   }
+
   @include for-size(desktop) {
     width: 150px;
     height: 30px;
@@ -163,13 +171,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  //background: linear-gradient(
-  //   45deg,
-  //   rgb(255, 13, 191),
-  //   rgba(255, 13, 190, 0.274)
-  // );
-  // background: linear-gradient(45deg, #b388eb, rgb(255, 13, 191));
   border-radius: 20px;
 
   @include for-size(tablet) {
@@ -182,21 +183,27 @@
   @include for-size(tablet) {
     display: block;
     border-radius: 50%;
+    // border-radius: 50px 0px;
     object-fit: cover;
-    width: 70px;
-    box-shadow: 0 0 10px 3px $accent-color;
+    width: 40px;
+    // box-shadow: 0 0 10px 3px $accent-color;
+    border: 1px solid $accent-color;
+  }
+  @include for-size(desktop) {
+    width: 40px;
   }
 }
 
-.user-name {
-  display: none;
-  @include for-size(desktop) {
-    display: inline-block;
-  }
-}
+// .user-name {
+//   display: none;
+//   @include for-size(desktop) {
+//     display: inline-block;
+//   }
+// }
 
 .favorite-event,
 .sign-out-btn {
+  pointer-events: auto;
   width: 65px;
   height: 25px;
   margin-top: 5px;
@@ -209,31 +216,32 @@
   font-size: 12px;
 
   font-weight: 400;
-  border-radius: 20px;
+  // border-radius: 20px;
+  border-radius: 50px 0px;
   color: #fff;
 
   letter-spacing: 1px;
   transition: all 0.25s;
   background: linear-gradient(45deg, #b388eb, rgb(255, 13, 191));
-  box-shadow: 0 0 10px 3px $accent-color;
   text-shadow: 0 -50px 100px, 0 0 2px, 0 0 1em rgb(255, 13, 191),
     0 0 0.5em rgb(255, 13, 191), 0 0 0.1em rgb(255, 13, 191), 0 5px 3px #000;
 
   @include for-size(tablet) {
     height: 25px;
     font-size: 14px;
-    padding: 15px;
+    padding: 13px;
     margin-right: 0;
   }
 
   @include for-size(desktop) {
-    width: 150px;
-    height: 40px;
-    font-size: 18px;
+    width: 140px;
+    height: 25px;
+    font-size: 16px;
   }
 }
 
 .favorite-event {
+  box-shadow: 0 0 10px 3px $accent-color;
   animation: blink linear infinite 2s;
 
   @include for-size(mobile-only) {
@@ -241,6 +249,9 @@
   }
   @include for-size(tablet) {
     margin-right: 5px;
+  }
+  @include for-size(desktop) {
+    margin-right: 0;
   }
   .favorite-text {
     display: none;
@@ -261,6 +272,7 @@
 
 .sign-out-btn {
   background: linear-gradient(45deg, #272325 40%, #020104);
+  border: 1px solid rgba(220, 86, 197, 0.3);
 
   @include for-size(desktop) {
     margin-top: 10px;
@@ -277,7 +289,6 @@
 .sign-out-btn:hover,
 .sign-out-btn:focus {
   background: linear-gradient(45deg, #412834 40%, #1c0d3b);
-  box-shadow: 0 0 0 0;
 }
 
 .button-flex {
