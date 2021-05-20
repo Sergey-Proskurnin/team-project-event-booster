@@ -36,14 +36,14 @@ function onCardClick(e) {
 }
 
 function addListeners () {
-   const addBtn = document.querySelector('#favourite');
-  const myFav = document.querySelector('.my-fav');
-  const loadMoreBtn = document.querySelector('.more-info');
+  //  const addBtn = document.querySelector('#favourite');
+  // const myFav = document.querySelector('.my-fav');
+  // const loadMoreBtn = document.querySelector('.more-info');
   document.querySelector('.btn.next').addEventListener('click', slideNext);
   document.querySelector('.btn.prev').addEventListener('click', slidePrev);
-  loadMoreBtn.addEventListener('click', showMore);
-  addBtn.addEventListener('change', onAddToFavCheck);
-  myFav.addEventListener('click', onMyFavClick)
+  document.querySelector('.more-info').addEventListener('click', showMore);
+  document.querySelector('#favourite').addEventListener('change', onAddToFavCheck);
+  document.querySelector('.my-fav').addEventListener('click', onMyFavClick)
 }
 
 function favBtnsToggle (id) {
@@ -167,15 +167,16 @@ function onAddToFavCheck(e) {
   console.log('btn');
   if (e.target.checked) {
     console.log('attr checked');
-    addToFav(e);
+    addToFav();
   }else {
     console.log('attr not checked');
     removeFromFav()
   }
 
 }
-function addToFav(e) {
+function addToFav() {
   const id = document.querySelector('.evt-wrapper').id;
+  console.log('i am id',id); 
   let fetchResult = JSON.parse(localStorage.getItem('data'));
   const evtInfo = fetchResult.find(e => e.id === id);
   
