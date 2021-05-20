@@ -17,6 +17,7 @@ import favouritesTmpl from '../templates/favouritesTmpl.hbs';
 import emptyFavoriteListTmpl from '../templates/emptyFavoriteListTmpl.hbs';
 import { runAnimationCards } from './renderingSaerchEvents';
 import { firstEventRender } from './renderingCards';
+import { onDeleteFav } from './modal';
 
 signInBtnRef.addEventListener('click', openAuthContainer);
 
@@ -45,6 +46,14 @@ firebase.auth().onAuthStateChanged(function (user) {
           dataContainer.innerHTML = favouritesTmpl(Object.values(doc.data()));
           runAnimationCards();
           paginationRef.style.visibility = 'hidden';
+          localStorage.setItem(
+            'data',
+            JSON.stringify(Object.values(doc.data())),
+          );
+          const deleteFavBtns = document.querySelectorAll('.delete-fav');
+          deleteFavBtns.forEach(btn =>
+            btn.addEventListener('click', onDeleteFav),
+          );
           document
             .querySelector('.back-btn')
             .addEventListener('click', firstEventRender);
@@ -55,7 +64,6 @@ firebase.auth().onAuthStateChanged(function (user) {
         } else if (!doc.exists) {
           paginationRef.style.visibility = 'hidden';
           emptyFavoriteList();
-          console.log('No such document!');
         }
       });
     });
@@ -89,7 +97,7 @@ function signOutUser() {
 
 window.signOutUser = signOutUser;
 
-function emptyFavoriteList() {
+export function emptyFavoriteList() {
   dataContainer.innerHTML = emptyFavoriteListTmpl();
   document
     .querySelector('.back-btn-empty')

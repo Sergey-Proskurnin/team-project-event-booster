@@ -1,6 +1,6 @@
 // import preloaderFactory from './preloader';
 import chooseLazyLoad from './lazy-load';
-import { preloader, paginationRef } from './refs';
+import { preloader, paginationRef }  from './refs';
 import { onParametersDataBase } from './onParametersDataBase';
 import eventsCardTmplCopy from '../templates/eventsCardTmpl_copy.hbs';
 import addAnimationOnCards from './addAnimationOnCards';

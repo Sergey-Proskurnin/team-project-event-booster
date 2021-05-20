@@ -3,25 +3,32 @@ import 'basiclightbox/dist/basiclightbox.min.css';
 const basicLightbox = require('basiclightbox');
 import evtModalTmpl from '../templates/evtModal.hbs';
 import evtModalInfo from '../templates/evtModalInfo.hbs';
-import favouritesTmpl from '../templates/favouritesTmpl.hbs'
-import { eventCardRef, dataContainer, paginationRef,  authWrapperRef, logoRef } from './refs';
+import favouritesTmpl from '../templates/favouritesTmpl.hbs';
+import {
+  eventCardRef,
+  dataContainer,
+  paginationRef,
+  authWrapperRef,
+  logoRef,
+} from './refs';
 import { db } from './firebaseApi';
 import getUrlValue from './urlValue';
 import 'firebaseui/dist/firebaseui.css';
 import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/database';
-import {runAnimationCards} from './renderingSaerchEvents'
+import { runAnimationCards } from './renderingSaerchEvents';
+import { emptyFavoriteList } from './authUserOnSite';
+import { firstEventRender } from './renderingCards';
 
-
-
+const user = firebase.auth().currentUser;
 
 let modal = basicLightbox;
 
 eventCardRef.addEventListener('click', onCardClick);
 
 function onCardClick(e) {
-    if (
+  if (
     e.target.classList.contains('event-image') ||
     e.target.classList.contains('event-title')
   ) {
@@ -35,35 +42,36 @@ function onCardClick(e) {
   }
 }
 
-function addListeners () {
+function addListeners() {
   //  const addBtn = document.querySelector('#favourite');
   // const myFav = document.querySelector('.my-fav');
   // const loadMoreBtn = document.querySelector('.more-info');
   document.querySelector('.btn.next').addEventListener('click', slideNext);
   document.querySelector('.btn.prev').addEventListener('click', slidePrev);
   document.querySelector('.more-info').addEventListener('click', showMore);
-  document.querySelector('#favourite').addEventListener('change', onAddToFavCheck);
-  document.querySelector('.my-fav').addEventListener('click', onMyFavClick)
+  document
+    .querySelector('#favourite')
+    .addEventListener('change', onAddToFavCheck);
+  document.querySelector('.my-fav').addEventListener('click', onMyFavClick);
 }
 
-function favBtnsToggle (id) {
+function favBtnsToggle(id) {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-     const userCollection = db.collection(`${user.uid}`).doc('fav')
-     userCollection.get().then((doc)=>{
-       if (doc.exists) {
-        const favListIDs = Object.keys(doc.data())
-         if (favListIDs.includes(id)) {
-           document.querySelector('#favourite').checked = true;
-         }
-      } else {
-        document.querySelector('#favourite').disabled = true;
-        document.querySelector('.my-fav').disabled = true;
-      }
-    })
-   }
-  })
-
+      const userCollection = db.collection(`${user.uid}`).doc('fav');
+      userCollection.get().then(doc => {
+        if (doc.exists) {
+          const favListIDs = Object.keys(doc.data());
+          if (favListIDs.includes(id)) {
+            document.querySelector('#favourite').checked = true;
+          }
+        }
+      });
+    } else {
+      document.querySelector('#favourite').disabled = true;
+      document.querySelector('.my-fav').disabled = true;
+    }
+  });
 }
 
 function openModal(markupInfo) {
@@ -72,20 +80,18 @@ function openModal(markupInfo) {
       document.body.style.overflow = 'hidden';
       modal.element().querySelector('.close-modal').onclick = modal.close;
       document.addEventListener('keyup', closeOnEsc);
-      authWrapperRef.style.display = 'none'
-      logoRef.style.visibility = 'hidden'
-      
+      authWrapperRef.style.display = 'none';
+      logoRef.style.visibility = 'hidden';
     },
     onClose: modal => {
       document.body.style.overflow = 'auto';
       document.removeEventListener('keyup', closeOnEsc);
-      authWrapperRef.style.display = 'block'
-      logoRef.style.visibility = 'visible'
+      authWrapperRef.style.display = 'block';
+      logoRef.style.visibility = 'visible';
     },
   });
   modal.show();
-  addListeners()
-   
+  addListeners();
 
   function closeOnEsc(e) {
     if (e.key === 'Escape') {
@@ -129,10 +135,10 @@ function slideNext() {
     evtInfoMarkup = evtModalInfo(fetchResult[0]);
   }
   document.querySelector('.wrapper').innerHTML = evtInfoMarkup;
- 
+
   addListeners();
   infoTextToggle();
-  favBtnsToggle (id)
+  favBtnsToggle(id);
 }
 
 function slidePrev() {
@@ -147,12 +153,11 @@ function slidePrev() {
   }
 
   document.querySelector('.wrapper').innerHTML = evtInfoMarkup;
- 
-  addListeners()
-  infoTextToggle();
-  favBtnsToggle(id)
-}
 
+  addListeners();
+  infoTextToggle();
+  favBtnsToggle(id);
+}
 
 function showMore(e) {
   e.preventDefault();
@@ -168,24 +173,28 @@ function onAddToFavCheck(e) {
   if (e.target.checked) {
     console.log('attr checked');
     addToFav();
-  }else {
+  } else {
     console.log('attr not checked');
-    removeFromFav()
+    removeFromFav();
   }
-
 }
 function addToFav() {
   const id = document.querySelector('.evt-wrapper').id;
-  console.log('i am id',id); 
+  console.log('i am id', id);
   let fetchResult = JSON.parse(localStorage.getItem('data'));
   const evtInfo = fetchResult.find(e => e.id === id);
-  
+
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       console.log('modal', user.uid);
-      db.collection(`${user.uid}`).doc('fav').set({
-        [id]: evtInfo,
-      },{merge: true});
+      db.collection(`${user.uid}`)
+        .doc('fav')
+        .set(
+          {
+            [id]: evtInfo,
+          },
+          { merge: true },
+        );
       // User is signed in.
     } else {
       // No user is signed in.
@@ -194,51 +203,64 @@ function addToFav() {
 }
 
 function removeFromFav() {
-    const id = document.querySelector('.evt-wrapper').id;
-    removeFromDatabase(id)
+  const id = document.querySelector('.evt-wrapper').id;
+  removeFromDatabase(id);
 }
 
-function onMyFavClick(){
-    getAndRenderFavList()
-    modal.close()
-    paginationRef.style.visibility ='hidden'
+function onMyFavClick() {
+  getAndRenderFavList();
+  modal.close();
+  paginationRef.style.visibility = 'hidden';
 }
-    
-function onDeleteFav (e){
+
+function onDeleteFav(e) {
   const id = e.target.parentNode.id;
   console.log(id, e);
-  removeFromDatabase(id)
+  removeFromDatabase(id);
 }
 
-
-function removeFromDatabase (id) {
+function removeFromDatabase(id) {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      const userCollection = db.collection(`${user.uid}`).doc('fav')
+      const userCollection = db.collection(`${user.uid}`).doc('fav');
       userCollection.update({
-        [id]: firebase.firestore.FieldValue.delete()
-    });
-    getAndRenderFavList()
-  }}
-   )
+        [id]: firebase.firestore.FieldValue.delete(),
+      });
+      getAndRenderFavList();
+    }
+  });
 }
-
 
 function getAndRenderFavList() {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-     const userCollection = db.collection(`${user.uid}`).doc('fav')
-     userCollection.get().then((doc)=>{
-       if (doc.exists) {
-        dataContainer.innerHTML = favouritesTmpl(Object.values(doc.data()))
-        runAnimationCards()
-        localStorage.setItem('data', JSON.stringify(Object.values(doc.data())));
-        const deleteFavBtns = document.querySelectorAll('.delete-fav') 
-        deleteFavBtns.forEach(btn=>btn.addEventListener('click', onDeleteFav))
-      } else {
-        console.log("No such document!");
-      }
-    })
-   }
-  })
+      const userCollection = db.collection(`${user.uid}`).doc('fav');
+      userCollection.get().then(doc => {
+        if (doc.exists) {
+          dataContainer.innerHTML = favouritesTmpl(Object.values(doc.data()));
+          runAnimationCards();
+          document
+            .querySelector('.back-btn')
+            .addEventListener('click', firstEventRender);
+
+          localStorage.setItem(
+            'data',
+            JSON.stringify(Object.values(doc.data())),
+          );
+          const deleteFavBtns = document.querySelectorAll('.delete-fav');
+          deleteFavBtns.forEach(btn =>
+            btn.addEventListener('click', onDeleteFav),
+          );
+          if (Object.keys(doc.data()).length === 0) {
+            emptyFavoriteList();
+          }
+        } else if (!doc.exists) {
+          addListeners();
+          paginationRef.style.visibility = 'hidden';
+          emptyFavoriteList();
+        }
+      });
+    }
+  });
 }
+export { onMyFavClick, onDeleteFav };
