@@ -21,8 +21,6 @@ import { runAnimationCards } from './renderingSaerchEvents';
 import { emptyFavoriteList } from './authUserOnSite';
 import { firstEventRender } from './renderingCards';
 
-const user = firebase.auth().currentUser;
-
 let modal = basicLightbox;
 
 eventCardRef.addEventListener('click', onCardClick);
@@ -43,9 +41,6 @@ function onCardClick(e) {
 }
 
 function addListeners() {
-  //  const addBtn = document.querySelector('#favourite');
-  // const myFav = document.querySelector('.my-fav');
-  // const loadMoreBtn = document.querySelector('.more-info');
   document.querySelector('.btn.next').addEventListener('click', slideNext);
   document.querySelector('.btn.prev').addEventListener('click', slidePrev);
   document.querySelector('.more-info').addEventListener('click', showMore);
@@ -170,17 +165,14 @@ function showMore(e) {
 }
 
 function onAddToFavCheck(e) {
- 
   if (e.target.checked) {
-   
     addToFav();
   } else {
-    
     justRemoveFromFav();
   }
 }
 
-function justRemoveFromFav () {
+function justRemoveFromFav() {
   const id = document.querySelector('.evt-wrapper').id;
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -188,20 +180,17 @@ function justRemoveFromFav () {
       userCollection.update({
         [id]: firebase.firestore.FieldValue.delete(),
       });
-      
     }
   });
 }
 
 function addToFav() {
   const id = document.querySelector('.evt-wrapper').id;
-  console.log('i am id', id);
   let fetchResult = JSON.parse(localStorage.getItem('data'));
   const evtInfo = fetchResult.find(e => e.id === id);
 
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      console.log('modal', user.uid);
       db.collection(`${user.uid}`)
         .doc('fav')
         .set(
@@ -230,7 +219,6 @@ function onMyFavClick() {
 
 function onDeleteFav(e) {
   const id = e.target.parentNode.id;
-  console.log(id, e);
   removeFromDatabase(id);
 }
 
