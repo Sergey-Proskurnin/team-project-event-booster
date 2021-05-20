@@ -5,7 +5,7 @@ import { onRenderingSearchEvents } from './renderingSaerchEvents';
 
 function getData(url) {
   $('#demo').pagination({
-    dataSource: `${BASE_URL}?${url}&apkey=${API_KEY}`,
+    dataSource: `${BASE_URL}?${url}&apikey=${API_KEY}`,
     formatAjaxError: function (jqXHR, textStatus, errorThrown) {
       onError();
     },
