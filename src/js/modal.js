@@ -169,15 +169,29 @@ function showMore(e) {
 }
 
 function onAddToFavCheck(e) {
-  console.log('btn');
+ 
   if (e.target.checked) {
-    console.log('attr checked');
+   
     addToFav();
   } else {
-    console.log('attr not checked');
-    removeFromFav();
+    
+    justRemoveFromFav();
   }
 }
+
+function justRemoveFromFav () {
+  const id = document.querySelector('.evt-wrapper').id;
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      const userCollection = db.collection(`${user.uid}`).doc('fav');
+      userCollection.update({
+        [id]: firebase.firestore.FieldValue.delete(),
+      });
+      
+    }
+  });
+}
+
 function addToFav() {
   const id = document.querySelector('.evt-wrapper').id;
   console.log('i am id', id);
