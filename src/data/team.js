@@ -68,7 +68,7 @@ export default [
   {
     fullName: 'Mykhaylo Strilchuk',
     position: 'Modal Open master',
-    photo: 'https://fs41.fex.net/preview/3334796398/400x0',
+    photo: 'https://fs39.fex.net/preview/3340614922/400x0',
     linkedIn: 'linkedin.com/in/misha-strilchuk-ba2a6494 ',
     gitHub: 'https://github.com/mishastr77 ',
     instagram: '#',
