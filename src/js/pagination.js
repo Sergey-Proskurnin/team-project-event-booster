@@ -5,7 +5,7 @@ import { onRenderingSearchEvents } from './renderingSaerchEvents';
 
 function getData(url) {
   $('#demo').pagination({
-    dataSource: `${BASE_URL}?${url}&apikey=${API_KEY}`,
+    dataSource: `${BASE_URL}?${url}&apkey=${API_KEY}`,
     formatAjaxError: function (jqXHR, textStatus, errorThrown) {
       onError();
     },
@@ -29,12 +29,12 @@ function getData(url) {
 // /**Function - callback pnotify */
 function onError() {
   dataContainer.innerHTML =
-    '<img class="imageNotfication" src = "http://papus666.narod.ru/clipart/e/enot/enot08.png"  ><h2 class="notification">"Oh no, this is bad URL. Please, try again"</h2> ';
+    '<img class="imageNotfication" src = "https://avatanplus.ru/files/resources/original/5976e8c05a59415d787d2f72.png"  ><h2 class="notification">"Oh no, this is bad URL. Please, try again"</h2> ';
   preloader.hide();
 }
 function onInfoBadSearch() {
   dataContainer.innerHTML =
-    '<img class="imageNotfication" src = "http://papus666.narod.ru/clipart/e/enot/enot07.png" ><h2 class="notification">"Oops, no events in this country!"</h2> ';
+    '<img class="imageNotfication" src = "https://i.pinimg.com/originals/53/52/7e/53527e7fcfed3820a3e38bb755888650.png" ><h2 class="notification">"Oops, no events in this country!"</h2> ';
   preloader.hide();
 }
 export { getData };
