@@ -51,11 +51,12 @@ function addListeners() {
   document.querySelector('.more-info').addEventListener('click', showMore);
   document
     .querySelector('#favourite')
-    .addEventListener('change', onAddToFavCheck);
+    .addEventListener('click', onAddToFavCheck);
   document.querySelector('.my-fav').addEventListener('click', onMyFavClick);
 }
 
-function favBtnsToggle(id) {
+function favBtnsToggle() {
+  const id = document.querySelector('.evt-wrapper').id;
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       const userCollection = db.collection(`${user.uid}`).doc('fav');
@@ -138,7 +139,7 @@ function slideNext() {
 
   addListeners();
   infoTextToggle();
-  favBtnsToggle(id);
+  favBtnsToggle();
 }
 
 function slidePrev() {
