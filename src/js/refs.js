@@ -9,8 +9,7 @@ const eventCardRef = document.querySelector('.event-cards');
 const signInBtnRef = document.querySelector('.sign-in-button');
 const authContaineRef = document.querySelector('.auth-container');
 const authWrapperRef = document.querySelector('.auth-wrapper');
-const paginationRef = document.querySelector('#demo')
-
+const paginationRef = document.querySelector('#demo');
 const gallery = document.querySelector('.eventsCardTmpl_copy');
 const geoModal = document.querySelector('.js-geolocation-modal');
 const geoModalBackdrop = document.querySelector('.js-geolocation-backdrop');
@@ -28,5 +27,5 @@ export {
   signInBtnRef,
   authContaineRef,
   authWrapperRef,
-  paginationRef
+  paginationRef,
 };

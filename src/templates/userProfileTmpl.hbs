@@ -1,6 +1,14 @@
 {{#with this}}
   <div class='user-container'>
-    <img src='{{photoURL}}' alt='{{displayName}}' class='user-photo' />
+    {{#if photoURL}}
+      <img src='{{photoURL}}' alt='{{displayName}}' class='user-photo' />
+    {{else}}
+      <img
+        src='https://st2.depositphotos.com/5142301/11063/v/950/depositphotos_110635670-stock-illustration-raccoon-logo-isolated-raccoon-head.jpg'
+        alt='Anonymous'
+        class='user-photo'
+      />
+    {{/if}}
     {{!-- {{#if displayName}}
       <p class='user-name'>{{!displayName}}</p>
     {{!else}}
