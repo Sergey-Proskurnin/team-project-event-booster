@@ -29,6 +29,9 @@
 }
 
 .event-card::before {
+  ////Please do NOT delete this!
+  pointer-events: none;
+  /////////////
   content: '';
 
   position: absolute;

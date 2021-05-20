@@ -19,10 +19,7 @@ $basicLightbox__timing: ease; // Transition timing
   cursor: pointer;
 }
 .basicLightbox__placeholder {
-  margin: auto auto 0px 0px;
-  @include for-size(tablet) {
-    margin: auto;
-  }
+  margin: auto;
 }
 
 .event-modal {
@@ -42,15 +39,6 @@ $basicLightbox__timing: ease; // Transition timing
 }
 
 .close-modal {
-  // display: block;
-  // position: absolute;
-  // right: 25px;
-  // top: 25px;
-  // margin-left: auto;
-  // max-height: 24px;
-  // border: none;
-  // color: #4c00fe;
-  // background-color: #fff2fd;
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
@@ -250,6 +238,12 @@ $basicLightbox__timing: ease; // Transition timing
   }
 }
 
+.add-to-fav {
+  text-align: center;
+  @include for-size(tablet) {
+    margin-left: 15%;
+  }
+}
 .icon-next {
   transform: rotateY(180deg);
 }
@@ -258,43 +252,71 @@ $basicLightbox__timing: ease; // Transition timing
 .icon-prev {
   font-size: 35px;
 }
-// @media screen and (min-width: 768px) {
-//   .event-modal {
-//
-//   }
-//   .poster-img {
-//     display: block;
-//     width: 230px;
-//     height: 415px;
-//     object-fit: cover;
-//     padding: 0 10px;
-//   }
 
-//   .info-event {
-//     display: flex;
-//     justify-content: space-around;
-//     padding: 40px 10px;
-//     text-align: left;
-//     padding-left: 20px;
-//   }
-//   .ticket {
-//     margin-left: 0;
-//   }
-//   .event-data {
-//     padding-left: 30px;
-//   }
-// }
+.checkbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: silver;
+  margin-bottom: 12px;
 
-// @media screen and (min-width: 1200px) {
-//   .event-modal {
-//     top: 141px;
-//     left: 155px;
-//     width: 930px;
-//     height: 1023px;
-//     max-width: 950px;
-//     padding: 60px 20px;
-//   }
-//   .poster-img {
-//     width: 360px;
-//   }
-// }
+  animation: blink linear infinite 2s;
+  @keyframes blink {
+    78% {
+      color: inherit;
+      box-shadow: inherit;
+    }
+    79% {
+      color: tomato;
+    }
+    80% {
+      box-shadow: none;
+    }
+    81% {
+      color: inherit;
+      box-shadow: inherit;
+    }
+    82% {
+      color: red;
+      box-shadow: none;
+    }
+    83% {
+      color: inherit;
+      box-shadow: inherit;
+    }
+    92% {
+      color: violet;
+      box-shadow: none;
+    }
+    92.5% {
+      color: blueviolet;
+      box-shadow: inherit;
+    }
+  }
+}
+
+.star {
+  font-size: 30px;
+}
+.fav {
+  appearance: none;
+  position: absolute;
+}
+.fav:checked ~ .add-text {
+  display: none;
+}
+
+.fav:checked ~ .star {
+  color: $accent-color;
+  animation: blink linear infinite 2s;
+}
+
+#modal-fav-btn {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+}

@@ -13,6 +13,7 @@ const paginationRef = document.querySelector('#demo');
 const gallery = document.querySelector('.eventsCardTmpl_copy');
 const geoModal = document.querySelector('.js-geolocation-modal');
 const geoModalBackdrop = document.querySelector('.js-geolocation-backdrop');
+const logoRef = document.querySelector('#logo-link')
 
 export {
   eventCardRef,
@@ -28,4 +29,5 @@ export {
   authContaineRef,
   authWrapperRef,
   paginationRef,
+  logoRef
 };
