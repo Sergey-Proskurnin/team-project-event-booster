@@ -1,11 +1,11 @@
 {{#with this}}
   <div class='user-container'>
     <img src='{{photoURL}}' alt='{{displayName}}' class='user-photo' />
-    {{#if displayName}}
-      <p class='user-name'>{{displayName}}</p>
-    {{else}}
+    {{!-- {{#if displayName}}
+      <p class='user-name'>{{!displayName}}</p>
+    {{!else}}
       <p class='user-name'>Неопознанный енот</p>
-    {{/if}}
+    {{!/if}} --}}
 
     <div class='button-flex'>
       <button class='favorite-event' type='button'>
@@ -13,7 +13,7 @@
           star_border
         </span>
         <span class='favorite-text'>
-          Favorite events
+          Favorites
         </span>
       </button>
       <button class='sign-out-btn' type='button' onclick='signOutUser()'>
