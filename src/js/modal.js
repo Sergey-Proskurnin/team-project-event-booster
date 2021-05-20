@@ -4,42 +4,34 @@ const basicLightbox = require('basiclightbox');
 import evtModalTmpl from '../templates/evtModal.hbs';
 import evtModalInfo from '../templates/evtModalInfo.hbs';
 import favouritesTmpl from '../templates/favouritesTmpl.hbs'
-import { eventCardRef, dataContainer, paginationRef,  authWrapperRef } from './refs';
+import { eventCardRef, dataContainer, paginationRef,  authWrapperRef, logoRef } from './refs';
 import { db } from './firebaseApi';
 import getUrlValue from './urlValue';
 import 'firebaseui/dist/firebaseui.css';
-import * as firebaseui from 'firebaseui';
 import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/database';
-
 import {runAnimationCards} from './renderingSaerchEvents'
 
 
 
-const user = firebase.auth().currentUser;
+
 let modal = basicLightbox;
 
 eventCardRef.addEventListener('click', onCardClick);
 
 function onCardClick(e) {
-  let fetchResult = JSON.parse(localStorage.getItem('data'));
-  if (
+    if (
     e.target.classList.contains('event-image') ||
     e.target.classList.contains('event-title')
   ) {
+    let fetchResult = JSON.parse(localStorage.getItem('data'));
     const id = e.target.parentNode.id;
-
-    // console.log('i need this id', id);
-
     const evtInfo = fetchResult.find(evt => evt.id === id);
-    //  console.log(evtInfo);
     const evtInfoMarkup = evtModalTmpl(evtInfo);
     openModal(evtInfoMarkup);
     infoTextToggle();
-    onLoadMoreModalBtn();
-    // document.querySelector('.btn.next').addEventListener('click', slideNext);
-    // document.querySelector('.btn.prev').addEventListener('click', slidePrev);
+    favBtnsToggle(id);
   }
 }
 
@@ -54,6 +46,26 @@ function addListeners () {
   myFav.addEventListener('click', onMyFavClick)
 }
 
+function favBtnsToggle (id) {
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+     const userCollection = db.collection(`${user.uid}`).doc('fav')
+     userCollection.get().then((doc)=>{
+       if (doc.exists) {
+        const favListIDs = Object.keys(doc.data())
+         if (favListIDs.includes(id)) {
+           document.querySelector('#favourite').checked = true;
+         }
+      } else {
+        document.querySelector('#favourite').disabled = true;
+        document.querySelector('.my-fav').disabled = true;
+      }
+    })
+   }
+  })
+
+}
+
 function openModal(markupInfo) {
   modal = basicLightbox.create(`${markupInfo}`, {
     onShow: modal => {
@@ -61,23 +73,25 @@ function openModal(markupInfo) {
       modal.element().querySelector('.close-modal').onclick = modal.close;
       document.addEventListener('keyup', closeOnEsc);
       authWrapperRef.style.display = 'none'
-      addListeners()
+      logoRef.style.visibility = 'hidden'
+      
     },
     onClose: modal => {
       document.body.style.overflow = 'auto';
       document.removeEventListener('keyup', closeOnEsc);
       authWrapperRef.style.display = 'block'
+      logoRef.style.visibility = 'visible'
     },
   });
   modal.show();
+  addListeners()
+   
 
   function closeOnEsc(e) {
     if (e.key === 'Escape') {
       modal.close();
     }
   }
- 
-  
 }
 
 function infoTextToggle() {
@@ -110,16 +124,15 @@ function slideNext() {
   const id = document.querySelector('.evt-wrapper').id;
   const evt = fetchResult.find(evt => evt.id === id);
   const evtIndex = fetchResult.indexOf(evt);
-  const addBtn = document.querySelector('#favourite');
   let evtInfoMarkup = evtModalInfo(fetchResult[evtIndex + 1]);
   if (evtIndex === fetchResult.length - 1) {
     evtInfoMarkup = evtModalInfo(fetchResult[0]);
   }
   document.querySelector('.wrapper').innerHTML = evtInfoMarkup;
  
-  addListeners()
-  
+  addListeners();
   infoTextToggle();
+  favBtnsToggle (id)
 }
 
 function slidePrev() {
@@ -127,7 +140,6 @@ function slidePrev() {
   const id = document.querySelector('.evt-wrapper').id;
   const evt = fetchResult.find(evt => evt.id === id);
   const evtIndex = fetchResult.indexOf(evt);
-  const addBtn = document.querySelector('#favourite');
   let evtInfoMarkup = evtModalInfo(fetchResult[evtIndex - 1]);
 
   if (evtIndex === 0) {
@@ -138,6 +150,7 @@ function slidePrev() {
  
   addListeners()
   infoTextToggle();
+  favBtnsToggle(id)
 }
 
 
@@ -210,7 +223,7 @@ function removeFromDatabase (id) {
 }
 
 
-function getAndRenderFavList(){
+function getAndRenderFavList() {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
      const userCollection = db.collection(`${user.uid}`).doc('fav')
