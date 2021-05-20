@@ -265,6 +265,7 @@ $basicLightbox__timing: ease; // Transition timing
   margin-bottom: 12px;
 
   animation: blink linear infinite 2s;
+
   @keyframes blink {
     78% {
       color: inherit;
@@ -319,4 +320,14 @@ $basicLightbox__timing: ease; // Transition timing
   margin-left: auto;
   margin-right: auto;
   margin-top: 0;
+  &:disabled {
+    color: grey;
+    background: linear-gradient(45deg, #9c87b8, rgba(125, 125, 129, 0.747));
+    box-shadow: none;
+    transition: all 0.25s;
+    &:hover {
+      box-shadow: 0 0 10px 3px $accent-color;
+      animation: none;
+    }
+  }
 }
