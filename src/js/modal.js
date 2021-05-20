@@ -7,18 +7,17 @@ import favouritesTmpl from '../templates/favouritesTmpl.hbs'
 import { eventCardRef, dataContainer, paginationRef,  authWrapperRef } from './refs';
 import { db } from './firebaseApi';
 import getUrlValue from './urlValue';
-// import et from '../templates/favTmpl.hbs';
-// console.log(et());
-import eventsCardTmplCopy from '../templates/eventsCardTmpl_copy.hbs';
 import 'firebaseui/dist/firebaseui.css';
 import * as firebaseui from 'firebaseui';
 import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/database';
-import { data } from 'jquery';
-// import {runAnimationCards} from './renderingSaerchEvents'
-import addAnimationOnCards from './addAnimationOnCards';
 
+import {runAnimationCards} from './renderingSaerchEvents'
+
+
+
+const user = firebase.auth().currentUser;
 let modal = basicLightbox;
 
 eventCardRef.addEventListener('click', onCardClick);
@@ -39,9 +38,20 @@ function onCardClick(e) {
     openModal(evtInfoMarkup);
     infoTextToggle();
     onLoadMoreModalBtn();
-    document.querySelector('.btn.next').addEventListener('click', slideNext);
-    document.querySelector('.btn.prev').addEventListener('click', slidePrev);
+    // document.querySelector('.btn.next').addEventListener('click', slideNext);
+    // document.querySelector('.btn.prev').addEventListener('click', slidePrev);
   }
+}
+
+function addListeners () {
+   const addBtn = document.querySelector('#favourite');
+  const myFav = document.querySelector('.my-fav');
+  const loadMoreBtn = document.querySelector('.more-info');
+  document.querySelector('.btn.next').addEventListener('click', slideNext);
+  document.querySelector('.btn.prev').addEventListener('click', slidePrev);
+  loadMoreBtn.addEventListener('click', showMore);
+  addBtn.addEventListener('change', onAddToFavCheck);
+  myFav.addEventListener('click', onMyFavClick)
 }
 
 function openModal(markupInfo) {
@@ -51,6 +61,7 @@ function openModal(markupInfo) {
       modal.element().querySelector('.close-modal').onclick = modal.close;
       document.addEventListener('keyup', closeOnEsc);
       authWrapperRef.style.display = 'none'
+      addListeners()
     },
     onClose: modal => {
       document.body.style.overflow = 'auto';
@@ -65,11 +76,8 @@ function openModal(markupInfo) {
       modal.close();
     }
   }
-
-  const addBtn = document.querySelector('#favourite');
-  const myFav = document.querySelector('.my-fav')
-  addBtn.addEventListener('change', onAddToFavCheck);
-  myFav.addEventListener('click', onMyFavClick)
+ 
+  
 }
 
 function infoTextToggle() {
@@ -108,10 +116,9 @@ function slideNext() {
     evtInfoMarkup = evtModalInfo(fetchResult[0]);
   }
   document.querySelector('.wrapper').innerHTML = evtInfoMarkup;
-  document.querySelector('.btn.next').addEventListener('click', slideNext);
-  document.querySelector('.btn.prev').addEventListener('click', slidePrev);
-  addBtn.addEventListener('change', onAddToFavCheck);
-  onLoadMoreModalBtn();
+ 
+  addListeners()
+  
   infoTextToggle();
 }
 
@@ -128,25 +135,16 @@ function slidePrev() {
   }
 
   document.querySelector('.wrapper').innerHTML = evtInfoMarkup;
-  document.querySelector('.btn.next').addEventListener('click', slideNext);
-  document.querySelector('.btn.prev').addEventListener('click', slidePrev);
-  addBtn.addEventListener('change', onAddToFavCheck);
-  onLoadMoreModalBtn();
+ 
+  addListeners()
   infoTextToggle();
 }
 
-function onLoadMoreModalBtn() {
-  const loadMoreBtn = document.querySelector('.more-info');
-  if (document.contains(loadMoreBtn)) {
-    loadMoreBtn.addEventListener('click', showMore);
-  }
-}
 
 function showMore(e) {
   e.preventDefault();
   let fetchResult = JSON.parse(localStorage.getItem('data'));
   modal.close();
-  // document.body.style.overflow = 'auto';
   const id = e.target.parentNode.id;
   const valueInput = fetchResult.find(e => e.id === id).name;
   getUrlValue(valueInput, '');
@@ -167,7 +165,7 @@ function addToFav(e) {
   const id = document.querySelector('.evt-wrapper').id;
   let fetchResult = JSON.parse(localStorage.getItem('data'));
   const evtInfo = fetchResult.find(e => e.id === id);
-  const user = firebase.auth().currentUser;
+  
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       console.log('modal', user.uid);
@@ -183,46 +181,50 @@ function addToFav(e) {
 
 function removeFromFav() {
     const id = document.querySelector('.evt-wrapper').id;
-    firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        console.log('modal', user.uid);
-        const userCollection = db.collection(`${user.uid}`).doc('fav')
-        const removeEvt = userCollection.update({
-          [id]: firebase.firestore.FieldValue.delete()
-      });
-       
-        // User is signed in.
-      } else {
-        // No user is signed in.
-      }
+    removeFromDatabase(id)
+}
 
-    })
-  }
-
-  function onMyFavClick(){
-   firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
-       const userCollection = db.collection(`${user.uid}`).doc('fav')
-       userCollection.get().then((doc)=>{
-         if (doc.exists) {
-          dataContainer.innerHTML = favouritesTmpl(Object.values(doc.data()))
-          runAnimationCards()
-        } else {
-          console.log("No such document!");
-        }
-      })
-     }
-    })
-
+function onMyFavClick(){
+    getAndRenderFavList()
     modal.close()
     paginationRef.style.visibility ='hidden'
 }
     
-function runAnimationCards() {
-  const elemCollection = document.querySelectorAll('.event-card');
-  Array.from(elemCollection).map(elem => {
-    setTimeout(() => {
-      addAnimationOnCards(elem);
-    }, 0);
+function onDeleteFav (e){
+  const id = e.target.parentNode.id;
+  console.log(id, e);
+  removeFromDatabase(id)
+}
+
+
+function removeFromDatabase (id) {
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      const userCollection = db.collection(`${user.uid}`).doc('fav')
+      userCollection.update({
+        [id]: firebase.firestore.FieldValue.delete()
+    });
+    getAndRenderFavList()
+  }}
+   )
+}
+
+
+function getAndRenderFavList(){
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+     const userCollection = db.collection(`${user.uid}`).doc('fav')
+     userCollection.get().then((doc)=>{
+       if (doc.exists) {
+        dataContainer.innerHTML = favouritesTmpl(Object.values(doc.data()))
+        runAnimationCards()
+        localStorage.setItem('data', JSON.stringify(Object.values(doc.data())));
+        const deleteFavBtns = document.querySelectorAll('.delete-fav') 
+        deleteFavBtns.forEach(btn=>btn.addEventListener('click', onDeleteFav))
+      } else {
+        console.log("No such document!");
+      }
+    })
+   }
   })
-};
+}
