@@ -10,18 +10,6 @@
          Author: S. Proskurnin, S. Maksymenko, A. Karhopolova, H. Kaminskaya, Z. Idirisov, I. Visloguzova, Y. Cherniuk, M. Strilchuk, T. Lobko, К. Sivak, D. Sagaidachnyi 05/21/2021"
     />
     <title>Event Booster</title>
-
-    <!-- <link
-      rel="icon"
-      type="image/png"
-      href="https://img-premium.flaticon.com/png/512/1545/1545906.png?token=exp=1620997586~hmac=88ed6a01f490c7e129a563b3ecab07ee"
-    /> -->
-    <!-- <link
-      rel="icon"
-      type="image/png"
-      href="https://img-premium.flaticon.com/png/512/1545/1545927.png?token=exp=1620997627~hmac=0243765cc8dc877dad95d08a76350010"
-    /> -->
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css"
@@ -38,7 +26,6 @@
   </head>
   <body>
     <header class="header" id="header">
-      <h1 class="visually-hidden">Event Booster</h1>
       <a id="logo-link" href="/">
         <div id="txtContainer"></div>
       </a>
@@ -68,7 +55,8 @@
           </h1>
           <!-- </div> -->
           <article class="form-submit">
-            <form class="search-form" id="search-form" action="" method="">
+            <h2 class="visually-hidden">Form submit</h2>
+            <form class="search-form" id="search-form">
               <!--             <input
                       class="search-input" -->
               <input
@@ -85,7 +73,7 @@
                 </svg>
               </button>
             </form>
-            <form class="select-form" id="select-form" action="">
+            <form class="select-form" id="select-form">
               <select class="select-country" id="ice" name="select-form">
                 <option class="select-option" value="">Choose country</option>
               </select>
@@ -94,9 +82,9 @@
           <!-- <div class="to-up material-icons md-36">arrow_upward</div> -->
         </section>
       </div>
-
       <div class="bg-img left-line right-line">
         <section class="section-card container">
+          <h2 class="visually-hidden">Cards events</h2>
           <div id="preloader">
             <div id="loader"></div>
           </div>
@@ -104,21 +92,18 @@
           <div id="demo"></div>
         </section>
       </div>
-
-<!-- geolocation -->
-    <div class="geolocation-backdrop js-geolocation-backdrop is-hidden">
-      <div
-        id="map"
-        class="geolocation-modal js-geolocation-modal
-          animate__animated animate__fadeIn
-        "
-      ></div>
-    </div>
-
+      <!-- geolocation -->
+      <div class="geolocation-backdrop js-geolocation-backdrop is-hidden">
+        <div
+          id="map"
+          class="
+            geolocation-modal
+            js-geolocation-modal
+            animate__animated animate__fadeIn
+          "
+        ></div>
+      </div>
     </main>
-
-    
-
     <footer>
       <div class="footer-wrapper">
         <div class="footer-wrapper__content">
@@ -128,9 +113,7 @@
         <a class="footer-open-modal Blazing"> TEAM FSD #28 </a>
       </div>
     </footer>
-
     <!-- <div class="footer-modal-team"></div> -->
-
     <div class="scroll-up">
       <svg class="scroll-up__svg" viewbox="-2 -2 52 52">
         <path
@@ -149,7 +132,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
-
     <script src="https://code.jquery.com/jquery-latest.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
