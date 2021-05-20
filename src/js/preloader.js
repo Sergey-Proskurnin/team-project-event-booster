@@ -9,5 +9,4 @@ const preloaderFactory = selector => {
     },
   };
 };
-
 export default preloaderFactory;

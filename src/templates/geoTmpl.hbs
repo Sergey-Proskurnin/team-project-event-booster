@@ -1,8 +1,3 @@
-<div width="560" height="315">
-    {{#if locationLatitude}}
-        <iframe src="https://maps.google.com?saddr=Current+Location&daddr={{this.locationLatitude}},
-    {{this.locationLongitude}}&output=embed" width="560" height="315" frameborder="0"></iframe>
-        {{else}}
-    <iframe src="https://www.google.com/search?q={{this.city}},&output=embed" width="560" height="315" frameborder="0"></iframe>
-    {{/if}}
+<div width='560' height='315'>
+  <iframe src='{{this}}&output=embed' , width='560' height='315' frameborder='0'></iframe>
 </div>

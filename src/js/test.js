@@ -717,4 +717,231 @@
 // console.log(user);
 
 // export { user };
-//==========================================================================================================================
+//=========================================================FirebaseApi.js=================================================
+// const docRef = db.collection('users').doc('BhuqyaszFAsfqQgXM17b');
+// docRef
+//   .get()
+//   .then(doc => {
+//     if (doc.exists) {
+//       console.log('Document data:', doc.data());
+//     } else {
+//       // doc.data() will be undefined in this case
+//       console.log('No such document!');
+//     }
+//   })
+//   .catch(error => {
+//     console.log('Error getting document:', error);
+//   });
+//=====================================================================eventCardTmplcopy===================================================
+// {{!-- {{#each this}}
+// <li class="event-card" id={{id}}>
+//     <img class="event-image lazyload" 
+//     loading="lazy"
+//     srcset="
+//         {{images1x128}} 128w,
+//         {{images2x128}} 128w,
+//         {{images1x180}} 180w,
+//         {{images2x180}} 180w
+//       " 
+//       data-src={{images1x180}} alt="{{name}}" />
+//     <h3 class="event-title">{{name}}</h3>
+//     <p class="event-date">{{dates}}</p>
+//     <p class="event-place">
+//         {{#if locationLatitude}}
+//             <a href="https://maps.google.com?saddr=Current+Location&daddr={{locationLatitude}},{{locationLongitude}}"
+//             target="_blank">
+//                 <span class="material-icons md-12 cards-icons">room</span>
+//                 {{#if venuesName}}
+//                     {{venuesName}},
+//                 {{/if}}
+//                 {{#if city}}
+//                     {{city}}
+//                         {{else}}
+//                             Online
+//                 {{/if}}
+//             </a>
+//         {{else}}
+//             <a href="hhttps://www.google.com/maps/dir/?api=1&{{city}}"
+//             target="_blank">
+//                 <span class="material-icons md-12 cards-icons">room</span>
+//                 {{#if venuesName}}
+//                     {{venuesName}},
+//                 {{/if}}
+//                 {{#if city}}
+//                     {{city}}
+//                         {{else}}
+//                             Online
+//                 {{/if}}
+//             </a>
+//         {{/if}}
+//     </p>
+// </li>
+// {{/each}} --}}
+//==================================================tplGeoModal==============================================================================
+// {{!-- <div width="560" height="315">
+//     {{#if locationLatitude}}
+//         <iframe src="https://maps.google.com?saddr=Current+Location&daddr={{this.locationLatitude}},
+//     {{this.locationLongitude}}&output=embed" width="560" height="315" frameborder="0"></iframe>
+//         {{else}}
+//     <iframe src="https://www.google.com/search?q={{this.city}},&output=embed" width="560" height="315" frameborder="0"></iframe>
+    
+//     {{/if}}
+// </div> --}}
+//================================================================_mouse.scss===============================================================
+// .mouse {
+//   position: fixed;
+//   left: 0;
+//   top: 0;
+//   width: 35px;
+//   height: 35px;
+//   border-radius: 100%;
+//   z-index: 99999;
+//   pointer-events: none;
+
+//   &::before {
+//     content: '';
+//     position: absolute;
+//     left: 50%;
+//     top: 50%;
+//     transform: translate(-50%, -50%);
+//     width: 15px;
+//     height: 15px;
+//     border-radius: 100%;
+//     z-index: 2;
+//     transition: opacity 1s ease-in-out;
+//   }
+
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     left: 50%;
+//     top: 50%;
+//     transform: translate(-50%, -50%);
+//     width: 25px;
+//     height: 25px;
+//     border-radius: 100%;
+//     background: transparent;
+//     border: 4px solid $accent-color;
+//     transition: opacity 1s ease-in-out;
+//   }
+
+//   & .mouse__view {
+//     position: absolute;
+//     left: 50%;
+//     top: 50%;
+//     transform: translate(-50%, -50%);
+//     width: 35px;
+//     height: 35px;
+//     z-index: 999999;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     font-size: 8px;
+//     line-height: 8px;
+//     letter-spacing: 1px;
+//     text-transform: uppercase;
+//     color: #fff;
+//     background-color: $accent-color;
+//     border-radius: 100%;
+//     opacity: 0;
+//     transition: opacity 1s ease-in-out;
+//   }
+// }
+
+// .view-visible .mouse__view {
+//   opacity: 1;
+//   transition: opacity 1s ease-in-out;
+// }
+
+// .links-visible::after {
+//   border: 4px solid $accent-color;
+//   transform: translate(-50%, -50%) scale(0.5);
+//   background-color: transparent;
+//   transition: 1s;
+// }
+
+// .links-visible::before {
+//   opacity: 0;
+// }
+//=============================================================================apiPaginationService.js===========================================
+// const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events.json';
+// const API_KEY = 'k4ZuaibW7VaW2DqWiJtNRmwq3dAdRpv6';
+
+// export default class FethApiPaginationService {
+//   constructor( render ) {
+//     this.searchCountry = '';
+//     this.searchQuery = '';
+//     this.render = render
+//   }
+//   getParamsApi() {
+//     const searchParams = new URLSearchParams({
+//       keyword: this.searchQuery,
+//       sort: 'random',
+//       countryCode: this.searchCountry,
+//       size: 24,
+//     });
+//     const paramsUrl = `${searchParams}`;
+//     return paramsUrl;
+//   }
+//   getData() {
+//     $('#demo').pagination({
+//       dataSource: `${BASE_URL}?${this.getParamsApi()}&apikey=${API_KEY}`,
+//       formatAjaxError: function (jqXHR, textStatus, errorThrown) {
+//         this.onError();
+//       },
+//       totalNumberLocator: function (response) {
+//         if (response.page.totalPages === 0) {
+//           this.onInfoBadSearch();
+//           console.log(response);
+//           return;
+//         }
+//         return response.page.totalPages;
+//       },
+//       locator: '_embedded.events',
+//       pageSize: 24,
+
+//       callback: function (data) {
+//         return data
+//       },
+//       showPrevious: false,
+//       showNext: false,
+//     });
+//     // searchInput.value = '';
+//   }
+
+//   get query() {
+//     return [this.searchQuery, this.searchCountry];
+//   }
+
+//   set query(newQueryArray) {
+//     this.searchQuery = newQueryArray[0];
+//     this.searchCountry = newQueryArray[newQueryArray.length - 1];
+//   }
+//   onError() {
+//     error({
+//       text: 'Error 404! Bad URL.',
+//       delay: 3000,
+//     });
+//   }
+//   onInfoBadSearch() {
+//     dataContainer.innerHTML =
+//       '<img class="imageNotfication" src = "https://cdn.pixabay.com/photo/2015/03/08/17/25/musician-664432_150.jpg"  ><h2 class="notification">"Sorry, no events in this country!"</h2> ';
+//     preloader.hide();
+//   }
+// }
+//===========================================================================link-favicon-header=============================================
+// <!-- <link
+//       rel="icon"
+//       type="image/png"
+//       href="https://img-premium.flaticon.com/png/512/1545/1545906.png?token=exp=1620997586~hmac=88ed6a01f490c7e129a563b3ecab07ee"
+//     /> -->
+//     <!-- <link
+//       rel="icon"
+//       type="image/png"
+//       href="https://img-premium.flaticon.com/png/512/1545/1545927.png?token=exp=1620997627~hmac=0243765cc8dc877dad95d08a76350010"
+//     /> -->
+
+
+
+
+
