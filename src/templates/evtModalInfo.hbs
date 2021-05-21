@@ -1,135 +1,159 @@
-<article class="evt-wrapper" id={{id}}>
-  <img   srcset="
+<article class='evt-wrapper' id={{id}}>
+  <img
+    srcset='
 
         {{images1x128}} 128w,
         {{images2x128}} 128w,
         {{images1x180}} 180w,
         {{images2x180}} 180w
 
-      " 
-      src={{images1x180}} alt="small event poster" class="title-img" />
-     
-  <div class="info-event">
-    <img srcset="
+      '
+    src={{images1x180}}
+    alt='small event poster'
+    class='title-img'
+  />
+
+  <div class='info-event'>
+    <img
+      srcset='
         {{images1x128}} 128w,
         {{images2x128}} 128w,
         {{images1x180}} 180w,
         {{images2x180}} 180w
-      " src={{images1x180}} alt="big event poster" class="poster-img" />
-       
-    <ul class="event-data">
-     {{#if this.info}}
-          <li class="info">
-            <h2 class="info modal-title">info</h2>
-            <p class="info-text">
-              {{this.info.[0]}}<span id="dots" class="material-icons">...
-</span><span id="more"> {{this.info.[1]}} <span id="less" class="material-icons">fast_rewind</span></span></p>
-          </li>
+      '
+      src={{images1x180}}
+      alt='big event poster'
+      class='poster-img'
+    />
+
+    <ul class='event-data'>
+      {{#if this.info}}
+        <li class='info'>
+          <h2 class='info modal-title'>info</h2>
+          <p class='info-text'>
+            {{!this.info.[0]}}<span id='dots' class='material-icons'>...
+            </span><span id='more'>
+              {{!this.info.[1]}}
+              <span
+                id='less'
+                class='material-icons'
+              >fast_rewind</span></span></p>
+        </li>
       {{/if}}
-          <li class="date">
-            <h2 class="date modal-title">when</h2>
-            <p class="date-text">{{date}}</p>
-            <p class="time-text">{{time}} {{timezone}}</p>
-          </li>
-          <li class="place">
-            <h2 class="place modal-title">where</h2>
+      <li class='date'>
+        <h2 class='date modal-title'>when</h2>
+        <p class='date-text'>{{date}}</p>
+        <p class='time-text'>{{time}} {{timezone}}</p>
+      </li>
+      <li class='place'>
+        <h2 class='place modal-title'>where</h2>
 
-{{#if locationLatitude}}
-            <a href="https://maps.google.com?saddr=Current+Location&daddr={{locationLatitude}},{{locationLongitude}}"
-            target="_blank">
-                <span class="material-icons modal-md-12">room</span>
-                {{#if venuesName}}
-                    {{venuesName}},
-                {{/if}}
-                {{#if city}}
-                    {{city}}
-                        {{else}}
-                            Online
-                {{/if}}
-            </a>
+        {{#if locationLatitude}}
+          <a
+            href='https://maps.google.com?saddr=Current+Location&daddr={{locationLatitude}},{{locationLongitude}}'
+            target='_blank'
+          >
+            <span class='material-icons modal-md-12'>room</span>
+            {{#if venuesName}}
+              {{venuesName}},
+            {{/if}}
+            {{#if city}}
+              {{city}}
+            {{else}}
+              Online
+            {{/if}}
+          </a>
         {{else}}
-            <a href="hhttps://www.google.com/maps/dir/?api=1&{{city}}"
-            target="_blank">
-                <span class="material-icons modal-md-12 ">room</span>
-                {{#if venuesName}}
-                    {{venuesName}},
-                {{/if}}
-                {{#if city}}
-                    {{city}}
-                        {{else}}
-                            Online
-                {{/if}}
-            </a>
+          <a
+            href='hhttps://www.google.com/maps/dir/?api=1&{{city}}'
+            target='_blank'
+          >
+            <span class='material-icons modal-md-12'>room</span>
+            {{#if venuesName}}
+              {{venuesName}},
+            {{/if}}
+            {{#if city}}
+              {{city}}
+            {{else}}
+              Online
+            {{/if}}
+          </a>
         {{/if}}
-          </li>
-          <li class="artist">
-            <h2 class="artist modal-title">who</h2>
-            <p class="artist-text">{{this.name}}</p>
-          </li>
-          {{#if this.priceRanges}}
-          <li class="prices">
-            <h2 class="prices modal-title">prices</h2>
-            <p class="price-text">
-             <span class="material-icons ticket-icon1">line_weight</span>
-             <span class="material-icons ticket-icon2">line_weight</span>
-            {{this.priceRanges.0.type}} 
-             {{this.priceRanges.0.min}}-{{this.priceRanges.0.max}} {{this.priceRanges.0.currency}}</p>
-          </li>
-          {{/if}}
-     {{#if this.products}}
-          <li class="ticket-button">
-            <a
-              href="{{this.products.0.url}}"
-              class="st ticket"
-              rel="noopener noreferrer"
-              target="_blank"
-              >buy tickets</a
-            >
-            </li>
+      </li>
+      <li class='artist'>
+        <h2 class='artist modal-title'>who</h2>
+        <p class='artist-text'>{{this.name}}</p>
+      </li>
+      {{#if this.priceRanges}}
+        <li class='prices'>
+          <h2 class='prices modal-title'>prices</h2>
+          <p class='price-text'>
+            <span class='material-icons ticket-icon1'>line_weight</span>
+            <span class='material-icons ticket-icon2'>line_weight</span>
+            {{this.priceRanges.0.type}}
+            {{this.priceRanges.0.min}}-{{this.priceRanges.0.max}}
+            {{this.priceRanges.0.currency}}</p>
+        </li>
+      {{/if}}
+      {{#if this.products}}
+        <li class='ticket-button'>
+          <a
+            href='{{this.products.0.url}}'
+            class='st ticket'
+            rel='noopener noreferrer'
+            target='_blank'
+          >buy tickets</a>
+        </li>
       {{/if}}
       {{#if this.priceRanges.1.type}}
-            <li class="prices">
-             <p class="price-text">
-              {{!-- <span class="material-icons ticket-icon1">line_weight</span>
-             <span class="material-icons ticket-icon2">line_weight</span> --}}
-             {{this.priceRanges.1.type}}
-             {{this.priceRanges.1.min}}-{{this.priceRanges.1.max}}
+        <li class='prices'>
+          <p class='price-text'>
+            {{! <span class="material-icons ticket-icon1">line_weight</span>
+             <span class="material-icons ticket-icon2">line_weight</span> }}
+            {{this.priceRanges.1.type}}
+            {{this.priceRanges.1.min}}-{{this.priceRanges.1.max}}
             {{this.priceRanges.1.currency}}</p>
-            </li>
+        </li>
       {{/if}}
       {{#if this.products.1.url}}
-        <li class="ticket-button">
-            <a
-              href="{{this.products.1.url}}"
-              class="st ticket"
-              rel="noopener noreferrer"
-              target="_blank"
-              >buy {{this.products.1.type}} tickets</a
-            >
-         </li>
+        <li class='ticket-button'>
+          <a
+            href='{{this.products.1.url}}'
+            class='st ticket'
+            rel='noopener noreferrer'
+            target='_blank'
+          >buy {{this.products.1.type}} tickets</a>
+        </li>
       {{/if}}
-        </ul>
-      </div>
-       <label class="checkbox" for="favourite">
-             <input
-            class="fav"
-            type="checkbox"
-            name="fav"
-            id="favourite"
-            aria-label="Add to favourite"
-          />
-          <span class="material-icons star">star</span>
-          <span class="add-text">add to favourites</span>
-        </label>
-        <button id='modal-fav-btn' class="favorite-event my-fav" type="button">
-        <span class="material-icons">
-          star_border
-        </span>
-        <span class="favorite-text">
-          Favourites
-        </span>
-      </button>
-      
-      
-      <a href="" class="more-info">more from this author</a>
+    </ul>
+  </div>
+  <div class='bubble-container'>
+    <div class='comment_bubble checkbox-bubble'>Please sign in to add in
+      favorites.</div>
+    <label class='checkbox' for='favourite'>
+      <input
+        class='fav'
+        type='checkbox'
+        name='fav'
+        id='favourite'
+        aria-label='Add to favourite'
+      />
+      <span class='material-icons star'>star</span>
+      <span class='add-text'>add to favourites</span>
+    </label>
+  </div>
+
+  <div class='bubble-container'>
+    <div class='comment_bubble fav-btn'>Please sign in to add in favorites.</div>
+    <button id='modal-fav-btn' class='favorite-event my-fav' type='button'>
+      <span class='material-icons'>
+        star_border
+      </span>
+      <span class='favorite-text'>
+        Favourites
+      </span>
+    </button>
+  </div>
+
+  <a href='' class='more-info'>more from this author</a>
 </article>
