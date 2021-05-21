@@ -54,6 +54,9 @@ function favBtnsToggle() {
   const id = document.querySelector('.evt-wrapper').id;
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
+      document
+        .querySelectorAll('.comment_bubble')
+        .forEach(i => (i.style.display = 'none'));
       const userCollection = db.collection(`${user.uid}`).doc('fav');
       userCollection.get().then(doc => {
         if (doc.exists) {
