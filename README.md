@@ -64,8 +64,8 @@ Maps on modal window.
   _**Scrum Master**, User account, adding events in Favorite, rendering
   Favorites library, button Back, preloader._
 - [<img src="https://img.shields.io/badge/-Olena%20Kaminska-FF4500" />](https://github.com/OlenaKa) -
-  \_Modal window logic, Firebase - working with database, slider, local storage,
-  feature of adding event in Favorites.
+  _Modal window logic, Firebase - working with database, slider, local storage,
+  feature of adding event in Favorites._
 - [<img src="https://img.shields.io/badge/-Sergii%20Maksymenko-87CEFA" />](https://github.com/uaMonterey) -
   _Creative animation of Hero, Team Modal window opening and style, seach form
   style, preloader, Custom ScrollToTop button._
