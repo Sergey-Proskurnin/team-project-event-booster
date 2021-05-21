@@ -70,7 +70,7 @@ export default [
     position: 'Modal Open master',
     photo: 'https://fs39.fex.net/preview/3340614922/400x0',
     linkedIn: 'linkedin.com/in/misha-strilchuk-ba2a6494 ',
-    gitHub: 'https://github.com/mishastr77 ',
+    gitHub: 'https://github.com/mishastr77',
     instagram: '#',
   },
   {

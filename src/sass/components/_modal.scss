@@ -351,8 +351,15 @@ $basicLightbox__timing: ease; // Transition timing
   opacity: 0;
   transition: all 0.25s;
 
+  @include for-size(desktop) {
+    top: -58px;
+  }
+
   &.checkbox-bubble {
     top: -115%;
+    @include for-size(desktop) {
+      top: -50px;
+    }
   }
 
   @include for-size(desktop) {

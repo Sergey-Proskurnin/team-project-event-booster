@@ -146,6 +146,11 @@
   line-height: 15px;
   text-align: center;
   color: $primary-text-color;
+  transition: all cubic-bezier(0.895, 0.03, 0.685, 0.22);
+
+  &:hover {
+    color: $accent-color;
+  }
 
   @include for-size(tablet) {
     font-size: 14px;
@@ -155,7 +160,7 @@
 
 .material-icons.cards-icons {
   font-size: 9px;
-  color: $primary-text-color;
+  color: inherit;
 
   @include for-size(tablet) {
     font-size: 10px;
