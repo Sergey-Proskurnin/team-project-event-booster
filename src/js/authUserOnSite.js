@@ -17,7 +17,7 @@ import favouritesTmpl from '../templates/favouritesTmpl.hbs';
 import emptyFavoriteListTmpl from '../templates/emptyFavoriteListTmpl.hbs';
 import { runAnimationCards } from './renderingSaerchEvents';
 import { firstEventRender } from './renderingCards';
-import { onDeleteFav } from './modal';
+import { onDeleteFav } from './dataBase';
 
 signInBtnRef.addEventListener('click', openAuthContainer);
 

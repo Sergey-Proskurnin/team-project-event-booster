@@ -17,6 +17,7 @@ import './js/addAnimationOnCards';
 import './js/authUserOnSite';
 import './js/logo';
 import './js/geoModal';
+import  './js/dataBase';
 
 
 
