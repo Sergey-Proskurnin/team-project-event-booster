@@ -4,11 +4,8 @@ import { emptyFavoriteList } from './authUserOnSite';
 import { firstEventRender } from './renderingCards';
 import favouritesTmpl from '../templates/favouritesTmpl.hbs';
 import {
-  eventCardRef,
   dataContainer,
   paginationRef,
-  authWrapperRef,
-  logoRef,
 } from './refs';
 import { db } from './firebaseApi';
 import getUrlValue from './urlValue';
@@ -72,13 +69,15 @@ function addToFav() {
   });
 }
 
-function getAndRenderFavList() {
+function getAndRenderFavList(id) {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       const userCollection = db.collection(`${user.uid}`).doc('fav');
       userCollection.get().then(doc => {
         if (doc.exists) {
-          dataContainer.innerHTML = favouritesTmpl(Object.values(doc.data()));
+          const favs = doc.data()
+          delete favs[id]
+          dataContainer.innerHTML = favouritesTmpl(Object.values(favs));
           runAnimationCards();
           document
             .querySelector('.back-btn')
@@ -86,13 +85,13 @@ function getAndRenderFavList() {
 
           localStorage.setItem(
             'data',
-            JSON.stringify(Object.values(doc.data())),
+            JSON.stringify(Object.values(favs)),
           );
           const deleteFavBtns = document.querySelectorAll('.delete-fav');
           deleteFavBtns.forEach(btn =>
             btn.addEventListener('click', onDeleteFav),
           );
-          if (Object.keys(doc.data()).length === 0) {
+          if (Object.keys(favs).length === 0) {
             emptyFavoriteList();
           }
         } else if (!doc.exists) {
@@ -108,7 +107,7 @@ function getAndRenderFavList() {
 function onDeleteFav(e) {
   const id = e.target.parentNode.id;
   removeFromDatabase(id);
-  getAndRenderFavList();
+  getAndRenderFavList(id);
 }
 
 export { getAndRenderFavList, favBtnsToggle, removeFromDatabase, addToFav, onDeleteFav }
