@@ -942,8 +942,16 @@
 //     /> -->
 //==========================================================script-data-base=====================================
 // <!-- <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script> -->
-
-
+// ===============================================================================================================
+// const page = document.querySelector(".paginationjs")
+// console.log(page);
+// let numberPage = ''
+// page.addEventListener('click', onCardClick)
+// function onCardClick(e) {
+//    numberPage = +e.target.text - 1
+//     return numberPage
+// }
+// export {numberPage}
 
 
 
