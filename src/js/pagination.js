@@ -1,6 +1,6 @@
 // import { error, info } from '@pnotify/core';
-import { BASE_URL, API_KEY } from './urlBaseConst'
-import { searchInput, preloader, } from './refs';
+import { BASE_URL, API_KEY } from './urlBaseConst';
+import { searchInput, preloader } from './refs';
 import { onRenderingSearchEvents } from './renderingSaerchEvents';
 
 function getData(url) {
@@ -14,9 +14,17 @@ function getData(url) {
         onInfoBadSearch();
         return;
       }
+      if (response.page.totalPages > 1000) {
+        return 984;
+      }
       return response.page.totalPages;
     },
     locator: '_embedded.events',
+    alias: {
+      pageNumber: 'page',
+      pageSize: 'size',
+    },
+    pageSize: 24,
     callback: function (data) {
       onRenderingSearchEvents(data, '#dataContainer');
     },
