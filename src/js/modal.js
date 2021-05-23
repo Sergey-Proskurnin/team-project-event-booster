@@ -1,25 +1,26 @@
-// import { error, info } from '@pnotify/core';
 import 'basiclightbox/dist/basiclightbox.min.css';
 const basicLightbox = require('basiclightbox');
 import evtModalTmpl from '../templates/evtModal.hbs';
 import evtModalInfo from '../templates/evtModalInfo.hbs';
-import favouritesTmpl from '../templates/favouritesTmpl.hbs';
 import {
   eventCardRef,
-  dataContainer,
   paginationRef,
   authWrapperRef,
   logoRef,
 } from './refs';
-import { db } from './firebaseApi';
+
 import getUrlValue from './urlValue';
 import 'firebaseui/dist/firebaseui.css';
-import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/database';
-import { runAnimationCards } from './renderingSaerchEvents';
-import { emptyFavoriteList } from './authUserOnSite';
-import { firstEventRender } from './renderingCards';
+
+import {
+ getAndRenderFavList,
+ favBtnsToggle,
+ removeFromDatabase,
+ addToFav,
+} from './dataBase'
+
 
 let modal = basicLightbox;
 
@@ -37,6 +38,7 @@ function onCardClick(e) {
     openModal(evtInfoMarkup);
     infoTextToggle();
     favBtnsToggle(id);
+    addListeners();
   }
 }
 
@@ -48,29 +50,6 @@ function addListeners() {
     .querySelector('#favourite')
     .addEventListener('click', onAddToFavCheck);
   document.querySelector('.my-fav').addEventListener('click', onMyFavClick);
-}
-
-function favBtnsToggle() {
-  const id = document.querySelector('.evt-wrapper').id;
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      document
-        .querySelectorAll('.comment_bubble')
-        .forEach(i => (i.style.display = 'none'));
-      const userCollection = db.collection(`${user.uid}`).doc('fav');
-      userCollection.get().then(doc => {
-        if (doc.exists) {
-          const favListIDs = Object.keys(doc.data());
-          if (favListIDs.includes(id)) {
-            document.querySelector('#favourite').checked = true;
-          }
-        }
-      });
-    } else {
-      document.querySelector('#favourite').disabled = true;
-      document.querySelector('.my-fav').disabled = true;
-    }
-  });
 }
 
 function openModal(markupInfo) {
@@ -90,9 +69,8 @@ function openModal(markupInfo) {
     },
   });
   modal.show();
-  addListeners();
-
-  function closeOnEsc(e) {
+ 
+ function closeOnEsc(e) {
     if (e.key === 'Escape') {
       modal.close();
     }
@@ -171,47 +149,8 @@ function onAddToFavCheck(e) {
   if (e.target.checked) {
     addToFav();
   } else {
-    justRemoveFromFav();
+    removeFromDatabase();
   }
-}
-
-function justRemoveFromFav() {
-  const id = document.querySelector('.evt-wrapper').id;
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      const userCollection = db.collection(`${user.uid}`).doc('fav');
-      userCollection.update({
-        [id]: firebase.firestore.FieldValue.delete(),
-      });
-    }
-  });
-}
-
-function addToFav() {
-  const id = document.querySelector('.evt-wrapper').id;
-  let fetchResult = JSON.parse(localStorage.getItem('data'));
-  const evtInfo = fetchResult.find(e => e.id === id);
-
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      db.collection(`${user.uid}`)
-        .doc('fav')
-        .set(
-          {
-            [id]: evtInfo,
-          },
-          { merge: true },
-        );
-      // User is signed in.
-    } else {
-      // No user is signed in.
-    }
-  });
-}
-
-function removeFromFav() {
-  const id = document.querySelector('.evt-wrapper').id;
-  removeFromDatabase(id);
 }
 
 function onMyFavClick() {
@@ -219,54 +158,3 @@ function onMyFavClick() {
   modal.close();
   paginationRef.style.visibility = 'hidden';
 }
-
-function onDeleteFav(e) {
-  const id = e.target.parentNode.id;
-  removeFromDatabase(id);
-}
-
-function removeFromDatabase(id) {
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      const userCollection = db.collection(`${user.uid}`).doc('fav');
-      userCollection.update({
-        [id]: firebase.firestore.FieldValue.delete(),
-      });
-      getAndRenderFavList();
-    }
-  });
-}
-
-function getAndRenderFavList() {
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      const userCollection = db.collection(`${user.uid}`).doc('fav');
-      userCollection.get().then(doc => {
-        if (doc.exists) {
-          dataContainer.innerHTML = favouritesTmpl(Object.values(doc.data()));
-          runAnimationCards();
-          document
-            .querySelector('.back-btn')
-            .addEventListener('click', firstEventRender);
-
-          localStorage.setItem(
-            'data',
-            JSON.stringify(Object.values(doc.data())),
-          );
-          const deleteFavBtns = document.querySelectorAll('.delete-fav');
-          deleteFavBtns.forEach(btn =>
-            btn.addEventListener('click', onDeleteFav),
-          );
-          if (Object.keys(doc.data()).length === 0) {
-            emptyFavoriteList();
-          }
-        } else if (!doc.exists) {
-          addListeners();
-          paginationRef.style.visibility = 'hidden';
-          emptyFavoriteList();
-        }
-      });
-    }
-  });
-}
-export { onMyFavClick, onDeleteFav };
