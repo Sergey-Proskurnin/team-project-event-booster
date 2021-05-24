@@ -10,7 +10,7 @@ function getData(url) {
       onError();
     },
     totalNumberLocator: function (response) {
-      if (response.page.totalPages === 0) {
+      if (response.page.totalPages === 0 || response._embedded === undefined) {
         onInfoBadSearch();
         return;
       }
@@ -42,7 +42,7 @@ function onError() {
 }
 function onInfoBadSearch() {
   dataContainer.innerHTML =
-    '<img class="imageNotfication" src = "https://i.pinimg.com/originals/53/52/7e/53527e7fcfed3820a3e38bb755888650.png" ><h2 class="notification">"Oops, no events in this country!"</h2> ';
+    '<img class="imageNotfication" src = "https://i.pinimg.com/originals/53/52/7e/53527e7fcfed3820a3e38bb755888650.png" ><h2 class="notification">"Oops, no events!"</h2> ';
   preloader.hide();
 }
 export { getData };
