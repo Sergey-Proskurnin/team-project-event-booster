@@ -1,8 +1,20 @@
+import img1 from '../images/team/Sergey_Proskurnin.jpg'
+import img2 from '../images/team/Kaminska_Olena.jpeg'
+import img3 from '../images/team/Lobko_Tetiana.jpeg'
+import img4 from '../images/team/Maksymenko_Sergii.jpeg'
+import img5 from '../images/team/Moisieieva_Alla.jpeg'
+import img6 from '../images/team/Sagaidachny_Dmitry.jpeg'
+import img7 from '../images/team/Sivak_Ekaterina.jpeg'
+import img8 from '../images/team/Strilchuk_Mykhaylo.jpg'
+import img9 from '../images/team/Vislohuzova_Irina.jpeg'
+import img10 from '../images/team/Yevhen_Cherniuk.jpeg'
+import img11 from '../images/team/Zharkynbek_Idirisov.jpeg'
+
 export default [
   {
     fullName: 'Sergey Proskurnin',
     position: 'Dream-Team Lead',
-    photo: 'https://fs39.fex.net/preview/3335748754/400x0',
+    photo: `./${img1}`,
     linkedIn: '#',
     gitHub: 'https://github.com/Sergey-Proskurnin',
     instagram: '#',
@@ -10,7 +22,7 @@ export default [
   {
     fullName: 'Olena Kaminska',
     position: 'Modal window and slider queen',
-    photo: 'https://fs39.fex.net/preview/3334796330/400x0',
+    photo: `./${img2}`,
     linkedIn: 'https://www.linkedin.com/in/helen-kaminskaya-b1188351/',
     gitHub: 'https://github.com/OlenaKa',
     instagram: 'https://www.instagram.com/helenkaminskaya/',
@@ -18,7 +30,7 @@ export default [
   {
     fullName: 'Zharkynbek Idirisov',
     position: 'Pagination and alert master',
-    photo: 'https://fs41.fex.net/preview/3334796447/400x0',
+    photo: `./${img11}`,
     linkedIn:
       'https://www.linkedin.com/mwlite/in/%E2%9A%A1zharkynbek-idirisov-%E2%9A%A1-b41578206',
     gitHub: 'https://github.com/Zharkynbek',
@@ -27,7 +39,7 @@ export default [
   {
     fullName: 'Irina Vislohuzova',
     position: 'Hover and animation master',
-    photo: 'https://fs41.fex.net/preview/3334796409/400x0',
+    photo: `./${img9}`,
     linkedIn: '#',
     gitHub: 'https://github.com/irina-visloguzova',
     instagram: 'https://instagram.com/v.irinaa?igshid=v6xbfhcnm2pr',
@@ -35,7 +47,7 @@ export default [
   {
     fullName: 'Dmitryi Sagaidachnyi',
     position: 'Google Map master',
-    photo: 'https://fs39.fex.net/preview/3334796380/400x0',
+    photo: `./${img6}`,
     linkedIn:
       'https://www.linkedin.com/in/%D0%B4%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9-%D1%81%D0%B0%D0%B3%D0%B0%D0%B9%D0%B4%D0%B0%D1%87%D0%BD%D1%8B%D0%B9-3052b3203',
     gitHub: 'https://github.com/Dim4ik85',
@@ -44,7 +56,7 @@ export default [
   {
     fullName: 'Ekaterina Sivak',
     position: 'MarkUp master',
-    photo: 'https://fs39.fex.net/preview/3334796386/400x0',
+    photo: `./${img7}`,
     linkedIn: 'https://www.linkedin.com/feed/',
     gitHub: 'https://github.com/SivakKaterina',
     instagram: 'https://www.instagram.com/ksivak335/',
@@ -52,7 +64,7 @@ export default [
   {
     fullName: 'Alla Moisieieva',
     position: "'Scream' master",
-    photo: 'https://fs39.fex.net/preview/3334796363/400x0',
+    photo: `./${img5}`,
     linkedIn: 'https://www.linkedin.com/in/alla-moisieieva-821582161/',
     gitHub: 'https://github.com/alalasimys',
     instagram: 'https://www.instagram.com/fox.real.name/',
@@ -60,7 +72,7 @@ export default [
   {
     fullName: 'Sergii Maksymenko',
     position: 'Creative director',
-    photo: 'https://fs41.fex.net/preview/3334796358/400x0',
+    photo: `./${img4}`,
     linkedIn: 'https://www.linkedin.com/in/sergiimaksymenko/',
     gitHub: 'https://github.com/uaMonterey',
     instagram: 'https://www.instagram.com/s.v.maksymenko/',
@@ -68,7 +80,7 @@ export default [
   {
     fullName: 'Mykhaylo Strilchuk',
     position: 'Modal Open master',
-    photo: 'https://fs39.fex.net/preview/3340614922/400x0',
+    photo: `./${img8}`,
     linkedIn: 'linkedin.com/in/misha-strilchuk-ba2a6494 ',
     gitHub: 'https://github.com/mishastr77',
     instagram: '#',
@@ -76,7 +88,7 @@ export default [
   {
     fullName: 'Yevhen Cherniuk',
     position: 'Gsap master',
-    photo: 'https://fs41.fex.net/preview/3334796439/400x0',
+    photo: `./${img10}`,
     linkedIn: 'https://fs41.fex.net/preview/3334796439/400x0',
     gitHub: 'https://github.com/yevhen-cherniuk',
     instagram:
@@ -85,7 +97,7 @@ export default [
   {
     fullName: 'Tetiana Lobko',
     position: 'Layout, animation and gradient master',
-    photo: 'https://fs39.fex.net/preview/3334796336/400x0',
+    photo: `./${img3}`,
     linkedIn: 'https://www.linkedin.com/in/tatiana-lobko-5b36b8212',
     gitHub: 'https://github.com/TetianaLobko',
     instagram: 'https://instagram.com/tanya.lobko.3?igshid=rf6ieu4lb5sx',
